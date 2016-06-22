@@ -2,12 +2,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.whunf.putaomovieday1">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
+        android:name=".common.core.PMApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
-        android:name=".common.core.PMApplication"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity android:name=".common.ui.MainActivity">
@@ -17,6 +18,7 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".module.movie.ui.MovieMainActivity"></activity>
     </application>
 
 </manifest>

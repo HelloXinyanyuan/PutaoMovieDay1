@@ -1,5 +1,6 @@
 package com.whunf.putaomovieday1.common.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.TextView;
 
@@ -10,6 +11,7 @@ import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseActivity;
 import com.whunf.putaomovieday1.common.core.PMApplication;
 import com.whunf.putaomovieday1.common.util.T;
+import com.whunf.putaomovieday1.module.movie.ui.MovieMainActivity;
 
 public class MainActivity extends BaseActivity {
 
@@ -17,6 +19,8 @@ public class MainActivity extends BaseActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        startActivity(new Intent(this, MovieMainActivity.class));
 
         final TextView helloVolley= (TextView) findViewById(R.id.helloVolley);
 
