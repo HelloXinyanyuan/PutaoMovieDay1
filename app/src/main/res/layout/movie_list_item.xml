@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.android.volley.toolbox.NetworkImageView
+        android:id="@+id/movie_poster"
+        android:layout_width="66dp"
+        android:layout_height="88dp"
+        android:background="@mipmap/ic_launcher"></com.android.volley.toolbox.NetworkImageView>
+
+
+    <TextView
+        android:id="@+id/movie_gcedition"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/movie_poster"
+        android:layout_alignTop="@+id/movie_poster"
+        android:text="3D" />
+
+
+    <TextView
+        android:id="@+id/movie_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:layout_below="@+id/movie_poster"
+        android:layout_centerHorizontal="true" />
+
+    <LinearLayout
+
+        android:id="@+id/rating_layout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/movie_name"
+        android:layout_centerHorizontal="true"
+        android:orientation="horizontal">
+
+        <RatingBar
+            android:id="@+id/rating_rb"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:isIndicator="true"
+            android:stepSize="0.5"
+            android:rating="2"
+            android:numStars="5" />
+
+        <TextView
+            android:id="@+id/rating_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="9.8" />
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/movie_buy_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/rating_layout"
+        android:layout_centerHorizontal="true"
+        android:text="购买" />
+
+
+</RelativeLayout>

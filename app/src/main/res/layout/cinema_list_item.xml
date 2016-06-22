@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:padding="10dp">
+
+    <TextView
+        android:id="@+id/cinema_mame"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentTop="true"
+        android:text="海岸影城" />
+
+    <TextView
+        android:id="@+id/cinema_addr"
+        android:singleLine="true"
+        android:ellipsize="end"
+        android:maxWidth="@dimen/cinema_address_max_width"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cinema_mame"
+        android:layout_below="@+id/cinema_mame"
+        android:text="dizhi....." />
+
+    <TextView
+        android:id="@+id/cinema_remain_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/cinema_mame"
+        android:layout_below="@+id/cinema_addr"
+        android:text="shengyu chagnci" />
+
+
+    <TextView
+        android:id="@+id/cinema_step_price"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:text="20元起" />
+
+
+    <TextView
+        android:id="@+id/cinema_distance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/cinema_step_price"
+        android:layout_below="@+id/cinema_step_price"
+        android:text="20km" />
+
+
+    <TextView
+        android:id="@+id/cinema_cp_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@+id/cinema_step_price"
+        android:layout_below="@+id/cinema_distance"
+        android:text="3家比价" />
+
+
+</RelativeLayout>
