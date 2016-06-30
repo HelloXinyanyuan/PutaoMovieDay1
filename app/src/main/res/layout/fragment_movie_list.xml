@@ -4,6 +4,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
+
+
+
+
     <GridView
         android:id="@+id/movie_list_gv"
         android:layout_width="match_parent"

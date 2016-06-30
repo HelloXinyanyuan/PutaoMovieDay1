@@ -1,1 +1,1 @@
-include ':app', ':testlib', ':volley'
+include ':app', ':testlib', ':volley', 'smlibrary'

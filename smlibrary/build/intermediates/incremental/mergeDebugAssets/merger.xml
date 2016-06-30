@@ -1,0 +1,2 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merger version="3"><dataSet config="main"><source path="D:\AT20\ASProject\PutaoMovieDay1\smlibrary\assets"/><source path="D:\AT20\ASProject\PutaoMovieDay1\smlibrary\build\generated\assets\shaders\debug"/></dataSet><dataSet config="debug"><source path="D:\AT20\ASProject\PutaoMovieDay1\smlibrary\src\debug\assets"/></dataSet></merger>

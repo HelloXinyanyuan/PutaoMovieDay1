@@ -14,10 +14,14 @@ import com.android.volley.toolbox.StringRequest;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
 import com.whunf.putaomovieday1.common.core.PMApplication;
+import com.whunf.putaomovieday1.common.util.CityMgr;
+import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.adapter.MovieListAdapter;
 import com.whunf.putaomovieday1.module.movie.resp.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieResp;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.List;
 
 /**
@@ -40,20 +44,33 @@ public class MovieListFragment extends BaseFragment {
         return inflate;
     }
 
+    StringRequest request;
+
     @Override
     public void initData() {
+
+        String citycode = null;
+        try {
+            citycode = URLEncoder.encode(CityMgr.getInstance().loadCity(), "utf-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         //创建request
-        String url = "http://api.putao.so/sbiz/movie/list?citycode=%E6%B7%B1%E5%9C%B3";
-        StringRequest request = new StringRequest(url, new Response.Listener<String>() {
+        String url = "http://api.putao.so/sbiz/movie/list?citycode=" + citycode;
+        request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {//处理成功的String返回
                 //将返回结果转成对象
                 MovieResp movieResp = JSONObject.parseObject(response, MovieResp.class);
                 List<Movie> data = movieResp.getData();
 
-                MovieListAdapter movieListAdapter = new MovieListAdapter(data);
-                //将适配器与GridView关联
-                mMovieListGv.setAdapter(movieListAdapter);
+                if (data != null) {
+                    MovieListAdapter movieListAdapter = new MovieListAdapter(data);
+                    //将适配器与GridView关联
+                    mMovieListGv.setAdapter(movieListAdapter);
+                } else {
+                    T.showShort(getActivity(), "没有影片数据");
+                }
             }
         }, new Response.ErrorListener() {
             @Override
@@ -64,7 +81,13 @@ public class MovieListFragment extends BaseFragment {
 
         //添加到请求队列中
         PMApplication.getInstance().getRequestQueue().add(request);
+    }
 
-
+    @Override
+    public void onDestroy() {
+        if (request != null) {
+            request.cancel();
+        }
+        super.onDestroy();
     }
 }

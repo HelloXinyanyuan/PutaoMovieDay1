@@ -1,0 +1,104 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.whunf.putaomovieday1.module.user.ui.MenuFragment">
+
+    <RelativeLayout
+        android:id="@+id/layout_login"
+        android:layout_width="match_parent"
+        android:layout_height="160dp"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin">
+
+        <ImageView
+            android:id="@+id/imv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/tv_login"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@+id/imv_login"
+            android:text="@string/menu_login_unlogin_txt" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:src="@mipmap/ic_launcher" />
+
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView  android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="我的订单" />
+
+        <TextView  android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:id="@+id/tv_order_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:text="全部" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/tv_order_all"
+            android:orientation="horizontal">
+
+            <TextView
+                android:id="@+id/tv_order_weixiaofei"
+                style="@style/MenuOrderTv"
+                android:layout_height="wrap_content"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="未消费" />
+
+            <TextView
+                android:id="@+id/tv_order_daifukuan"
+                style="@style/MenuOrderTv"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="待付款" />
+
+            <TextView
+                android:id="@+id/tv_order_daipingjia"
+                style="@style/MenuOrderTv"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="待评价" />
+
+            <TextView
+                android:id="@+id/tv_order_tuikuan"
+                style="@style/MenuOrderTv"
+                android:drawableTop="@mipmap/ic_launcher"
+                android:text="退款" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <Button android:layout_marginTop="30dp"
+        android:id="@+id/btn_my_msg"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="我的消息" />
+
+    <Button
+        android:id="@+id/btn_setting"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="设置" />
+</LinearLayout>

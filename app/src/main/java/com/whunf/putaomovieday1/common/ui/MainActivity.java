@@ -1,44 +1,51 @@
 package com.whunf.putaomovieday1.common.ui;
 
-import android.content.Intent;
 import android.os.Bundle;
-import android.widget.TextView;
 
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
+import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
+import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.whunf.putaomovieday1.R;
-import com.whunf.putaomovieday1.common.core.BaseActivity;
-import com.whunf.putaomovieday1.common.core.PMApplication;
-import com.whunf.putaomovieday1.common.util.T;
-import com.whunf.putaomovieday1.module.movie.ui.MovieMainActivity;
+import com.whunf.putaomovieday1.common.core.BaseFragment;
+import com.whunf.putaomovieday1.module.user.ui.MenuFragment;
 
-public class MainActivity extends BaseActivity {
+public class MainActivity extends SlidingFragmentActivity {
+
+    private BaseFragment mContent;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        // set the Above View
+        if (savedInstanceState != null)
+            mContent = (BaseFragment) getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
+        if (mContent == null)
+            mContent = new MainContentFragment();
 
-        startActivity(new Intent(this, MovieMainActivity.class));
+        // set the Above View
+        setContentView(R.layout.content_frame);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.content_frame, mContent)
+                .commit();
 
-        final TextView helloVolley= (TextView) findViewById(R.id.helloVolley);
+        // set the Behind View
+        setBehindContentView(R.layout.menu_frame);
+        getSupportFragmentManager()
+                .beginTransaction()
+                .replace(R.id.menu_frame, new MenuFragment())
+                .commit();
 
-        String url="http://api.putao.so/sbiz/movie/cinema/list?citycode=%E4%B8%8A%E6%B5%B7";
-
-        StringRequest stringRequest=new StringRequest(url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                helloVolley.setText(response);
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                T.showShort(MainActivity.this,"加载出错了！");
-            }
-        });
-        //将这个请求放到请求队列中
-        PMApplication.getInstance().getRequestQueue().add(stringRequest);
-
+        //侧滑时触摸的模式
+        getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
+        //侧滑的偏移量
+        getSlidingMenu().setBehindOffsetRes(R.dimen.slidingmenu_offset);
     }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState) {
+        super.onSaveInstanceState(outState);
+        getSupportFragmentManager().putFragment(outState, "mContent", mContent);
+    }
+
+
 }

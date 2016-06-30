@@ -1,0 +1,17 @@
+[33mcommit 18fe41c85abf0b17585aa5c6bdee9b7ab32f7ed3[m
+Author: abc2016qwe <abc2016qwe@sohu.com>
+Date:   Wed Jun 22 16:51:09 2016 +0800
+
+    影片列表和影院列表的实现
+
+[33mcommit 72d8a60c2e93ffc134873ed0e8fa0306f8961e36[m
+Author: abc2016qwe <abc2016qwe@sohu.com>
+Date:   Tue Jun 21 11:01:09 2016 +0800
+
+    Volley和fastjson集成
+
+[33mcommit f53e4bda3f03755a1a5a60008abfa495ebfe7be3[m
+Author: abc2016qwe <abc2016qwe@sohu.com>
+Date:   Tue Jun 21 10:12:43 2016 +0800
+
+    Initial commit

@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+import com.baidu.mapapi.SDKInitializer;
 
 /**
  * Created by Administrator on 2016/6/21.
@@ -29,6 +30,8 @@ public class PMApplication extends Application {
         super.onCreate();
         sIntance = this;
         requestQueue = Volley.newRequestQueue(this);
+        // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
+        SDKInitializer.initialize(this);
     }
 
     /**

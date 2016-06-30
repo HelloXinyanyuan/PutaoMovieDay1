@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="home_tabs_txt">
+        <item>电影</item>
+        <item>影院</item>
+        <item>发现</item>
+    </string-array>
+
+
+</resources>

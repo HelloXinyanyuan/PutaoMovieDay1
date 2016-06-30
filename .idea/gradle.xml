@@ -10,6 +10,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/smlibrary" />
             <option value="$PROJECT_DIR$/testlib" />
             <option value="$PROJECT_DIR$/volley" />
           </set>
@@ -18,6 +19,7 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/smlibrary" />
             <option value="$PROJECT_DIR$/testlib" />
             <option value="$PROJECT_DIR$/volley" />
           </set>
