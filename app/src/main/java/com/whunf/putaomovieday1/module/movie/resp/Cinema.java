@@ -78,6 +78,19 @@ public class Cinema {
      */
     private String pricerange;
 
+    /**
+     * 计算当前的影院对象与用户的距离
+     */
+    private double distance;
+
+    public double getDistance() {
+        return distance;
+    }
+
+    public void setDistance(double distance) {
+        this.distance = distance;
+    }
+
     public Long getId() {
         return id;
     }

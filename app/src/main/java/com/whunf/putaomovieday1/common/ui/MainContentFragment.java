@@ -13,10 +13,13 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
+import com.alibaba.fastjson.JSONObject;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
+import com.whunf.putaomovieday1.common.storage.PreferenceUtil;
 import com.whunf.putaomovieday1.common.util.CityMgr;
 import com.whunf.putaomovieday1.common.util.location.LocationMgr;
+import com.whunf.putaomovieday1.common.util.location.LocationPostion;
 import com.whunf.putaomovieday1.module.movie.adapter.SimpleFragmentVpAdapter;
 import com.whunf.putaomovieday1.module.movie.ui.CinemaListFragment;
 import com.whunf.putaomovieday1.module.movie.ui.DiscoverFragment;
@@ -36,7 +39,7 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
     private String[] mTabsTxt;
     private TextView mTvHomeTitle;
     private TextView mTvHomeCity;
-
+    private CinemaListFragment mCinemaListFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -70,8 +73,10 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
         mViewPager = (ViewPager) view.findViewById(R.id.movie_vp);
         //创建好Fragment
         List<BaseFragment> fragments = new ArrayList<>();
+
+        mCinemaListFragment = new CinemaListFragment();
         fragments.add(new MovieListFragment());
-        fragments.add(new CinemaListFragment());
+        fragments.add(mCinemaListFragment);
         fragments.add(new DiscoverFragment());
         //创建适配器，将fragments传入适配器中
         PagerAdapter adapter = new SimpleFragmentVpAdapter(getChildFragmentManager(), fragments);
@@ -88,6 +93,9 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
                 mNavTabGroup.check(checkedId);
                 //根据位置设置标题
                 mTvHomeTitle.setText(mTabsTxt[position]);
+                if (position == 1) {
+                    mCinemaListFragment.lazyLoadData();
+                }
             }
 
             @Override
@@ -113,10 +121,35 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
     }
 
     private LocationMgr.MovieLocationListener mLocationListener = new LocationMgr.MovieLocationListener() {
+//        public void onLocationSuccess(final String city, String address) {
+//            Log.d(TAG, "onLocationSuccess() called with: " + "city = [" + city + "], address = [" + address + "]");
+//            String currentCity = CityMgr.getInstance().loadCity();
+//            if (!TextUtils.isEmpty(city) && !currentCity.equals(city)) {
+//                TextView textview = new TextView(getActivity());
+//                textview.setText("当前城市是：【" + currentCity + "】定位的是：【" + city + "】是否切换");
+//
+//                new AlertDialog.Builder(getActivity()).setTitle("定位提示").setView(textview).setPositiveButton("切换", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        CityMgr.getInstance().saveCity(city);
+//                    }
+//                }).setNegativeButton("不切换", null).create().show();
+//            }
+//        }
+
         @Override
-        public void onLocationSuccess(final String city, String address) {
-            Log.d(TAG, "onLocationSuccess() called with: " + "city = [" + city + "], address = [" + address + "]");
+        public void onLocationSuccess(final LocationPostion locationPostion) {
+
+            Log.d(TAG, "onLocationSuccess() called with: " + "locationPostion = [" + locationPostion + "]");
             String currentCity = CityMgr.getInstance().loadCity();
+            if (locationPostion == null) {//空判断，防止空指针
+                return;
+            }
+            //将用户定位到的位置信息保存起来
+            String locationJsonStr = JSONObject.toJSONString(locationPostion);
+            PreferenceUtil.save(PreferenceUtil.KEY_USER_POS, locationJsonStr);
+
+            final String city = locationPostion.getCity();
             if (!TextUtils.isEmpty(city) && !currentCity.equals(city)) {
                 TextView textview = new TextView(getActivity());
                 textview.setText("当前城市是：【" + currentCity + "】定位的是：【" + city + "】是否切换");

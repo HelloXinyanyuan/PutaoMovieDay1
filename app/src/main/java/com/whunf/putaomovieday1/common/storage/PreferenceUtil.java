@@ -20,6 +20,10 @@ public class PreferenceUtil {
      * 首页城市
      */
     public static final String KEY_HOME_CITY = "KEY_HOME_CITY";
+    /**
+     * 存储用户定位的位置信息
+     */
+    public static final String KEY_USER_POS = "KEY_USER_POS";
 
     public static void save(String key, String value) {
         Context context = PMApplication.getInstance();

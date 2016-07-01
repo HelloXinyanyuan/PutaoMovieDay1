@@ -53,7 +53,12 @@ public class LocationMgr {
                 mSearch.reverseGeoCode(new ReverseGeoCodeOption()
                         .location(ptCenter));
             } else {
-                dispatchLocationInfo(location.getCity(), location.getAddrStr());
+                LocationPostion lp = new LocationPostion();
+                lp.setAddress(location.getAddrStr());
+                lp.setCity(location.getCity());
+                lp.setLatitude(location.getLatitude());
+                lp.setLongitude(location.getLongitude());
+                dispatchLocationInfo(lp);
             }
 
         }
@@ -63,17 +68,18 @@ public class LocationMgr {
     }
 
 
-    private void dispatchLocationInfo(String city, String address) {
+    private void dispatchLocationInfo(LocationPostion lp) {
         //去掉“市”“县”
+        String city = lp.getCity();
         if (!TextUtils.isEmpty(city)) {
             if (city.endsWith("市") || city.endsWith("县")) {
-                city = city.substring(0, city.length() - 1);
+                lp.setCity(city.substring(0, city.length() - 1));
             }
         }
 
         //分发给每一个注册者
         for (MovieLocationListener listener : mListeners) {
-            listener.onLocationSuccess(city, address);
+            listener.onLocationSuccess(lp);
         }
     }
 
@@ -89,7 +95,12 @@ public class LocationMgr {
         public void onGetReverseGeoCodeResult(ReverseGeoCodeResult reverseGeoCodeResult) {
             //分发给每一个注册者
             for (MovieLocationListener listener : mListeners) {
-                dispatchLocationInfo(reverseGeoCodeResult.getAddressDetail().city, reverseGeoCodeResult.getAddress());
+                LocationPostion lp = new LocationPostion();
+                lp.setAddress(reverseGeoCodeResult.getAddress());
+                lp.setCity(reverseGeoCodeResult.getAddressDetail().city);
+                lp.setLatitude(reverseGeoCodeResult.getLocation().latitude);
+                lp.setLongitude(reverseGeoCodeResult.getLocation().longitude);
+                dispatchLocationInfo(lp);
             }
 
         }
@@ -139,7 +150,7 @@ public class LocationMgr {
      * 定位结果的监听接口
      */
     public interface MovieLocationListener {
-        public abstract void onLocationSuccess(String city, String address);
+        public abstract void onLocationSuccess(LocationPostion locationPostion);
 
         public abstract void onLocationFailed();
 

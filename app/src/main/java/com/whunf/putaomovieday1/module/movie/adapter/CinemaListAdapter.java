@@ -9,6 +9,8 @@ import android.widget.TextView;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.module.movie.resp.Cinema;
 
+import java.text.DecimalFormat;
+
 /**
  * Created by Administrator on 2016/6/22.
  */
@@ -34,13 +36,28 @@ public class CinemaListAdapter extends ArrayAdapter<Cinema> {
         holder.remainCountTxt.setText(cinema.getCountdes());
         String stepPriceStr = Integer.parseInt(cinema.getPricerange().split("-")[0]) / 100 + "";
         holder.stepPriceTxt.setText(stepPriceStr);
-//        holder.distanceTxt.setText(cinema.getCinemaname());
+        holder.distanceTxt.setText(getDistanceStr(cinema.getDistance()));
         holder.cpCountTxt.setText(cinema.getCpcount() + "");
-
 
         return convertView;
     }
 
+    private DecimalFormat decimalFormat = new DecimalFormat(".##");//保留两位小数格式化工具
+
+    /**
+     * 获得距离的字符串形式表示
+     * @param distance
+     * @return
+     */
+    private String getDistanceStr(double distance) {
+        String distanceStr = null;
+        if (distance < 1000) {
+            distanceStr = decimalFormat.format(distance) + "M";
+        } else {
+            distanceStr = decimalFormat.format(distance / 1000) + "KM";
+        }
+        return distanceStr;
+    }
 
     private final class ViewHolder {
 
@@ -60,7 +77,6 @@ public class CinemaListAdapter extends ArrayAdapter<Cinema> {
             cpCountTxt = (TextView) v.findViewById(R.id.cinema_cp_count);
             v.setTag(this);
         }
-
 
     }
 
