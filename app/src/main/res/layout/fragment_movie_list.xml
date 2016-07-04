@@ -5,12 +5,13 @@
     android:orientation="vertical">
 
 
-
-
-
     <GridView
         android:id="@+id/movie_list_gv"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:numColumns="3"></GridView>
+        android:layout_marginLeft="12dp"
+        android:layout_marginRight="12dp"
+        android:horizontalSpacing="12dp"
+        android:numColumns="3"
+        android:verticalSpacing="16dp"></GridView>
 </LinearLayout>

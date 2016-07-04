@@ -5,9 +5,10 @@
 
     <com.android.volley.toolbox.NetworkImageView
         android:id="@+id/movie_poster"
-        android:layout_width="66dp"
-        android:layout_height="88dp"
-        android:background="@mipmap/ic_launcher"></com.android.volley.toolbox.NetworkImageView>
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@mipmap/ic_launcher"
+        android:scaleType="fitXY"></com.android.volley.toolbox.NetworkImageView>
 
 
     <TextView
@@ -42,9 +43,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:isIndicator="true"
-            android:stepSize="0.5"
+            android:numStars="5"
             android:rating="2"
-            android:numStars="5" />
+            android:stepSize="0.5" />
 
         <TextView
             android:id="@+id/rating_txt"
