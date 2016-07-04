@@ -1,10 +1,12 @@
 package com.whunf.putaomovieday1.module.movie.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.GridView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -28,8 +30,10 @@ import java.util.List;
  * 影片列表
  * Created by Administrator on 2016/6/22.
  */
-public class MovieListFragment extends BaseFragment {
+public class MovieListFragment extends BaseFragment implements AdapterView.OnItemClickListener {
     private GridView mMovieListGv;
+    //所有影片
+    private List<Movie> data;
 
     @Nullable
     @Override
@@ -37,7 +41,7 @@ public class MovieListFragment extends BaseFragment {
 
         View inflate = View.inflate(getActivity(), R.layout.fragment_movie_list, null);
         mMovieListGv = (GridView) inflate.findViewById(R.id.movie_list_gv);
-
+        mMovieListGv.setOnItemClickListener(this);
         //初始化数据
         initData();
 
@@ -62,7 +66,7 @@ public class MovieListFragment extends BaseFragment {
             public void onResponse(String response) {//处理成功的String返回
                 //将返回结果转成对象
                 MovieResp movieResp = JSONObject.parseObject(response, MovieResp.class);
-                List<Movie> data = movieResp.getData();
+              data = movieResp.getData();
 
                 if (data != null) {
                     MovieListAdapter movieListAdapter = new MovieListAdapter(data);
@@ -89,5 +93,14 @@ public class MovieListFragment extends BaseFragment {
             request.cancel();
         }
         super.onDestroy();
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+       Movie movie= data.get(position);
+        Intent intent=new Intent(getActivity(),MovieDetailActivity.class);
+        intent.putExtra("movie",movie);
+        startActivity(intent);
+
     }
 }

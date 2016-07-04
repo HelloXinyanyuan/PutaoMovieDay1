@@ -34,7 +34,7 @@ public class CinemaListAdapter extends ArrayAdapter<Cinema> {
         holder.nameTxt.setText(cinema.getCinemaname());
         holder.addrTxt.setText(cinema.getAddress());
         holder.remainCountTxt.setText(cinema.getCountdes());
-        String stepPriceStr = Integer.parseInt(cinema.getPricerange().split("-")[0]) / 100 + "";
+        String stepPriceStr = cinema.getStepPrice() + "";
         holder.stepPriceTxt.setText(stepPriceStr);
         holder.distanceTxt.setText(getDistanceStr(cinema.getDistance()));
         holder.cpCountTxt.setText(cinema.getCpcount() + "");

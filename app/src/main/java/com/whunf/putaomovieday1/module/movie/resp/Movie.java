@@ -1,9 +1,11 @@
 package com.whunf.putaomovieday1.module.movie.resp;
 
+import java.io.Serializable;
+
 /**
  * Created by Administrator on 2016/6/22.
  */
-public class Movie {
+public class Movie implements Serializable {
 
     /**
      * 影片id Y

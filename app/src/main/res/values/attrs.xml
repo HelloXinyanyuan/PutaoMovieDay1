@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="title" format="string|reference"></attr>
+    <attr name="right_btn_src" format="reference"></attr>
+    <declare-styleable name="HeaderLayoutAttr">
+        <attr name="title"></attr>
+        <attr name="right_btn_src"></attr>
+    </declare-styleable>
+
+
+</resources>

@@ -82,6 +82,18 @@ public class Cinema {
      * 计算当前的影院对象与用户的距离
      */
     private double distance;
+    /**
+     * 影院底价-最低价
+     */
+    private int stepPrice;
+
+    public int getStepPrice() {
+        return stepPrice;
+    }
+
+    public void setStepPrice(int stepPrice) {
+        this.stepPrice = stepPrice;
+    }
 
     public double getDistance() {
         return distance;

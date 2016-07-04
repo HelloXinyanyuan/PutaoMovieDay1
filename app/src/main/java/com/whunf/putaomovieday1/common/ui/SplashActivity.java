@@ -3,13 +3,13 @@ package com.whunf.putaomovieday1.common.ui;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.ViewPager;
-import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.ImageView;
 
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.adapter.SimplePagerAdapter;
 import com.whunf.putaomovieday1.common.core.AppConfig;
+import com.whunf.putaomovieday1.common.core.BaseActivity;
 import com.whunf.putaomovieday1.common.storage.PreferenceUtil;
 
 import java.util.ArrayList;
@@ -18,7 +18,7 @@ import java.util.List;
 /**
  * 用户功能的引导页
  */
-public class SplashActivity extends AppCompatActivity {
+public class SplashActivity extends BaseActivity {
 
     private int[] imgRes = {
             R.drawable.start_i1,

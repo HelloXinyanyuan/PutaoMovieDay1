@@ -1,11 +1,17 @@
 package com.whunf.putaomovieday1.module.movie.ui;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.ListView;
+import android.widget.PopupWindow;
 import android.widget.TextView;
 
 import com.alibaba.fastjson.JSONObject;
@@ -29,6 +35,10 @@ import com.whunf.putaomovieday1.module.movie.resp.CinemaResp;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashSet;
 import java.util.List;
 
 /**
@@ -42,6 +52,57 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
     private TextView tvUserLocation;
 
     private boolean hasLoadData = false;
+    private TextView mTvArea;
+    private TextView mTvSort;
+    /**
+     * 所有的影院数据
+     */
+    private List<Cinema> mAllCinemaDatas = new ArrayList<>();
+    /**
+     * 当前的影院集合
+     */
+    private List<Cinema> mCurrentCinemaDatas = new ArrayList<>();
+    /**
+     * 影院列表适配器
+     */
+    private CinemaListAdapter mCinemaListAdapter;
+    /**
+     * 区域列表的适配器
+     */
+    private ArrayAdapter<String> mAreaAdapter;
+    /**
+     * 区域集合数据
+     */
+    private HashSet<String> mAreaSet;
+    //影院筛选的弹框
+    private PopupWindow mAreaPopwindow;
+    /**
+     * 影院排序的弹框
+     */
+    private PopupWindow mSortPopwindow;
+    //区域筛选列表的item点击
+    private AdapterView.OnItemClickListener mAreaItemClick = new AdapterView.OnItemClickListener() {
+        @Override
+        public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+            List<Cinema> filterCinemas = new ArrayList<>();
+            if (position == 0) {//“全部”
+                filterCinemas.addAll(mAllCinemaDatas);
+            } else {
+                String areaName = mAreaAdapter.getItem(position);
+                for (Cinema cinema : mAllCinemaDatas) {
+                    if (areaName.equals(cinema.getCountyname())) {//如果名字匹配，就放入集合
+                        filterCinemas.add(cinema);
+                    }
+                }
+            }
+
+            mCinemaListAdapter.clear();
+            mCinemaListAdapter.addAll(filterCinemas);
+            mAreaPopwindow.dismiss();//点击item后隐藏popupwindow
+
+            mCurrentCinemaDatas = filterCinemas;
+        }
+    };
 
 
     @Nullable
@@ -51,6 +112,11 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         View inflate = View.inflate(getActivity(), R.layout.fragment_cinema_list, null);
         mCinemaListLv = (ListView) inflate.findViewById(R.id.cinema_list_lv);
         tvUserLocation = (TextView) inflate.findViewById(R.id.tv_location);
+        mTvArea = (TextView) inflate.findViewById(R.id.tv_cinema_area);
+        mTvArea.setOnClickListener(this);
+        mTvSort = (TextView) inflate.findViewById(R.id.tv_cinema_sort);
+        mTvSort.setOnClickListener(this);
+
         inflate.findViewById(R.id.btn_relocation).setOnClickListener(this);
 
         return inflate;
@@ -105,8 +171,7 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         return locationPostion;
     }
 
-
-    StringRequest request;
+    private StringRequest request;
 
     @Override
     public void initData() {
@@ -123,34 +188,14 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
                 //将返回结果转成对象
                 CinemaResp cinemaResp = JSONObject.parseObject(response, CinemaResp.class);
                 //将适配器与GridView关联
-                CinemaListAdapter cinemaListAdapter = new CinemaListAdapter(getActivity());
+                mCinemaListAdapter = new CinemaListAdapter(getActivity());
                 List<Cinema> data = cinemaResp.getData();
-                LocationPostion usePos = loadUserPos();
-
-                if (usePos != null) {
-                    //加工影院列表数据——计算当前用户与指定影院的距离
-                    //构建当前用户位置
-                    LatLng userPos = new LatLng(usePos.getLatitude(), usePos.getLongitude());
-                    for (Cinema cinema : data) {
-                        //构建影院位置
-                        LatLng cinemaPos = new LatLng(Double.parseDouble(cinema.getLatitude()), Double.parseDouble(cinema.getLongitude()));
-
-                        if (cinema.getCs().equals("1")){//当他是高德坐标系时需要转换成百度坐标系，不然有偏差
-                            CoordinateConverter convert=new CoordinateConverter();
-                            convert.coord(cinemaPos);
-                            convert.from(CoordinateConverter.CoordType.COMMON);
-                            cinemaPos=convert.convert();
-                        }
-
-                        double distance = DistanceUtil.getDistance(cinemaPos, userPos);//计算两点间距离
-                        cinema.setDistance(distance);//将计算后的距离存储在cinema对象中
-                    }
-                }
-
-
+                initCinemaDatas(data);//对原始数据加工
+                mCurrentCinemaDatas = data;
+                mAllCinemaDatas.addAll(data);
                 if (data != null) {
-                    cinemaListAdapter.addAll(data);
-                    mCinemaListLv.setAdapter(cinemaListAdapter);
+                    mCinemaListAdapter.addAll(data);
+                    mCinemaListLv.setAdapter(mCinemaListAdapter);
                 } else {
                     T.showShort(getActivity(), "没有影院数据");
                 }
@@ -165,7 +210,61 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
 
         //添加到请求队列中
         PMApplication.getInstance().getRequestQueue().add(request);
+    }
 
+
+
+    /**
+     * 对影院列表集合数据二次加工
+     */
+    private void initCinemaDatas(List<Cinema> datas) {
+        //先排序
+        sortByDistancePriority(datas);
+
+        mAreaSet = new HashSet<String>();
+        LocationPostion usePos = loadUserPos();
+        if (usePos != null) {
+            //加工影院列表数据——计算当前用户与指定影院的距离
+            //构建当前用户位置
+            LatLng userPos = new LatLng(usePos.getLatitude(), usePos.getLongitude());
+            for (Cinema cinema : datas) {
+                //构建影院位置
+                LatLng cinemaPos = new LatLng(Double.parseDouble(cinema.getLatitude()), Double.parseDouble(cinema.getLongitude()));
+
+                if (cinema.getCs().equals("1")) {//当他是高德坐标系时需要转换成百度坐标系，不然有偏差
+                    CoordinateConverter convert = new CoordinateConverter();
+                    convert.coord(cinemaPos);
+                    convert.from(CoordinateConverter.CoordType.COMMON);
+                    cinemaPos = convert.convert();
+                }
+
+                double distance = DistanceUtil.getDistance(cinemaPos, userPos);//计算两点间距离
+                cinema.setDistance(distance);//将计算后的距离存储在cinema对象中
+                //将每一家影院的区域加入集合，集合有去重功能
+                mAreaSet.add(cinema.getCountyname());
+                //设置影院的底价
+                cinema.setStepPrice(Integer.parseInt(cinema.getPricerange().split("-")[0]) / 100);
+            }
+        }
+
+
+    }
+
+    /**
+     * 影院列表集合数据进行距离优先排序
+     * @param datas
+     */
+    private void sortByDistancePriority(List<Cinema> datas) {
+        Collections.sort(datas, new Comparator<Cinema>() {
+            @Override
+            public int compare(Cinema lhs, Cinema rhs) {
+                int distancResult = Double.compare(lhs.getDistance(), rhs.getDistance());
+                if (distancResult == 0) {//当距离相同时价格最低的排在前面
+                    distancResult = lhs.getStepPrice() - rhs.getStepPrice();
+                }
+                return distancResult;
+            }
+        });
     }
 
     @Override
@@ -184,7 +283,86 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
                 LocationMgr.getInstance().addListener(this);
                 LocationMgr.getInstance().startLocation();
                 break;
+            case R.id.tv_cinema_area://区域筛选
+                doAreaFilter();
+                break;
+            case R.id.tv_cinema_sort://排序
+                doSortCinema();
+                break;
         }
+    }
+
+    /**
+     * 执行影院排序
+     */
+    private void doSortCinema() {
+
+        if (mSortPopwindow == null) {
+            //将Set数据转为List数据
+            List<String> areaData = new ArrayList<>();
+            areaData.add("离我最近");
+            areaData.add("起价最低");
+            ListView listView = new ListView(getActivity());
+            listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 0:
+                            sortByDistancePriority(mCurrentCinemaDatas);
+                            break;
+                        case 1:
+                            Collections.sort(mCurrentCinemaDatas, new Comparator<Cinema>() {
+                                @Override
+                                public int compare(Cinema lhs, Cinema rhs) {
+                                    int stepResult = lhs.getStepPrice() - rhs.getStepPrice();
+                                    if (stepResult == 0) {//当价格相同时距离最近的排在前面
+                                        stepResult = Double.compare(lhs.getDistance(), rhs.getDistance());
+                                    }
+                                    return stepResult;
+                                }
+                            });
+                            break;
+                    }
+                    //刷新适配器
+                    mCinemaListAdapter.clear();
+                    mCinemaListAdapter.addAll(mCurrentCinemaDatas);
+                    mSortPopwindow.dismiss();
+                }
+            });
+            mAreaAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, areaData);
+            listView.setAdapter(mAreaAdapter);
+            mSortPopwindow = new PopupWindow(listView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+            mSortPopwindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));//设置成白色背景，响应返回键必须设置的步骤
+        }
+        mSortPopwindow.showAsDropDown(mTvArea);
+
+
+    }
+
+
+    /**
+     * 执行区域筛选
+     */
+    private void doAreaFilter() {
+        if (mAreaSet == null) {
+            return;
+        }
+
+        if (mAreaPopwindow == null) {
+            //将Set数据转为List数据
+            List<String> areaData = new ArrayList<>();
+            areaData.add("全部");
+            for (String area : mAreaSet) {
+                areaData.add(area);
+            }
+            ListView listView = new ListView(getActivity());
+            listView.setOnItemClickListener(mAreaItemClick);
+            mAreaAdapter = new ArrayAdapter<>(getActivity(), android.R.layout.simple_list_item_1, areaData);
+            listView.setAdapter(mAreaAdapter);
+            mAreaPopwindow = new PopupWindow(listView, WindowManager.LayoutParams.MATCH_PARENT, WindowManager.LayoutParams.WRAP_CONTENT, true);
+            mAreaPopwindow.setBackgroundDrawable(new ColorDrawable(Color.WHITE));//设置成白色背景，响应返回键必须设置的步骤
+        }
+        mAreaPopwindow.showAsDropDown(mTvArea);
     }
 
 //    @Override
