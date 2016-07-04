@@ -3,6 +3,7 @@ package com.whunf.putaomovieday1.common.widget;
 import android.app.Activity;
 import android.content.Context;
 import android.content.res.TypedArray;
+import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
@@ -21,6 +22,8 @@ public class HeaderLayout extends LinearLayout {
     private Button mBtnLeft;//左边的button
     private TextView mTvTitle;//中间的标题
     private Button mBtnRight;//右边的button
+
+    private Drawable mBgDrawable;
 
     public HeaderLayout(Context context) {
         super(context);
@@ -53,7 +56,8 @@ public class HeaderLayout extends LinearLayout {
             mBtnRight.setBackgroundDrawable(rightBtnSrc);
             mBtnRight.setVisibility(View.VISIBLE);
         }
-
+        //默认设置白色背景
+        setBackgroundColor(Color.WHITE);
     }
 
     /**

@@ -63,7 +63,42 @@ public class Movie implements Serializable {
      * 影片版本 N 　 IMAX3D
      */
     private String gcedition;
+    /**
+     * 剧情内容
+     */
+    private String  content;
+    /**
+     * 剧照
+     */
+    private String still;
+    /**
+     * 视频的url地址
+     */
+    private String videourl;
 
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public String getStill() {
+        return still;
+    }
+
+    public void setStill(String still) {
+        this.still = still;
+    }
+
+    public String getVideourl() {
+        return videourl;
+    }
+
+    public void setVideourl(String videourl) {
+        this.videourl = videourl;
+    }
 
     public Long getMovieid() {
         return movieid;

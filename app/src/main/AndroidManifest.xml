@@ -43,13 +43,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".common.ui.MainActivity"></activity>
+        <activity android:name=".common.ui.MainActivity" />
         <activity android:name=".module.movie.ui.MovieMainActivity" />
 
         <service
             android:name="com.baidu.location.f"
             android:enabled="true"
-            android:process=":remote"></service>
+            android:process=":remote" />
 
         <activity
             android:name=".module.movie.ui.MovieDetailActivity"
@@ -60,6 +60,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.whunf.putaomovieday1.common.core.BaseActivity" />
         </activity>
+        <activity
+            android:name=".module.movie.ui.ShowStillActivity"
+            android:label="@string/title_activity_show_still"
+            android:parentActivityName=".common.core.BaseActivity"
+            android:theme="@style/AppTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.whunf.putaomovieday1.common.core.BaseActivity" />
+        </activity>
+        <activity android:name=".module.movie.ui.PlayVideoActivity"></activity>
     </application>
 
 </manifest>

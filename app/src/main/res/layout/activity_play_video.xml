@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.whunf.putaomovieday1.module.movie.ui.PlayVideoActivity">
+
+    <com.whunf.putaomovieday1.common.widget.HeaderLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/header_height"
+        android:orientation="vertical"></com.whunf.putaomovieday1.common.widget.HeaderLayout>
+
+
+    <WebView
+        android:id="@+id/wv_video_play"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"></WebView>
+</RelativeLayout>

@@ -16,7 +16,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/putao_arrow_left_selector" />
+            android:src="@drawable/arrow_left_selector" />
 
         <LinearLayout
             android:layout_width="wrap_content"

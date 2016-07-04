@@ -31,7 +31,7 @@ import com.whunf.putaomovieday1.common.util.location.LocationMgr;
 import com.whunf.putaomovieday1.common.util.location.LocationPostion;
 import com.whunf.putaomovieday1.module.movie.adapter.CinemaListAdapter;
 import com.whunf.putaomovieday1.module.movie.resp.Cinema;
-import com.whunf.putaomovieday1.module.movie.resp.CinemaResp;
+import com.whunf.putaomovieday1.module.movie.resp.CinemaListResp;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -186,7 +186,7 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
             @Override
             public void onResponse(String response) {//处理成功的String返回
                 //将返回结果转成对象
-                CinemaResp cinemaResp = JSONObject.parseObject(response, CinemaResp.class);
+                CinemaListResp cinemaResp = JSONObject.parseObject(response, CinemaListResp.class);
                 //将适配器与GridView关联
                 mCinemaListAdapter = new CinemaListAdapter(getActivity());
                 List<Cinema> data = cinemaResp.getData();

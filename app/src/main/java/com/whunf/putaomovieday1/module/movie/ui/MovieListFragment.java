@@ -20,7 +20,7 @@ import com.whunf.putaomovieday1.common.util.CityMgr;
 import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.adapter.MovieListAdapter;
 import com.whunf.putaomovieday1.module.movie.resp.Movie;
-import com.whunf.putaomovieday1.module.movie.resp.MovieResp;
+import com.whunf.putaomovieday1.module.movie.resp.MovieListResp;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -65,7 +65,7 @@ public class MovieListFragment extends BaseFragment implements AdapterView.OnIte
             @Override
             public void onResponse(String response) {//处理成功的String返回
                 //将返回结果转成对象
-                MovieResp movieResp = JSONObject.parseObject(response, MovieResp.class);
+                MovieListResp movieResp = JSONObject.parseObject(response, MovieListResp.class);
               data = movieResp.getData();
 
                 if (data != null) {

@@ -5,15 +5,15 @@ import java.util.List;
 /**
  * Created by Administrator on 2016/6/22.
  */
-public class CinemaResp extends BaseResp {
+public class MovieListResp extends BaseResp {
 
-    private List<Cinema> data;
+    private List<Movie> data;
 
-    public List<Cinema> getData() {
+    public List<Movie> getData() {
         return data;
     }
 
-    public void setData(List<Cinema> data) {
+    public void setData(List<Movie> data) {
         this.data = data;
     }
 }

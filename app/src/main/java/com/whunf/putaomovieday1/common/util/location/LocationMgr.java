@@ -61,6 +61,8 @@ public class LocationMgr {
                 dispatchLocationInfo(lp);
             }
 
+            destroy();//定位完后销毁
+
         }
 
         public void onReceivePoi(BDLocation poiLocation) {
@@ -129,6 +131,8 @@ public class LocationMgr {
         option.setOpenGps(true); // 打开gps
         option.setCoorType("bd09ll"); // 设置坐标类型
         option.setScanSpan(1000);
+        option.setIsNeedLocationDescribe(true);//需要详细描述
+        option.setIsNeedAddress(true);//需要地址
         mLocClient.setLocOption(option);
         mLocClient.start();//发起百度定位
     }

@@ -12,14 +12,252 @@
         android:layout_height="0dp"
         android:layout_weight="1">
 
-        <ScrollView
+        <com.whunf.putaomovieday1.common.widget.MyScrollView
+            android:id="@+id/movie_scroll_view"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"></ScrollView>
+            android:layout_height="match_parent"
+            android:scrollbars="none">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <RelativeLayout
+                    android:id="@+id/movie_detail_header" android:background="#8000"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingBottom="@dimen/activity_vertical_margin"
+                    android:paddingLeft="@dimen/activity_horizontal_margin"
+                    android:paddingRight="@dimen/activity_horizontal_margin"
+                    android:paddingTop="80dp">
+
+
+                    <RelativeLayout
+                        android:id="@+id/movie_logo_layout"
+                        android:layout_width="108dp"
+                        android:layout_height="144dp"
+                        android:layout_alignParentLeft="true"
+                        android:layout_centerVertical="true"
+                        android:layout_marginRight="16dp">
+
+                        <ImageView
+                            android:id="@+id/movie_logo"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:scaleType="fitXY"
+                            android:src="@mipmap/ic_launcher" />
+
+                        <ImageButton
+                            android:id="@+id/btn_play_video"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_centerInParent="true"
+                            android:src="@mipmap/ic_launcher" />
+
+                    </RelativeLayout>
+
+
+                    <RatingBar
+                        android:id="@+id/movie_star"
+                        style="@style/Base.Widget.AppCompat.RatingBar.Small"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentTop="true"
+                        android:layout_marginTop="5dp"
+                        android:layout_toRightOf="@+id/movie_logo_layout"
+                        android:isIndicator="true"
+                        android:numStars="5" />
+
+                    <TextView
+                        android:id="@+id/movie_general_mark"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignBottom="@+id/movie_star"
+                        android:layout_marginLeft="5dp"
+                        android:layout_toRightOf="@+id/movie_star"
+                        android:gravity="bottom"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/movie_type"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_below="@+id/movie_general_mark"
+                        android:layout_toRightOf="@+id/movie_logo_layout"
+                        android:gravity="center_vertical"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/movie_language"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_below="@+id/movie_type"
+                        android:layout_toRightOf="@+id/movie_logo_layout"
+                        android:gravity="center_vertical"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/movie_length_state"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_below="@+id/movie_language"
+                        android:layout_toRightOf="@+id/movie_logo_layout"
+                        android:gravity="center_vertical"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/movie_release_date"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_below="@+id/movie_length_state"
+                        android:layout_toRightOf="@+id/movie_logo_layout"
+                        android:gravity="center_vertical"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <TextView
+                        android:id="@+id/movie_gcedition"
+                        android:layout_width="wrap_content"
+                        android:layout_height="23dp"
+                        android:layout_below="@+id/movie_length_state"
+                        android:layout_toRightOf="@+id/movie_logo_layout"
+                        android:gravity="center_vertical"
+                        android:textColor="#fff"
+                        android:textSize="@dimen/text_size_normal" />
+
+                </RelativeLayout>
+
+                <View style="@style/DividerStyle.Horizontal" />
+
+                <RelativeLayout
+                    android:id="@+id/movie_comment"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp">
+
+                    <TextView
+                        android:id="@+id/movie_highlight"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:maxWidth="328dp"
+                        android:textSize="@dimen/text_size_normal" />
+
+                    <ImageView
+                        android:id="@+id/yh1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toLeftOf="@id/movie_highlight"
+                        android:src="@drawable/movie_icon_dy_l" />
+
+                    <ImageView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_toRightOf="@id/movie_highlight"
+                        android:src="@drawable/movie_icon_dy_r" />
+                </RelativeLayout>
+
+
+                <android.support.v7.widget.RecyclerView
+                    android:id="@+id/movie_dtl_still_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="110dp"
+                    android:background="#fff"
+                    android:paddingBottom="5dp"
+                    android:paddingTop="5dp" />
+
+
+                <TableLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#fff">
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="导演"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <TextView
+                            android:id="@+id/movie_director"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_normal" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="演员"
+                            android:textSize="@dimen/text_size_normal" />
+
+                        <TextView
+                            android:id="@+id/movie_actors"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_normal" />
+                    </TableRow>
+
+                    <TableRow
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="16dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginRight="16dp"
+                        android:layout_marginTop="16dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="剧情"
+                            android:textSize="@dimen/text_size_normal" />
+
+
+                        <TextView
+
+                            android:id="@+id/movie_content"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="40dp"
+                            android:layout_weight="1"
+                            android:textSize="@dimen/text_size_normal" />
+
+                    </TableRow>
+                </TableLayout>
+
+            </LinearLayout>
+        </com.whunf.putaomovieday1.common.widget.MyScrollView>
 
         <com.whunf.putaomovieday1.common.widget.HeaderLayout
             android:id="@+id/header"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/header_height"></com.whunf.putaomovieday1.common.widget.HeaderLayout>
+            android:layout_height="@dimen/header_height"
+            android:orientation="vertical"></com.whunf.putaomovieday1.common.widget.HeaderLayout>
 
     </FrameLayout>
 
@@ -27,6 +265,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-
+        <Button
+            android:id="@+id/movie_select_seat"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="16dp"
+            android:layout_marginRight="16dp"
+            android:layout_marginTop="16dp"
+            android:gravity="center"
+            android:text="选影院购票" />
     </LinearLayout>
 </LinearLayout>
