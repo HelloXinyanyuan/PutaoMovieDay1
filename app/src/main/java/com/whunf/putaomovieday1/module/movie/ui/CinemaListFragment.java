@@ -214,11 +214,12 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         }
         //创建request
         String url = "http://api.putao.so/sbiz/movie/cinema/list?citycode=" + citycode;
-
         long mid = getMovieId();
         if (mid != 0) {
             url = url + "&movieid=" + mid;
         }
+
+
         request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {//处理成功的String返回
@@ -244,9 +245,11 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
 
             }
         });
-
         //添加到请求队列中
         PMApplication.getInstance().getRequestQueue().add(request);
+
+
+
     }
 
     private boolean isFromHome() {

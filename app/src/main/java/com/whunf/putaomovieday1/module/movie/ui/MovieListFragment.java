@@ -9,13 +9,12 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.GridView;
 
-import com.alibaba.fastjson.JSONObject;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
-import com.whunf.putaomovieday1.common.core.PMApplication;
+import com.whunf.putaomovieday1.common.core.UrlConfig;
+import com.whunf.putaomovieday1.common.parser.CommParserTask;
+import com.whunf.putaomovieday1.common.parser.FullTaskListener;
 import com.whunf.putaomovieday1.common.util.CityMgr;
 import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.adapter.MovieListAdapter;
@@ -61,13 +60,38 @@ public class MovieListFragment extends BaseFragment implements AdapterView.OnIte
         }
         //创建request
         String url = "http://api.putao.so/sbiz/movie/list?citycode=" + citycode;
-        request = new StringRequest(url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {//处理成功的String返回
-                //将返回结果转成对象
-                MovieListResp movieResp = JSONObject.parseObject(response, MovieListResp.class);
-              data = movieResp.getData();
+//        request = new StringRequest(url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {//处理成功的String返回
+//                //将返回结果转成对象
+//                MovieListResp movieResp = JSONObject.parseObject(response, MovieListResp.class);
+//              data = movieResp.getData();
+//
+//                if (data != null) {
+//                    MovieListAdapter movieListAdapter = new MovieListAdapter(data);
+//                    //将适配器与GridView关联
+//                    mMovieListGv.setAdapter(movieListAdapter);
+//                } else {
+//                    T.showShort(getActivity(), "没有影片数据");
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {//处理异常
+//
+//            }
+//        });
+//
+//        //添加到请求队列中
+//        PMApplication.getInstance().getRequestQueue().add(request);
 
+
+        url= UrlConfig.MoviePath.MOVIE_LIST+"?citycode=" + citycode;
+        CommParserTask<MovieListResp> task=new CommParserTask<MovieListResp>(url, MovieListResp.class);
+        FullTaskListener fullTaskListener= new FullTaskListener<MovieListResp>(getActivity()) {
+            @Override
+            public void onTaskSuccess(MovieListResp movieListResp) {
+                data = movieListResp.getData();
                 if (data != null) {
                     MovieListAdapter movieListAdapter = new MovieListAdapter(data);
                     //将适配器与GridView关联
@@ -76,15 +100,9 @@ public class MovieListFragment extends BaseFragment implements AdapterView.OnIte
                     T.showShort(getActivity(), "没有影片数据");
                 }
             }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {//处理异常
-
-            }
-        });
-
-        //添加到请求队列中
-        PMApplication.getInstance().getRequestQueue().add(request);
+        };
+        task.setmTaskListener(fullTaskListener);
+        task.startAsyncTask();
     }
 
     @Override
