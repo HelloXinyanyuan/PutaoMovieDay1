@@ -25,6 +25,7 @@ import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
 import com.whunf.putaomovieday1.common.core.PMApplication;
 import com.whunf.putaomovieday1.common.storage.PreferenceUtil;
+import com.whunf.putaomovieday1.common.ui.MainActivity;
 import com.whunf.putaomovieday1.common.util.CityMgr;
 import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.common.util.location.LocationMgr;
@@ -54,6 +55,9 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
     private boolean hasLoadData = false;
     private TextView mTvArea;
     private TextView mTvSort;
+
+    private long mMovieId;
+
     /**
      * 所有的影院数据
      */
@@ -80,6 +84,17 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
      * 影院排序的弹框
      */
     private PopupWindow mSortPopwindow;
+
+    /**
+     * 当前Fragment是否立即加载数据显示ui
+     */
+    private boolean loadQuickLoad = false;
+
+
+    public void setLoadQuickLoad(boolean loadQuickLoad) {
+        this.loadQuickLoad = loadQuickLoad;
+    }
+
     //区域筛选列表的item点击
     private AdapterView.OnItemClickListener mAreaItemClick = new AdapterView.OnItemClickListener() {
         @Override
@@ -117,8 +132,15 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         mTvSort = (TextView) inflate.findViewById(R.id.tv_cinema_sort);
         mTvSort.setOnClickListener(this);
 
+        if (!isFromHome()) {//如果来自首页窗口，隐藏定位栏
+            ((View) tvUserLocation.getParent()).setVisibility(View.GONE);
+        }
+
         inflate.findViewById(R.id.btn_relocation).setOnClickListener(this);
 
+        if (loadQuickLoad) {//如果设置了立即加载数据
+            refreshUI();
+        }
         return inflate;
     }
 
@@ -127,13 +149,22 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
      */
     public void lazyLoadData() {
         if (!hasLoadData) {
-            //初始化数据
-            initData();
-            tvUserLocation.setText(loadUserAddre());
+            refreshUI();
             hasLoadData = true;
         }
     }
 
+    private void refreshUI() {
+        //初始化数据
+        initData();
+        tvUserLocation.setText(loadUserAddre());
+    }
+
+
+    private long getMovieId() {
+        long mid = getActivity().getIntent().getLongExtra("movieId", 0);
+        return mid;
+    }
 
     @Override
     public void onDestroyView() {
@@ -180,8 +211,14 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
             citycode = URLEncoder.encode(CityMgr.getInstance().loadCity(), "utf-8");
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
-        }        //创建request
+        }
+        //创建request
         String url = "http://api.putao.so/sbiz/movie/cinema/list?citycode=" + citycode;
+
+        long mid = getMovieId();
+        if (mid != 0) {
+            url = url + "&movieid=" + mid;
+        }
         request = new StringRequest(url, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {//处理成功的String返回
@@ -212,6 +249,9 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         PMApplication.getInstance().getRequestQueue().add(request);
     }
 
+    private boolean isFromHome() {
+        return getActivity() instanceof MainActivity;
+    }
 
 
     /**
@@ -252,6 +292,7 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
 
     /**
      * 影院列表集合数据进行距离优先排序
+     *
      * @param datas
      */
     private void sortByDistancePriority(List<Cinema> datas) {

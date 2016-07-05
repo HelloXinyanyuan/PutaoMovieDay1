@@ -35,6 +35,8 @@
 
         </LinearLayout>
 
+        <View style="@style/DividerStyle.Horizontal"/>
+
         <ListView
             android:id="@+id/cinema_list_lv"
             android:layout_width="match_parent"

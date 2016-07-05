@@ -1,5 +1,7 @@
 package com.whunf.putaomovieday1.module.movie.adapter;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
@@ -11,8 +13,8 @@ import com.android.volley.toolbox.NetworkImageView;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.PMApplication;
 import com.whunf.putaomovieday1.common.util.BitmapCache;
-import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.resp.Movie;
+import com.whunf.putaomovieday1.module.movie.ui.CinemaListActivity;
 
 import java.util.List;
 
@@ -57,7 +59,7 @@ public class MovieListAdapter extends BaseAdapter {
         } else {
             holder = (ViewHolder) convertView.getTag();
         }
-        Movie movie = datas.get(position);
+        final Movie movie = datas.get(position);
 
         holder.ratingTxt.setText(movie.getGeneralmark());
         holder.ratingBar.setRating(Float.parseFloat(movie.getGeneralmark()) / 2);
@@ -67,7 +69,11 @@ public class MovieListAdapter extends BaseAdapter {
         holder.buyBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                T.showShort(v.getContext(), position + "buy btn");
+                Context context= v.getContext();
+                Intent intent=new Intent(context, CinemaListActivity.class);
+                intent.putExtra("movieName",movie.getMoviename());
+                intent.putExtra("movieId",movie.getMovieid());
+                context.startActivity(intent);
             }
         });
 

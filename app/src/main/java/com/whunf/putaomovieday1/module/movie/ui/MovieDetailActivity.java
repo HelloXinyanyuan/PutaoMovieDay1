@@ -130,6 +130,7 @@ public class MovieDetailActivity extends BaseActivity implements View.OnClickLis
                     Intent intent = new Intent(MovieDetailActivity.this, ShowStillActivity.class);
                     intent.putExtra("currentIndex", position);//当前剧照的位置
                     intent.putExtra("stills", mStills);//所有剧照的地址
+                    intent.putExtra("movieName", mPassMovie.getMoviename());//影片名字
                     startActivity(intent);
                 }
             });
@@ -189,7 +190,10 @@ public class MovieDetailActivity extends BaseActivity implements View.OnClickLis
                 break;
 
             case R.id.movie_select_seat://选影院购票
-
+                intent=new Intent(this, CinemaListActivity.class);
+                intent.putExtra("movieName",mPassMovie.getMoviename());
+                intent.putExtra("movieId",mPassMovie.getMovieid());
+                startActivity(intent);
                 break;
         }
     }

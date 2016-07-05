@@ -12,7 +12,7 @@ import java.util.List;
  */
 public class SimplePagerAdapter extends PagerAdapter {
 
-    List<View> views;
+    protected List<View> views;
 
     public SimplePagerAdapter(List<View> views) {
         this.views = views;
