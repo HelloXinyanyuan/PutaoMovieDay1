@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<selector xmlns:android="http://schemas.android.com/apk/res/android" >
+    <item android:drawable="@drawable/putao_edit_bg_grey" android:state_focused="false"/>
+	<!-- <item android:drawable="@drawable/putao_edit_bg_green" android:state_focused="true"/> -->
+</selector>

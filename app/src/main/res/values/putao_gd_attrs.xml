@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+/*
+** Copyright (C) 2010 Cyril Mottier (http://www.cyrilmottier.com)
+**
+** Licensed under the Apache License, Version 2.0 (the "License");
+** you may not use this file except in compliance with the License.
+** You may obtain a copy of the License at
+**
+**     http://www.apache.org/licenses/LICENSE-2.0
+**
+** Unless required by applicable law or agreed to in writing, software
+** distributed under the License is distributed on an "AS IS" BASIS,
+** WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+** See the License for the specific language governing permissions and
+** limitations under the License.
+*/
+-->
+
+<resources>
+
+	<!-- Item-based lists related attributes -->
+	<attr name="putao_gdTextAppearance" format="reference" />
+	<attr name="putao_gdTextAppearanceLarge" format="reference" />
+	<attr name="putao_gdTextAppearanceMedium" format="reference" />
+	<attr name="putao_gdTextAppearanceSmall" format="reference" />
+	<attr name="putao_gdTextAppearanceSeparator" format="reference" />
+
+	<attr name="putao_gdDrawableWidth" format="dimension" />
+	<attr name="putao_gdDrawableHeight" format="dimension" />
+	<attr name="putao_gdDrawableMargin" format="dimension" />
+
+	<attr name="putao_gdProgressBarWidth" format="dimension" />
+	<attr name="putao_gdProgressBarHeight" format="dimension" />
+	<attr name="putao_gdProgressBarMargin" format="dimension" />
+
+	<attr name="putao_gdItemViewPreferredHeight" format="dimension" />
+	<attr name="putao_gdItemViewPreferredHalfHeight" format="dimension" />
+	<attr name="putao_gdItemViewPreferredPaddingLeft" format="dimension" />
+	<attr name="putao_gdSeparatorItemViewPreferredHeight" format="dimension" />
+
+	<attr name="putao_gdTextItemViewStyle" format="reference" />
+	<attr name="putao_gdLongTextItemViewStyle" format="reference" />
+	<attr name="putao_gdDescriptionItemViewStyle" format="reference" />
+
+	<attr name="putao_gdSeparatorItemViewStyle" format="reference" />
+
+	<attr name="putao_gdProgressItemViewStyle" format="dimension" />
+	<attr name="putao_gdProgressItemViewStyleText" format="dimension" />
+	<attr name="putao_gdProgressItemViewStyleProgressBar" format="dimension" />
+
+	<attr name="putao_gdDrawableItemViewStyle" format="reference" />
+	<attr name="putao_gdDrawableItemViewStyleText" format="reference" />
+	<attr name="putao_gdDrawableItemViewStyleDrawable" format="reference" />
+
+	<attr name="putao_gdSubtitleItemViewStyle" format="reference" />
+	<attr name="putao_gdSubtitleItemViewStyleText" format="reference" />
+	<attr name="putao_gdSubtitleItemViewStyleSubtitle" format="reference" />
+
+	<attr name="putao_gdSubtextItemViewStyle" format="reference" />
+	<attr name="putao_gdSubtextItemViewStyleText" format="reference" />
+	<attr name="putao_gdSubtextItemViewStyleSubtext" format="reference" />
+
+	<attr name="putao_gdThumbnailItemViewStyle" format="reference" />
+	<attr name="putao_gdThumbnailItemViewStyleText" format="reference" />
+	<attr name="putao_gdThumbnailItemViewStyleSubtitle" format="reference" />
+	<attr name="putao_gdThumbnailItemViewStyleThumbnail" format="reference" />
+
+
+	<!-- SegmentedBar related attributes -->
+	<attr name="putao_gdSegmentTextColor" format="color" />
+	<attr name="putao_gdSegmentTextSize" format="dimension" />
+	<attr name="putao_gdSegmentBackground" format="reference" />
+	<attr name="putao_gdSegmentCheckmark" format="reference" />
+	<attr name="putao_gdSegmentedBarStyle" format="reference" />
+	<attr name="putao_gdSegmentedHostStyle" format="reference" />
+
+
+	<!-- ActionBar related attributes -->
+	<attr name="putao_gdActionBarTitleColor" format="color" />
+	<attr name="putao_gdActionBarBackground" format="reference" />
+	<attr name="putao_gdActionBarItemBackground" format="reference" />
+	<attr name="putao_gdActionBarDividerDrawable" format="reference" />
+	<attr name="putao_gdActionBarDividerWidth" format="dimension" />
+	<attr name="putao_gdActionBarApplicationDrawable" format="reference" /> 
+	<attr name="putao_gdActionBarHomeDrawable" format="reference" />
+	<attr name="putao_gdActionBarItemColorNormal" format="reference|color" />
+	<attr name="putao_gdActionBarItemColorAlt" format="reference|color" />
+	<attr name="putao_gdActionBarMaxItems" format="integer" />
+
+	<attr name="putao_gdActionBarStyle" format="reference" />
+	<attr name="putao_gdActionBarTitleStyle" format="reference" />
+	<attr name="putao_gdActionBarDividerStyle" format="reference" />
+	<attr name="putao_gdActionBarItemStyle" format="reference" />
+
+	<attr name="putao_gdTabIndicatorHeight" format="dimension" />
+	<attr name="putao_gdTabIndicatorTextAppearance" format="reference" />
+	<attr name="putao_gdTabIndicatorBackground" format="reference" />
+	
+	<attr name="putao_gdTabIndicatorStyle" format="reference" />
+
+	<!-- QuickAction related attributes -->
+	<attr name="putao_gdQuickActionBarStyle" format="reference" />
+	<attr name="putao_gdQuickActionBarItemStyle" format="reference" />
+	<attr name="putao_gdQuickActionGridStyle" format="reference" />
+	<attr name="putao_gdQuickActionGridItemStyle" format="reference" />
+	
+	<!-- PageIndicator related attributes -->
+	<attr name="putao_gdPageIndicatorStyle" format="reference" />
+
+
+	<!--			-->
+	<!-- Styleables -->
+	<!--			-->
+
+
+	<!-- List items related attributes -->
+	<declare-styleable name="Item">
+		<attr name="putao_enabled" format="boolean" />
+	</declare-styleable>
+
+	<declare-styleable name="TextItem">
+		<attr name="putao_text" format="string" />
+	</declare-styleable>
+	<declare-styleable name="LongTextItem" />
+	<declare-styleable name="DescriptionItem" />
+	<declare-styleable name="SeparatorItem" />
+
+	<declare-styleable name="ProgressItem">
+		<attr name="putao_isInProgress" format="boolean" />
+	</declare-styleable>
+
+	<declare-styleable name="DrawableItem">
+		<attr name="putao_drawable" format="reference" />
+	</declare-styleable>
+
+	<declare-styleable name="SubtitleItem">
+		<attr name="putao_subtitle" format="string" />
+	</declare-styleable>
+
+	<declare-styleable name="SubtextItem">
+		<attr name="putao_subtext" format="string" />
+	</declare-styleable>
+
+	<declare-styleable name="ThumbnailItem">
+		<attr name="putao_thumbnail" format="reference" />
+		<attr name="putao_thumbnailURL" format="string" />
+	</declare-styleable>
+
+	<!-- SegmentedBar related attributes -->
+	<declare-styleable name="SegmentedBar">
+		<attr name="putao_dividerDrawable" format="reference" />
+		<attr name="putao_dividerWidth" format="dimension" />
+	</declare-styleable>
+
+	<declare-styleable name="SegmentedHost">
+		<attr name="putao_segmentedBar" format="reference" />
+		<attr name="putao_segmentedContentView" format="reference" />
+	</declare-styleable>
+
+
+	<!-- ActionBar related attributes -->
+	<declare-styleable name="ActionBar">
+		<attr name="putao_title" format="string" />
+		<attr name="putao_type">
+			<enum name="normal" value="0" />
+			<enum name="dashboard" value="1" />
+			<enum name="empty" value="2" />
+		</attr>
+		<attr name="putao_dividerDrawable" />
+		<attr name="putao_dividerWidth" />
+		<attr name="putao_homeDrawable" format="reference" />
+		<attr name="putao_maxItems" format="integer" />
+	</declare-styleable>
+	
+	<declare-styleable name="AsyncImageView">
+		<attr name="putao_defaultSrc" format="reference" />
+		<attr name="putao_url" format="string" />
+		<attr name="putao_inDensity">
+			<enum name="ldpi" value="120" />
+			<enum name="mdpi" value="160" />
+			<enum name="hdpi" value="240" />
+			<enum name="xhdpi" value="320" />
+		</attr>
+	</declare-styleable>
+	
+	<declare-styleable name="PageIndicator">
+		<attr name="putao_dotCount" format="integer" />
+		<attr name="putao_activeDot" format="integer" />
+		<attr name="putao_dotDrawable" format="reference" />
+		<attr name="putao_dotSpacing" format="dimension" />
+		<attr name="putao_gravity">
+			<flag name="top" value="0x30" />
+			<flag name="bottom" value="0x50" />
+			<flag name="left" value="0x03" />
+			<flag name="right" value="0x05" />
+			<flag name="center_vertical" value="0x10" />
+			<flag name="center_horizontal" value="0x01" />
+			<flag name="center" value="0x11" />
+		</attr>
+		<attr name="putao_dotType">
+			<enum name="single" value="0" />
+			<enum name="multiple" value="1" />
+		</attr>
+    </declare-styleable>
+
+</resources>

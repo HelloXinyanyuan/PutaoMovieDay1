@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+
+    <string name="putao_movie_released_list">电影</string>
+    <string name="putao_movie_director">导演:%s </string>
+    <string name="putao_movie_actor">主演:%s </string>
+    <!-- 电影详情页 -->
+    <string name="putao_movie_dtl_rating">%s分</string>
+    <string name="putao_movie_dtl_release">%s上映</string>
+    <string name="putao_movie_movie_length">%s分钟</string>
+    <string name="putao_movie_movie_type">%s</string>
+    <string name="putao_movie_dtl_selectseat">选影院购票</string>
+    <string name="putao_movie_dtl_stills_count">剧照(%d)</string>
+    <string name="putao_movie_dtl_stills_showall">全部</string>
+    <string name="putao_movie_dtl_reviews_count">评论</string>
+    
+    <string name="putao_movie_dtl_director">导演</string>
+    <string name="putao_movie_dtl_actors">主演</string>
+    <string name="putao_movie_dtl_content">剧情</string>
+    <string name="putao_movie_playlist_tip">影片场次</string>
+    <string name="putao_movie_playlist_item_end">"%1$s散场 / %2$s / %3$s"</string>
+    <string name="putao_movie_playlist_pd_today">今天%s</string>
+    <string name="putao_movie_playlist_pd_tmr">明天%s</string>
+    <string name="putao_movie_playlist_pd_atmr">后天%s</string>
+    <string name="putao_movie_playlist_voucher_tip">¥%s优惠券</string>
+    <string name="putao_movie_playlist_commticket_grouptxt">通兑券</string>
+    <string name="putao_movie_playlist_commticket_item_tip">可在本影院兑换%s电影票</string>
+    <string name="putao_movie_playlist_cinema_noposition">无位置信息</string>
+    <string name="putao_movie_playlist_cinema_format_pattern2">M-d</string>
+    <string name="putao_movie_playlist_cinema_format_pattern3">EEEM-d</string>
+    <string name="putao_movie_playlist_movie_otherinfo">" 片长%1$d分钟"</string>
+    <string name="putao_film_ticket">电影票</string>
+    <string name="putao_film_time">场 \t\t\t\t次</string>
+    <string name="putao_movie_select_seat_unknown_exception">服务繁忙，请稍后重试</string>
+    <string name="putao_movie_creat_order_unknown_exception">订单获取失败,请重试</string>
+    <string name="putao_movie_select_seat_sinfo_display">%1$s排%2$s座</string>
+    <string name="putao_movie_select_seat_sinfo_commitfield">%1$s:%2$s</string>
+    <string name="putao_seat">座位</string>
+    <string name="putao_can_select">可选</string>
+    <string name="putao_selected">已选</string>
+    <string name="putao_sold">已售</string>
+    <string name="putao_order_title">%s电影票</string>
+    <string name="putao_select_seat_date_format_pattern">MM月dd日    EEE HH:mm</string>
+    <string name="putao_select_seat_room_screen">%s银幕</string>
+    <string name="putao_select_seat_max_seats">一次最多只能选择%s张电影票哦~</string>
+    <string name="putao_select_seat_no_seat">尚未选座，您最多可选%s个座位</string>
+    <string name="putao_select_seat_confirm">"确认选座"</string>
+    <string name="putao_select_seat_unit_price">"¥ %s/张"</string>
+    <string name="putao_select_seat_confirm_disable">"请先选座"</string>
+    <string name="putao_select_seat_quan">"券"</string>
+    <string name="putao_cinema_payment_limit_time">订单将在%s后过期，请及时完成支付</string>
+    <string name="putao_cinema_payment_limit_time_format_pattern">mm分ss秒</string>
+    <string name="putao_payment_money">¥%s</string>
+    <string name="putao_net_invalid">网络不可用，请检查网络</string>
+    <string name="putao_moive_list_nodata">暂无影片信息</string>
+    <string name="putao_moive_list_selectseat">购票</string>
+    <string name="putao_moive_list_presell">预售</string>
+    <string name="putao_moive_order_filmticket_count_tip">(共%s张)</string>
+    <string name="putao_moive_order_filmticket_order_expired">订单已过期</string>
+
+    <!-- 影院列表 -->
+    <string name="putao_cinemalist_seat">座</string>
+    <string name="putao_cinemalist_exchange">兑</string>
+    <string name="putao_cinemalist_title">影院</string>
+    <string name="putao_cinemalist_item_compare_price">%d家比价</string>
+    <string name="putao_cinemalist_item_lowprice">¥%s起</string>
+    <string name="putao_cinemalist_item_opi_remain">最近场次 %s</string>
+    <string name="putao_cinemalist_item_opi_no">今天无剩余场次</string>
+	<!-- 订单详情 -->
+    <string name="putao_order_movie_seat">座位编号</string>
+    <string name="putao_order_movie_telephone">手机号码</string>
+    <string name="putao_order_movie_ticket_exchangecode">取票券码</string>
+    <string name="putao_order_movie_ticket_offerexchangecode">前台券码</string>
+    <string name="putao_movie_order_paystate">订单状态</string>
+    <string name="putao_movie_order_price">支付金额</string>
+    <string name="putao_movie_order_coupon_hint">用券情况</string>
+    <string name="putao_movie_order_coupon">已用%s元代金券</string>
+    <string name="putao_movie_order_serialnumber">订单编号</string>
+    <string name="putao_movie_order_createtime">创建时间</string>
+    <string name="putao_movie_order_failure">订单生成失败</string>
+    <string name="putao_movie_order_remind">*请核对订单信息，影票及卖品售出后不可退换</string>
+    <string name="putao_movie_order_message">订单信息</string>
+    
+    <string name="putao_movie_orddtl_cancelorder_success">订单取消成功</string>
+    <string name="putao_movie_orddtl_cancelorder_failed">订单取消失败</string>
+    
+    <string name="putao_order_not_exist">订单不存在</string>
+    
+    <string name="putao_movie_pay_info">商品信息</string>
+    <string name="putao_movie_pay_title">电影票 - %1$s(%2$s张)</string>
+    
+    <string name="putao_movie_error_tips">购票提示</string>
+    <string name="putao_movie_dialog_nottoday_confirm">我知道了</string>
+    <string name="putao_movie_dialog_nottoday_msg">你选择的是%1$s的场次哦，请仔细核对</string>
+    
+    <string name="putao_cinemalist_area_no_county">无区县信息</string>
+    <string name="putao_cinemalist_area_title">区域</string>
+    <string name="putao_cinemalist_area_item_default">全部</string>
+    <string name="putao_cinemalist_sort_title">排序</string>
+    <string name="putao_cinemalist_nocinema">合作影院建设中，小葡萄正在紧密洽谈~</string>
+    <string name="putao_cinema_nomovie">诶哦~不巧，今天这儿不能看到该片哦</string>
+    <string name="putao_opilist_no_opi_data">暂无排片信息</string>
+    
+    <string name="putao_movie_order_has_been_successful">您购买的电影票已经支付成功，请关注订单消息</string>
+    
+    <string name="putao_movie_deal_success">交易成功</string>
+    <string name="putao_movie_deal_failed">交易失败</string>
+    <string name="putao_movie_deal_success_hint">已出票，请注意查收短信</string>
+    <string name="putao_movie_deal_failed_cancel">交易被取消</string>
+    <string name="putao_movie_deal_ask_for_refund">退款中</string>
+    <string name="putao_movie_deal_refunded">退款成功</string>
+    <string name="putao_movie_deal_out_of_date">订单过期</string>
+    <string name="putao_movie_deal_failed_tips_for_pending">支付成功，正在出票中，请注意查收短信</string>
+    <string name="putao_movie_tips_for_ask_for_refund">购票系统正在为您处理全额退款</string>
+    <string name="putao_movie_tips_for_refund">购票系统已为您全额退款</string>
+    <string name="putao_movie_tips_for_out_of_date">订单已经过期，请重新下单</string>
+    
+    <!-- 电影订单Head -->
+    <string name="putao_movie_orderhead_cinema">影院：%s</string>
+    <string name="putao_movie_orderhead_playtime">场次：%s</string>
+    <string name="putao_movie_orderhead_seat">座号：%s</string>
+    <string name="putao_movie_orderhead_money">¥%s</string>
+    <string name="putao_movie_orderhead_mobile_hint">手机号码</string>
+    <string name="putao_movie_orderhead_mobile_write_hint">填写手机号码</string>
+    <!-- 通兑券创建订单 -->
+    <string name="putao_movie_ticketorder_cinname">"影    院:%s"</string>
+    <string name="putao_movie_ticketorder_ticendtime">有效期:%s</string>
+    <string name="putao_movie_ticketorder_ticcount">影票数</string>
+    <string name="putao_movie_ticketorder_usetip">使用说明</string>
+    <string name="putao_movie_ticketorder_quantity_invalid">至少购买一张票</string>
+    <string name="putao_movie_ticketorder_pay_title">通兑券 - %1$s(%2$s张)</string>
+    <string name="putao_movie_ticketorder_phone_hint">用于免费接收兑票码</string>
+    <!-- 通兑券订单详情 -->
+    <string name="putao_movie_ctorderdtl_cinemaname">通兑券-%1$s</string>
+    <string name="putao_movie_ctorderdtl_expiretip">还有%1$s天过期</string>
+    <string name="putao_movie_ctorderdtl_pay_timeout">订单支付超时，请重新下单</string>
+    <string name="putao_movie_ctorderlist_ticketname">通兑券 - %1$s %2$s张</string>
+    <string name="putao_movie_commticket_title">通兑券</string>
+    <!-- 推荐电影 -->
+    <string name="putao_movie_recommend_hot">热映电影</string>
+    <string name="putao_movie_recommend_more">更多</string>
+    <string name="putao_movie_recommend_type_hot">热映</string>
+    <string name="putao_movie_recommend_type_highmark">高分</string>
+    <string name="putao_movie_recommend_type_lowprice">特价</string>
+</resources>

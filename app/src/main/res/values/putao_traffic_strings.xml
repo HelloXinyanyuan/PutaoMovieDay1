@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+    <string name="putao_traffic_empty_text">添加车辆随时接收违章提醒</string>
+    <string name="putao_traffic_choose_none">请先选择要删除的车辆</string>
+    
+    <!-- 查违章 V2.2新增-->
+	<!-- 查违章 -->
+	<string name="putao_traffic_offence_region">查询地区</string>
+	<string name="putao_traffic_offence_region_hint">请点击选择</string>
+	<string name="putao_traffic_offence_car_no">车牌号码</string>
+	<string name="putao_traffic_offence_car_no_hint">请输入车牌号码</string>
+	<string name="putao_traffic_offence_engine_num">发动机号</string>
+	<string name="putao_traffic_offence_engine_num_hint">请输入发动机后6位</string>
+	<string name="putao_traffic_offence_body_num">车架号</string>
+	<string name="putao_traffic_offence_body_num_hint">请输入车架号后6位</string>
+	<string name="putao_traffic_offence_vcode">验证码</string>
+	<string name="putao_traffic_offence_vcode_hint">请输入验证码</string>
+	<string name="putao_traffic_offence_vcode_dialog_title">本次查询需要输入验证码</string>
+	<string name="putao_traffic_offence_vcode_dialog_query_btn">查询</string>
+	<string name="putao_traffic_offence_vcode_wrong">验证码错误</string>
+	<string name="putao_traffic_offence_add">添加</string>
+	<string name="putao_traffic_offence_phone_hint">请输入手机号</string>
+	<string name="putao_traffic_offence_wrong_car_info">车辆信息填写有误，请修改后再试</string>
+	<string name="putao_traffic_offence_net_error">网络异常,请稍后再试</string>
+	<string name="putao_traffic_offence_query_limit">今天查询次数太多啦，明天再来吧</string>
+	<string name="putao_traffic_offence_car_already_exsit">您已经添加过这辆车了</string>
+	<string name="putao_traffic_offence_query_fail">查询失败，请稍后再试哦</string>
+	<string name="putao_traffic_offence_add_fail">添加失败，换个姿势再试试吧</string>
+	<string name="putao_traffic_offence_modi_fail">修改失败，换个姿势再试试吧</string>
+	<string name="putao_traffic_violation_no">违章&#x0020;&#x0020;&#x0020; %s</string>
+	<string name="putao_traffic_violation_fine">罚款&#x0020;&#x0020;&#x0020;%s</string>
+	<string name="putao_traffic_violation_points">扣分&#x0020;&#x0020;&#x0020;%s</string>
+	<string name="putao_traffic_offence_location">地理位置</string>
+	<string name="putao_traffic_offence_select_location">请选择地区</string>
+	<string name="putao_traffic_offence_input_carno">请填写6位车牌号码</string>
+	<string name="putao_traffic_offence_input_bodyno">请填写正确填写车架号的后6位</string>
+	<string name="putao_traffic_offence_input_vcode">请填写正确填写验证码</string>
+	<string name="putao_traffic_offence_add_car">添加查询</string>
+	<string name="putao_traffic_offence_add_car_hint">可添加车辆或查询城市</string>
+    <string name="putao_traffic_offence_punish">罚</string>
+    <string name="putao_traffic_offence_violation">违</string>
+    <string name="putao_traffic_offence_deduct">扣</string>
+    <string name="putao_traffic_offence_none">恭喜您，没有查询到违章信息</string>
+    <string name="putao_traffic_offence_recent_have">您有新的违章记录</string>
+    <string name="putao_traffic_offence_recent_none">最近一个月无违章记录</string>
+    <string name="putao_traffic_offence_address">地址：</string>
+    <string name="putao_traffic_offence_time">时间：</string>
+    <string name="putao_traffic_car_city">查询城市:%s</string>
+</resources>

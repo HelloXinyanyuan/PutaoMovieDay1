@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android" xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
+        
+        
+    <!-- 水电煤 -->
+    <string name="putao_water_eg_tag_title">水电煤</string>
+    <string name="putao_water_eg_tag_title_water">缴水费</string>
+    <string name="putao_water_eg_tag_title_electricity">缴电费</string>
+    <string name="putao_water_eg_tag_title_gas">缴燃气</string>
+    
+    <string name="putao_water_eg_tag_city_tip">开通城市:</string>
+    <string name="putao_water_eg_tag_unit_tip">缴费单位:</string>
+    <string name="putao_water_eg_tag_user_code_tip">用户编号:</string>
+    <string name="putao_water_eg_tag_user_fee_tip">"手  续  费:"</string>
+    <string name="putao_water_eg_tag_bill_tip">缴费金额:</string>
+    <string name="putao_water_eg_tag_user_edit_tip">点击填写</string>
+    
+    
+    <string name="putao_water_eg_tag_no_city">请先选择城市</string>
+    <string name="putao_water_eg_tag_city_no_data">暂不支持该地区缴费</string>
+    <string name="putao_water_eg_tag_company_list">公司列表</string>
+    
+    <string name="putao_water_eg_tag_deal_success">交易成功</string>
+    <string name="putao_water_eg_tag_deal_failed">交易失败</string>
+    <string name="putao_water_eg_tag_deal_success_hint">正在处理，%s充值在24小时内到账</string>
+    <string name="putao_water_eg_tag_deal_failed_cancel">交易被取消</string>
+    <string name="putao_water_eg_tag_deal_failed_tips_for_pending">正在处理，请关注订单状态变化</string>
+    
+    <string name="putao_water_eg_tag_deal_result_unit_hint">缴费单位</string>
+    <string name="putao_water_eg_tag_deal_result_usercode_hint">用户编号</string>
+    <string name="putao_water_eg_tag_deal_result_money_hint">缴费金额</string>
+    
+    <string name="putao_water_eg_tag_subject_for_alipay">水电煤充值%s元</string>  
+    <string name="putao_water_eg_tag_please_input_info">请补全充值信息</string>
+    <string name="putao_water_eg_tag_please_check_network">查询失败，确认网络连接后再试</string>
+    <string name="putao_water_eg_tag_RMB">¥%s</string> 
+    <string name="putao_water_eg_tag_no_bill_text">账单未出</string>
+    <string name="putao_water_eg_tag_no_data">单号不存在</string>
+    
+</resources>

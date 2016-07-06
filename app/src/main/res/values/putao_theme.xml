@@ -1,0 +1,356 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <style name="Theme" parent="@android:style/Theme.Holo.Light"></style>
+
+    <!-- 应用主题样式，控制应用基本控件样式，如 -->
+    <style name="Theme.Ptui" parent="@style/Theme">
+
+        <!-- 背景 -->
+        <item name="android:windowBackground">@color/putao_screen_background_light</item>
+        <!-- Button样式 -->
+        <item name="android:buttonStyle">@style/Theme.Ptui.Button</item>
+        <!-- EditText样式 -->
+        <item name="android:editTextStyle">@style/Theme.Ptui.EditText</item>
+        <!-- TextView樣式 -->
+        <item name="android:textViewStyle">@style/Theme.Ptui.TextView</item>
+        <!-- CheckBox样式 -->
+        <item name="android:checkboxStyle">@style/Theme.Ptui.CheckBox</item>
+        <!-- RadioButton样式 -->
+        <item name="android:radioButtonStyle">@style/Theme.Ptui.RadioButton</item>
+        <!-- ListView樣式 -->
+        <item name="android:listViewStyle">@style/Theme.Ptui.ListView</item>
+        <item name="android:windowContentOverlay">@null</item>
+
+        <!-- 列表单选框样式 -->
+        <item name="android:listChoiceIndicatorSingle">@drawable/putao_btn_radio_holo</item>
+    </style>
+
+    <style name="Theme.Ptui.NoTitle" parent="@style/Theme.Ptui">
+        <item name="android:windowNoTitle">true</item>
+    </style>
+
+    <style name="Theme.Ptui.Transparent" parent="@android:style/Theme.Translucent.NoTitleBar"></style>
+
+    <style name="Theme.Ptui.H5" parent="@style/Theme.Ptui.Transparent"></style>
+
+    <style name="Theme.Ptui.Welcome" parent="@style/Theme.Ptui.NoTitle">
+        <item name="android:windowBackground">@drawable/putao_splash_layers</item>
+    </style>
+
+    <!-- 生活内部的带点半透明背景的 -->
+    <style name="Theme.Ptui.Transparent.Custom" parent="@style/Theme.Ptui.Transparent">
+        <item name="android:windowBackground">@color/putao_transparent_alpha</item>
+        <!-- Button样式 -->
+        <item name="android:buttonStyle">@style/Theme.Ptui.Button</item>
+    </style>
+
+    <!-- Button style start -->
+    <!-- 默认样式：绿底白字 -->
+    <style name="Theme.Ptui.Button" parent="@android:style/Widget.Button">
+        <item name="android:background">@drawable/putao_click_btn_bg</item>
+        <item name="android:minHeight">@dimen/putao_btn_height</item>
+        <item name="android:textColor">@color/putao_btn_text_color</item>
+        <item name="android:gravity">center_vertical|center_horizontal</item>
+        <item name="android:textSize">@dimen/putao_btn_text_size</item>
+    </style>
+
+    <!-- 动作样式：橙底白字 -->
+    <style name="Theme.Ptui.Button.Orange_White" parent="@style/Theme.Ptui.Button">
+        <item name="android:background">@drawable/putao_open_button_selector</item>
+        <item name="android:textColor">@color/putao_white</item>
+    </style>
+
+    <!-- 提示样式：白底绿字 -->
+    <style name="Theme.Ptui.Button.White_Green" parent="@style/Theme.Ptui.Button">
+        <item name="android:background">@drawable/putao_express_history_btn_bg</item>
+        <item name="android:textColor">@color/putao_text_color_green</item>
+    </style>
+
+    <!-- 提示样式：白底绿字绿边框 -->
+    <style name="Theme.Ptui.Button.Green_Border_Green" parent="@style/Theme.Ptui.Button">
+        <item name="android:background">@drawable/putao_button_border_selector</item>
+        <item name="android:textColor">@color/putao_text_color_green</item>
+        <item name="android:textSize">@dimen/putao_dialog_bottom_btn_textsize</item>
+    </style>
+
+    <!-- 重要样式：白底红字 -->
+    <style name="Theme.Ptui.Button.White_Red" parent="@style/Theme.Ptui.Button">
+        <item name="android:background">@drawable/putao_express_history_btn_bg</item>
+        <item name="android:textColor">@color/putao_text_color_importance</item>
+    </style>
+
+    <!-- Dialog中Button样式：白底黑字 -->
+    <style name="Theme.Ptui.Button.White_Black" parent="@style/Theme.Ptui.Button">
+        <item name="android:background">@drawable/putao_express_history_btn_bg</item>
+        <item name="android:textColor">@color/putao_text_color_primary</item>
+        <item name="android:textSize">@dimen/putao_dialog_bottom_btn_textsize</item>
+    </style>
+
+    <!-- Dialog中Button样式：白底黑字 -->
+    <style name="Theme.Ptui.Button.Gray_Border_Black" parent="@style/Theme.Ptui.Button">
+        <item name="android:background">@drawable/putao_btn_login_gray</item>
+        <item name="android:textColor">@color/putao_text_color_third</item>
+        <item name="android:textSize">@dimen/putao_dialog_bottom_btn_textsize</item>
+    </style>
+
+    <!-- Dialog中Button样式：白底灰黑字 -->
+    <style name="Theme.Ptui.Button.White_Grey" parent="@style/Theme.Ptui.Button">
+        <item name="android:background">@drawable/putao_express_history_btn_bg</item>
+        <item name="android:textColor">@color/putao_dialog_btn_color</item>
+        <item name="android:textSize">@dimen/putao_dialog_bottom_btn_textsize</item>
+    </style>
+    <!-- Button style end -->
+
+
+    <!-- EditText style start -->
+    <!-- 默认样式 -->
+    <style name="Theme.Ptui.EditText" parent="@android:style/Widget.EditText">
+        <item name="android:textCursorDrawable">@drawable/putao_bg_cursor</item>
+        <item name="android:editTextColor">@color/putao_edit_text</item>
+        <item name="android:textColor">@color/putao_edit_text</item>
+        <item name="android:editTextBackground">@drawable/putao_edit_bg_selector</item>
+        <item name="android:textColorHint">@color/putao_black_alpha_30</item>
+        <item name="android:background">@null</item>
+    </style>
+    <!-- EditText style end -->
+
+
+    <!-- SearchView style start (by custom) -->
+    <style name="Theme.Ptui.SearchView">
+        <item name="searchview_background">@drawable/putao_search</item>
+        <item name="searchview_drawable_clear">@drawable/putao_icon_list_cancel</item>
+        <item name="searchview_drawableLeft">@drawable/putao_icon_search_select</item>
+        <item name="searchview_textSize">14sp</item>
+        <item name="searchview_textColorHint">@color/putao_black_alpha_30</item>
+        <item name="searchview_textColor">@color/putao_text_color_primary</item>
+    </style>
+
+    <!-- 搜索提示框 -->
+    <style name="Theme.Ptui.SearchView.Hint" panrent="@style/Theme.Ptui.SearchView">
+        <item name="searchview_background">@drawable/putao_homepage_search</item>
+    </style>
+
+    <!-- 搜索提示框：本地搜索- -->
+    <style name="Theme.Ptui.SearchView.Native" panrent="@style/Theme.Ptui.SearchView">
+        <item name="searchview_background">@drawable/putao_bg_white_select</item>
+        <item name="searchview_textColorHint">@color/putao_home_hint_text_color</item>
+    </style>
+    <!-- SearchView style end -->
+
+
+    <!-- TextView style start -->
+    <style name="Theme.Ptui.TextView" parent="@android:style/Widget.TextView">
+        <item name="android:textColorPrimary">@color/putao_primary_text_light</item>
+        <item name="android:textSize">@dimen/putao_text_primary_size</item>
+        <item name="android:textAppearance">@style/Theme.Ptui.TextAppearance</item>
+        <item name="android:textAppearanceLarge">@style/Theme.Ptui.TextAppearance.Large</item>
+        <item name="android:textAppearanceMedium">@style/Theme.Ptui.TextAppearance.Medium</item>
+    </style>
+
+    <style name="Theme.Ptui.TextAppearance" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/putao_text_color_primary</item>
+        <item name="android:textSize">@dimen/putao_text_primary_size</item>
+    </style>
+
+    <style name="Theme.Ptui.TextAppearance.Medium" parent="@android:style/TextAppearance.Medium">
+        <item name="android:textColor">@color/putao_text_color_second</item>
+        <item name="android:textSize">@dimen/putao_text_second_size</item>
+    </style>
+
+    <style name="Theme.Ptui.TextAppearance.Large" parent="@android:style/TextAppearance.Large">
+        <item name="android:textColor">@color/putao_text_color_primary</item>
+        <item name="android:textSize">@dimen/putao_text_size_a</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="Theme.Ptui.TextView.PrimaryColor_SecondSize" parent="@android:style/TextAppearance">
+        <item name="android:textColor">@color/putao_text_color_primary</item>
+        <item name="android:textSize">@dimen/putao_text_second_size</item>
+    </style>
+    <!-- TextView style end -->
+
+
+    <!-- CheckBox style start -->
+    <style name="Theme.Ptui.CheckBox" parent="@android:style/Widget.CompoundButton.CheckBox">
+        <item name="android:button">@drawable/putao_icon_check_box</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:focusable">false</item>
+    </style>
+    <!-- CheckBox style end -->
+
+
+    <!-- RadioButton style start -->
+    <style name="Theme.Ptui.RadioButton" parent="@android:style/Widget.CompoundButton.RadioButton">
+        <item name="android:drawableRight">@drawable/putao_btn_radio_holo</item>
+        <item name="android:button">@null</item>
+    </style>
+
+    <style name="Theme.Ptui.RadioButton.Second" parent="@style/Theme.Ptui.RadioButton">
+        <item name="android:drawableRight">@drawable/putao_refund_reason_selector</item>
+    </style>
+    <!-- RadioButton style end -->
+
+
+    <!-- RatingBar style start -->
+    <style name="Theme.Ptui.RatingBar" parent="@android:style/Widget.Holo.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/putao_rating_bar</item>
+        <item name="android:layout_height">17dp</item>
+    </style>
+
+    <style name="Theme.Ptui.RatingBar.Small" parent="@android:style/Widget.Holo.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/putao_rating_bar_small</item>
+    </style>
+
+    <style name="Theme.Ptui.RatingBar.Small.Small" parent="@android:style/Widget.Holo.RatingBar.Small">
+        <item name="android:progressDrawable">@drawable/putao_rating_bar_small_small</item>
+        <item name="android:layout_height">10dp</item>
+    </style>
+
+    <style name="Theme.Ptui.RatingBar.Large" parent="@android:style/Widget.Holo.RatingBar">
+        <item name="android:progressDrawable">@drawable/putao_rating_bar_large</item>
+    </style>
+
+    <style name="Theme.Ptui.RatingBar.Large.Second" parent="@style/Theme.Ptui.RatingBar.Large">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">@dimen/putao_open_goodscomtadd_star_height</item>
+        <item name="android:isIndicator">false</item>
+        <item name="android:numStars">5</item>
+        <item name="android:stepSize">1.0</item>
+    </style>
+    <!-- RatingBar style end -->
+
+
+    <!-- Spinner style start (by custom) -->
+    <style name="Theme.Ptui.Spinner">
+        <item name="spinner_textSize">@dimen/putao_text_second_size</item>
+        <item name="spinner_textColor">@color/putao_text_color_primary</item>
+        <item name="spinner_textColor_selected">@color/putao_theme</item>
+        <item name="spinner_drawableRight">@drawable/putao_icon_list_down</item>
+        <item name="spinner_drawableRight_selected">@drawable/putao_icon_list_up</item>
+        <item name="spinner_background">@drawable/putao_list_selecter_s</item>
+    </style>
+    <!-- Spinner style end -->
+
+
+    <!-- ListView style start -->
+    <style name="Theme.Ptui.ListView">
+        <item name="android:cacheColorHint">#00000000</item>
+        <item name="android:listSelector">@drawable/putao_list_selecter_s</item>
+        <item name="android:background">@color/putao_white</item>
+        <item name="android:divider">@color/putao_yellow_page_line_color</item>
+        <item name="android:fadingEdge">none</item>
+        <item name="android:scrollbars">none</item>
+        <item name="android:visibility">visible</item>
+        <item name="android:dividerHeight">@dimen/putao_divider_line_size</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/putao_btn_radio_holo</item>
+    </style>
+
+    <style name="Theme.Ptui.ListView.PopupWindow" parent="@style/Theme.Ptui.ListView">
+        <item name="android:background">@drawable/putao_bg_white_select</item>
+    </style>
+
+    <style name="Theme.Ptui.ListView.NoDivider" parent="@style/Theme.Ptui.ListView">
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:headerDividersEnabled">false</item>
+    </style>
+
+    <!-- 在item上设置背景，有分割线的样式 -->
+    <style name="Theme.Ptui.ListView.Itembg" parent="@style/Theme.Ptui.ListView">
+        <item name="android:listSelector">@color/putao_transparent</item>
+        <item name="android:background">@null</item>
+    </style>
+
+    <!-- 在item上设置背景，没有分割线的样式 -->
+    <style name="Theme.Ptui.ListView.Itembg.NoDivider" parent="@style/Theme.Ptui.ListView.Itembg">
+        <item name="android:divider">@null</item>
+        <item name="android:dividerHeight">0dp</item>
+        <item name="android:footerDividersEnabled">false</item>
+        <item name="android:headerDividersEnabled">false</item>
+    </style>
+    <!-- ListView style end -->
+
+
+    <!-- Dialog style start -->
+    <style name="Theme.Ptui.Dialog" parent="@android:style/Theme.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsFloating">true</item>
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="android:listChoiceIndicatorSingle">@drawable/putao_btn_radio_holo</item>
+        <!-- ListView樣式 -->
+        <item name="android:listViewStyle">@style/Theme.Ptui.ListView</item>
+    </style>
+
+    <style name="Theme.Ptui.Dialog.ListView" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.OkCancel" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.Ok" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.Wheel" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.ScrollLayout" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.GridView" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.GridView.NoTitle" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.GridView.NoTitle.NoBottom" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.VoucherFailed" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.YearAndMonth" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.TwoGridView" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.ScreenAd" parent="@style/Theme.Ptui.Dialog">
+        <item name="android:windowEnterAnimation">@anim/putao_screen_dialog_enter</item>
+    </style>
+
+    <style name="Theme.Ptui.Dialog.SigninReward" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <style name="Theme.Ptui.Dialog.ActivityDialog" parent="@style/Theme.Ptui.Dialog">
+        <item name="android:windowFrame">@null</item>
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.7</item>
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowFullscreen">true</item>
+    </style>
+    <!-- Dialog style end -->
+
+
+    <!-- ProgressDialog style start -->
+    <style name="Theme.Ptui.Dialog.Progress" parent="@style/Theme.Ptui.Dialog">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0.1</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="Theme.Ptui.Dialog.Progress.Transparent" parent="@style/Theme.Ptui.Dialog.Progress">
+        <item name="android:backgroundDimEnabled">true</item>
+        <item name="android:backgroundDimAmount">0</item>
+        <item name="android:windowIsTranslucent">false</item>
+    </style>
+
+    <style name="Theme.Ptui.Dialog.Progress.Charge" parent="@style/Theme.Ptui.Dialog.Progress">
+        <item name="android:windowCloseOnTouchOutside">true</item>
+        <item name="android:backgroundDimAmount">0.7</item>
+    </style>
+
+    <style name="Theme.Ptui.Dialog.Progress.Download" parent="@style/Theme.Ptui.Dialog"></style>
+
+    <!-- ProgressDialog style end -->
+    <style name="Theme.Ptui.TransparentFullscreenDialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowFullscreen">false</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+    </style>
+
+</resources>

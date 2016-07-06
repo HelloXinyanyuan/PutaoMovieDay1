@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>  
+<resources> 
+    <declare-styleable name="TitleIndicator">
+        <attr name="tag_titlePadding" format="dimension" />
+        <!-- Left/right padding of not active view titles. -->
+        <attr name="tag_clipPadding" format="dimension" />
+        <attr name="tag_textColor" format="color|reference" />
+        <attr name="tag_textSizeNormal" format="dimension" />
+        <attr name="tag_textSizeSelected" format="dimension" />
+        <attr name="tag_footerLineHeight" format="dimension" />
+        <attr name="tag_footerLineWidth" format="dimension" />
+        <attr name="tag_footerColor" format="color" />
+        <attr name="tag_footerTriangleHeight" format="dimension" />
+        <attr name="tag_onTouchStyle" format="integer" />
+    </declare-styleable>
+ 
+    <declare-styleable name="putao_RoundProgressBar">  
+        <attr name="max" format="integer"/>	
+        <attr name="fill" format="boolean"/>			<!-- 是否填充圆形区域 -->
+        <attr name="Paint_Width" format="integer"/>		<!-- 画笔宽度，填充模式下无效，会被重置为0 -->
+        <attr name="Paint_Color" format="integer"/>		<!-- 画笔颜色 -->
+        <attr name="Secondary_Paint_Color" format="integer"/>	<!-- 圆形颜色 -->
+        <attr name="Show_Bottom" format="boolean"/>		<!-- 是否显示底色 -->
+        <attr name="Inside_Interval" format="integer"/> <!-- 圆形区域向里缩进的距离 -->
+        <attr name="mode" format="string"/> <!-- 模式：重复repeat，仅一圈（默认） -->
+    </declare-styleable>  
+    
+    <declare-styleable name="putao_ParallaxScrollView">
+       <attr name="zoomRatio" format="float" />
+   </declare-styleable>
+       <declare-styleable name="putao_ViewPagerIndicator">
+
+        <!-- Style of the circle indicator. -->
+        <attr name="circlePageIndicatorStyle" format="reference" />
+        <!-- Style of the title indicator. -->
+        <attr name="titlePageIndicatorStyle" format="reference" />
+    </declare-styleable>
+    <declare-styleable name="putao_CirclePageIndicator">
+
+        <!-- Whether or not the indicators should be centered. -->
+        <attr name="centered" format="boolean" />
+        <!-- Color of the filled circle that represents the current page. -->
+        <attr name="fillColor" format="color" />
+        <!-- Orientation of the indicator. -->
+        <attr name="orientation">
+            <enum name="horizontal" value="0" />
+            <enum name="vertical" value="1" />
+        </attr>
+        <!-- Radius of the circles. This is also the spacing between circles. -->
+        <attr name="radius" format="dimension" />
+        <!-- Whether or not the selected indicator snaps to the circles. -->
+        <attr name="snap" format="boolean" />
+        <!-- Color of the open circles. -->
+        <attr name="strokeColor" format="color" />
+        <!-- Width of the stroke used to draw the circles. -->
+        <attr name="strokeWidth" format="dimension" />
+    </declare-styleable>
+    <declare-styleable name="putao_TitlePageIndicator">
+
+        <!-- Screen edge padding. -->
+        <attr name="clipPadding" format="dimension" />
+        <!-- Color of the footer line and indicator. -->
+        <attr name="footerColor" format="color" />
+        <!-- Height of the footer line. -->
+        <attr name="footerLineHeight" format="dimension" />
+        <!-- Style of the indicator. Default is triangle. -->
+        <attr name="footerIndicatorStyle">
+            <enum name="none" value="0" />
+            <enum name="triangle" value="1" />
+            <enum name="underline" value="2" />
+        </attr>
+        <!-- Height of the indicator above the footer line. -->
+        <attr name="footerIndicatorHeight" format="dimension" />
+        <!-- Left and right padding of the underline indicator. -->
+        <attr name="footerIndicatorUnderlinePadding" format="dimension" />
+        <!-- Padding between the bottom of the title and the footer. -->
+        <attr name="footerPadding" format="dimension" />
+        <!-- Color of the selected title. -->
+        <attr name="selectedColor" format="color" />
+        <!-- Whether or not the selected item is displayed as bold. -->
+        <attr name="selectedBold" format="boolean" />
+        <!-- Color of regular titles. -->
+        <attr name="textColor" format="color" />
+        <!-- Size of title text. -->
+        <attr name="textSize" format="dimension" />
+        <!-- Padding between titles when bumping into each other. -->
+        <attr name="titlePadding" format="dimension" />
+        <!-- Padding between titles and the top of the View. -->
+        <attr name="topPadding" format="dimension" />
+    </declare-styleable>
+    
+    <!-- SlideView-->
+    <declare-styleable name="SlideView">
+        <attr name="slideBackView" format="reference" />
+        <attr name="slideForeView" format="reference" />
+        <attr name="slideDuration" format="integer" />
+        <attr name="slideInterpolator" format="reference" />
+        <attr name="slideDirect">
+            <flag name="upToDown" value="0" />
+            <flag name="downToUp" value="1" />
+            <flag name="leftToRight" value="2" />
+            <flag name="rightToLeft" value="3" />
+        </attr>
+    </declare-styleable>
+    
+    <declare-styleable name="putao_PaymentView">
+        <attr name="icon" format="reference" />
+        <attr name="sdk_name" format="reference|string" />
+        <attr name="bg_selector" format="reference" />
+        <attr name="empty_string" format="reference|string" />
+        <attr name="id" format="integer" />
+        <attr name="selected_txt_color" format="integer" />
+    </declare-styleable>
+    
+    <declare-styleable name="empty_view_styleable">
+        <attr name="showImage" format="boolean|reference" />
+        <attr name="needJudgeNet" format="boolean|reference" />
+        <attr name="noNetworkTxt" format="string|reference" />
+        <attr name="noDataTxt" format="string|reference" />
+        <attr name="reloadWithNoData" format="boolean|reference" />
+    </declare-styleable>
+    <declare-styleable name="group_view_styleable">
+        <attr name="showBottomDivider" format="boolean|reference" />
+        <attr name="showTopDivider" format="boolean|reference" />
+        <attr name="groupTxt" format="string|reference" />
+    </declare-styleable>
+    
+    <declare-styleable name="EcoGallery">
+        <attr name="gravity" format="integer" />
+        <attr name="animationDuration" format="integer" />
+        <attr name="unselectedAlpha" format="float" />
+        <attr name="spacing" format="dimension" />
+    </declare-styleable>
+
+    <attr name="ecoGalleryStyle" format="reference" />
+
+    <declare-styleable name="CustomAbsSpinner">
+        <attr name="entries" format="reference" />
+    </declare-styleable>
+
+    <attr name="customAbsSpinnerStyle" format="reference" />
+    
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="pstsIndicatorColor" format="color" />
+        <attr name="pstsUnderlineColor" format="color" />
+        <attr name="pstsDividerColor" format="color" />
+        <attr name="pstsIndicatorHeight" format="dimension" />
+        <attr name="pstsUnderlineHeight" format="dimension" />
+        <attr name="pstsDividerPadding" format="dimension" />
+        <attr name="pstsTabPaddingLeftRight" format="dimension" />
+        <attr name="pstsScrollOffset" format="dimension" />
+        <attr name="pstsTabBackground" format="reference" />
+        <attr name="pstsShouldExpand" format="boolean" />
+        <attr name="pstsTextAllCaps" format="boolean" />
+    </declare-styleable>
+    
+    <!-- 斜着的TextView -->
+    <declare-styleable name="TiltTextView">
+        <attr name="background" format="color" />
+    </declare-styleable>
+    
+</resources> 
+

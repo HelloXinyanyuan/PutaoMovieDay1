@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    
+<!-- 	电影订单条目 -->
+	<dimen name="putao_orderitem_movie_logowidth">66dp</dimen>
+	<dimen name="putao_orderitem_movie_logoheight">88dp</dimen>
+	<dimen name="putao_orderitem_movie_textcontent_margintop">22dp</dimen>
+	<dimen name="putao_orderitem_movie_textcontent_marginbottom">20dp</dimen>
+	
+<!-- 	电影订单详情 -->
+	<dimen name="putao_moviedetail_ordercontent_leftrightpadding">14dp</dimen>
+	<dimen name="putao_moviedetail_ordercontent_topbottompadding">14dp</dimen>
+	<dimen name="putao_moviedetail_ordercontent_textleftmarginright">36dp</dimen>
+	<dimen name="putao_moviedetail_review_headimg_height">40dp</dimen>
+<!-- 	电影首页条目 -->
+	<dimen name="putao_movie_list_item_movie_logowidth">104dp</dimen>
+	<dimen name="putao_movie_list_item_movie_logoheight">140dp</dimen>
+</resources>

@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources >
+     <!--  title -->
+     <string name="putao_qunarflight_title">机票</string>
+     <string name="putao_tab_oneway_title">单程</string>
+     <string name="putao_tab_round_title">往返</string>
+     <!-- oneway  -->
+     <string name="putao_flight_order">机票订单</string>
+     <string name="putao_flight_query">机票查询</string>
+     <string name="putao_flight_history_order">历史订单</string>
+     <string name="putao_start_city">出发城市</string>
+     <string name="putao_arrive_city">到达城市</string>
+     <string name="putao_start_date">出发日期</string>
+     <string name="putao_city_beijing">北京</string>
+     <string name="putao_city_shenzhen">深圳</string>
+     <string name="putao_city_shanghai">上海</string>
+     <string name="putao_flight_jiage">价格趋势</string>
+     <string name="putao_flight_tejia">特价机票</string>
+     <string name="putao_flight_hangban">航班动态</string>
+
+     <string name="putao_flight_start">出发</string>
+     <string name="putao_flight_return">返回</string>
+     
+     <string name="putao_flight_chinese_city">国内城市</string>
+     <string name="putao_flight_foreign_city">国际城市</string>
+</resources>
