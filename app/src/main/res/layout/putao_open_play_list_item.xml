@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/putao_listview_item_selector"
+    android:gravity="center"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="@dimen/putao_comm_item_vertical_padding"
+        android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+        android:paddingRight="@dimen/putao_activity_horizontal_margin"
+        android:paddingTop="10dp" >
+
+        <TextView
+            android:id="@+id/start_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentTop="true"
+            android:textColor="@color/putao_text_color_primary"
+            android:textSize="20sp" />
+
+        <TextView
+            android:id="@+id/end_time"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_below="@+id/start_time"
+            android:textColor="@color/putao_text_color_second"
+            android:textSize="@dimen/putao_text_tertiary_size" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/gewa_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/putao_text_color_importance"
+                android:textSize="@dimen/putao_text_primary_size" />
+
+            <TextView
+                android:id="@+id/putao_opi_compare_price"
+                style="@style/Theme.Ptui.Text.Rect2" />
+        </LinearLayout>
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/putao_opi_expand_imv"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:layout_marginTop="-7dp"
+        android:background="@drawable/putao_listview_img_expand"
+        android:visibility="gone" />
+
+    <LinearLayout
+        android:id="@+id/putao_cplist"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+    </LinearLayout>
+
+    <View
+        android:id="@+id/divider_line"
+        style="@style/Theme.Ptui.Divider.Horizontal" />
+
+</LinearLayout>

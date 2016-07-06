@@ -30,7 +30,7 @@ public class FullTaskListener<T> implements TaskStatusListener<T> {
     }
 
     @Override
-    public void onTaskSuccess(T t) {
+    public void onTaskSuccess(T response) {
 
     }
 

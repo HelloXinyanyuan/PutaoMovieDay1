@@ -103,9 +103,9 @@ public class CommParserTask<T> implements Response.ErrorListener {
     }
 
     /**
-     * 开启异步任务
+     * 开启异步JSON解析任务
      */
-    public void startAsyncTask() {
+    public void asyncParse() {
         if (mTaskListener != null) {
             mTaskListener.onTaskStart();
         }

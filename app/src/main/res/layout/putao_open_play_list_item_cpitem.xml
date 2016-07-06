@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:background="@drawable/putao_listview_item_expand" >
+
+        <com.android.volley.toolbox.NetworkImageView
+            android:id="@+id/putao_cplogo"
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="@dimen/putao_activity_horizontal_margin"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/putao_cpname"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_toRightOf="@+id/putao_cplogo"
+            android:paddingLeft="8dp"
+            android:textColor="@color/putao_text_color_primary"
+            android:textSize="@dimen/putao_text_primary_size" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:gravity="right|center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+            android:paddingRight="@dimen/putao_activity_horizontal_margin" >
+
+            <TextView
+                android:id="@+id/putao_cpcouponinfo"
+                style="@style/Theme.Ptui.Text.Rect3"
+                android:layout_marginRight="6dp" />
+
+            <TextView
+                android:id="@+id/putao_item_cp_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginRight="4dp"
+                android:textColor="@color/putao_text_color_secondary"
+                android:textSize="@dimen/putao_text_tertiary_size" />
+
+            <TextView
+                android:id="@+id/putao_final_price"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/putao_text_color_importance"
+                android:textSize="@dimen/putao_text_primary_size" />
+        </LinearLayout>
+
+        <View
+            android:id="@+id/putao_movie_cpitem_divider"
+            style="@style/Theme.Ptui.Divider.Horizontal.Bottom" />
+    </RelativeLayout>
+
+</LinearLayout>

@@ -101,8 +101,8 @@ public class MovieListFragment extends BaseFragment implements AdapterView.OnIte
                 }
             }
         };
-        task.setmTaskListener(fullTaskListener);
-        task.startAsyncTask();
+        task.setTaskListener(fullTaskListener);
+        task.asyncParse();
     }
 
     @Override

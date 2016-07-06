@@ -6,6 +6,7 @@
 .DS_Store
 /build
 /captures
-/ptLivesDepend
-/putaoLife
-/putaoLife_changebag
+import-summary.txt
+ptLivesDepend/
+putaoLife/
+putaoLife_changebag/

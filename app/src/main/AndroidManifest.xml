@@ -69,7 +69,15 @@
                 android:value="com.whunf.putaomovieday1.common.core.BaseActivity" />
         </activity>
         <activity android:name=".module.movie.ui.PlayVideoActivity" />
-        <activity android:name=".module.movie.ui.CinemaListActivity"></activity>
+        <activity android:name=".module.movie.ui.CinemaListActivity" />
+        <activity android:name=".module.movie.ui.CinemaDetailActivity" />
+        <activity android:name=".module.movie.ui.CinemaSelectSeatActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>

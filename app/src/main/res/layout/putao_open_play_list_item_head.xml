@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical" >
+
+    <Gallery
+        android:id="@+id/opi_movie_list"
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/putao_movie_opi_mlist_height"
+        android:background="@color/putao_dark_white"
+        android:paddingBottom="24dp"
+        android:paddingTop="63dp" />
+
+    <RelativeLayout
+        android:id="@+id/movie_dtl"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="-11dp"
+        android:background="@drawable/putao_opilist_moviedtl_bg"
+        android:paddingBottom="14dp"
+        android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+        android:paddingRight="@dimen/putao_activity_horizontal_margin"
+        android:paddingTop="14dp" >
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:gravity="center"
+            android:orientation="vertical" >
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal" >
+
+                <TextView
+                    android:id="@+id/movie_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/putao_text_color_primary"
+                    android:textSize="@dimen/putao_text_size_a" />
+
+                <TextView
+                    android:id="@+id/movie_general_mark"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:textColor="@color/putao_movie_list_point"
+                    android:textSize="@dimen/putao_text_second_size" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/movie_other_info"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textColor="@color/putao_text_color_second"
+                android:textSize="@dimen/putao_text_tertiary_size" />
+        </LinearLayout>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:scaleType="center"
+            android:src="@drawable/putao_card_all_show" />
+    </RelativeLayout>
+
+    <View style="@style/Theme.Ptui.Divider.Horizontal" />
+
+    <HorizontalScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/putao_white"
+        android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+        android:paddingRight="@dimen/putao_activity_horizontal_margin"
+        android:scrollbars="none" >
+
+        <LinearLayout
+            android:id="@+id/playdate_container"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+        </LinearLayout>
+    </HorizontalScrollView>
+
+    <View style="@style/Theme.Ptui.Divider.Horizontal" />
+
+   <!-- <so.contacts.hub.basefunction.widget.CommGroupView
+        android:id="@+id/putao_opilist_group_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/putao_white"
+        android:orientation="vertical"
+        app:groupTxt="@string/putao_movie_playlist_tip"
+        app:showBottomDivider="false" >
+
+        <so.contacts.hub.basefunction.widget.CommEmptyView
+            android:id="@+id/opilist_empty_view"
+            android:layout_width="match_parent"
+            android:layout_height="120dp"
+            app:noDataTxt="@string/putao_opilist_no_opi_data"
+            app:showImage="false" />
+    </so.contacts.hub.basefunction.widget.CommGroupView>-->
+
+</LinearLayout>

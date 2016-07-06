@@ -3,4 +3,75 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
+
+
+    <!-- 主题色,头颜色 -->
+    <color name="putao_theme">#46c578</color>
+    <!-- 顶栏底色 -->
+    <color name="putao_head_title_color">#f9f9f9</color>
+    <color name="putao_head_title_divider_color">#b4b4b4</color>
+
+    <!-- 通用样式 start -->
+    <color name="putao_text_color_primary">#d9000000</color><!-- 主要文字颜色  黑色的85%-->
+    <color name="putao_text_color_second">#a6000000</color><!--  辅助文字颜色  黑色的65%-->
+    <color name="putao_text_color_third">#80000000</color><!-- 黑色的50% -->
+    <color name="putao_text_color_secondary">#4c000000</color><!-- 次要文字颜色 黑色的30%-->
+    <color name="putao_normal_red">#ff6653</color><!-- 通用的红色 -->
+    <color name="putao_yellow_page_line_color">#ffe2e2e2</color><!-- 黄页数据分割线背景色 -->
+    <color name="putao_screen_background_light">#f3f3f3</color><!-- 背景色 -->
+    <color name="putao_blue">#0ca3e9</color><!-- 蓝色 -->
+    <!-- 通用样式 end -->
+
+    <!-- 主界面颜色 -->
+    <color name="putao_tab_text_color_default">#7b7b7b</color>
+    <color name="putao_tab_text_color_selected">@color/putao_theme</color>
+    <color name="putao_bg_transparent_black_10">#19000000</color>
+    <color name="putao_home_hint_text_color">#acacac</color>
+    <color name="putao_home_main_text_color">#636363</color>
+    <color name="putao_home_sub_text_color">#b1b1b1</color>
+    <color name="putao_home_search_text_color_hint">#80000000</color><!-- 黑色的50% -->
+    <color name="putao_black_alpha_30">#4d000000</color><!-- 黑色的30% -->
+    <color name="putao_white_alpha_50">#80ffffff</color><!-- 白色的50% -->
+    <color name="putao_home_search_text_hint">#66ffffff</color><!--白色的40%  -->
+    <color name="putao_navi_index_bg">#f3f3f3</color>
+    <color name="putao_category_expect_more_item_bg">#efefe1</color>
+    <color name="putao_rotate_view_default_bg">#FF6633</color>
+    <!-- 签到相关  -->
+    <color name="putao_15_black_color">#26000000</color><!-- 黑色的15% -->
+    <color name="putao_35_black_color">#59000000</color><!-- 黑色的35% -->
+    <color name="putao_signin_toast_color">#ffe400</color>
+    <color name="putao_signin_dialog_color">#ff6633</color>
+    <!-- #E33B4C -->
+    <color name="putao_titlebar_shade_color">@color/putao_theme</color>
+
+    <!-- 登录界面 -->
+    <color name="putao_login_forget_password_color">#576B95</color>
+
+    <color name="putao_pt_blue">#0ab3f9</color>
+    <color name="putao_pt_light_gray">#efefef</color>
+    <color name="putao_pt_deep_gray">#787878</color>
+    <color name="putao_pt_gray">#bbbbbb</color>
+    <color name="putao_white">#ffffff</color>
+    <color name="putao_transparent">#00000000</color>
+    <color name="putao_transparent_alpha">#9000</color>
+    <color name="putao_translucent">#7D000000</color>
+    <color name="putao_black">#000000</color>
+    <color name="putao_pt_heavy_black">#333333</color>
+    <color name="putao_red">#FF0000</color>
+    <color name="putao_light_black">#ffaaaaaa</color>
+    <color name="putao_text_green">@color/putao_theme</color>
+    <color name="putao_separator_green">#1ba971</color>
+    <!-- 普通列表焦点色 -->
+    <color name="putao_list_selector">#e0e0e0</color><!-- modify for COOLUI6.0 -->
+    <color name="putao_list_item_expand_default">#eeeeee</color>
+    <color name="putao_transparent_background">#01ffffff</color>
+    <color name="putao_yp_home_listview_textcolor">#525252</color>
+    <!-- 字体颜色 -->
+
+    <color name="putao_text_color_second_alpha">#4d7b7b7b</color><!--  辅助文字颜色带30%透明-->
+    <color name="putao_text_color_indicative">#b1b1b1</color><!--  提示性文字颜色-->
+    <color name="putao_text_color_disable">#4d0d0d0d</color><!-- 失效 -->
+    <color name="putao_text_color_importance">#ff6655</color><!-- 重要 -->
+    <color name="putao_text_color_green">#46c578</color><!-- 绿色提示文字 -->
 </resources>
