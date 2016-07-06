@@ -10,6 +10,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/ptLivesDepend" />
+            <option value="$PROJECT_DIR$/putaoLife" />
+            <option value="$PROJECT_DIR$/putaoLife_changebag" />
             <option value="$PROJECT_DIR$/smlibrary" />
             <option value="$PROJECT_DIR$/testlib" />
             <option value="$PROJECT_DIR$/volley" />
@@ -19,6 +22,9 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/ptLivesDepend" />
+            <option value="$PROJECT_DIR$/putaoLife" />
+            <option value="$PROJECT_DIR$/putaoLife_changebag" />
             <option value="$PROJECT_DIR$/smlibrary" />
             <option value="$PROJECT_DIR$/testlib" />
             <option value="$PROJECT_DIR$/volley" />

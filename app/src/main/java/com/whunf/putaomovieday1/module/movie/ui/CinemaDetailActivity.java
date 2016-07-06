@@ -7,7 +7,6 @@ import android.text.Spannable;
 import android.text.SpannableString;
 import android.text.TextUtils;
 import android.text.style.AbsoluteSizeSpan;
-import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.AdapterView;
@@ -30,8 +29,11 @@ import com.whunf.putaomovieday1.common.parser.FullTaskListener;
 import com.whunf.putaomovieday1.common.parser.ParserTaskUtils;
 import com.whunf.putaomovieday1.common.util.BitmapCache;
 import com.whunf.putaomovieday1.common.util.CityMgr;
+import com.whunf.putaomovieday1.common.util.GraphicUtil;
 import com.whunf.putaomovieday1.common.util.LogUtil;
+import com.whunf.putaomovieday1.common.util.NumberUtil;
 import com.whunf.putaomovieday1.common.util.T;
+import com.whunf.putaomovieday1.common.widget.HeaderLayout;
 import com.whunf.putaomovieday1.module.movie.adapter.ImageAdapter;
 import com.whunf.putaomovieday1.module.movie.adapter.OpiListAdapter;
 import com.whunf.putaomovieday1.module.movie.resp.Movie;
@@ -60,39 +62,29 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
 
     private static final String TAG = "CinemaDetailActivity";
 
+    /******外传递参数开始******/
+    //最后的选中的排期
+    private String mFirstSelectPlaydateStr;
     // 用于匹配第一次选中的电影
     private long mFirstMovieId;
     // 用于匹配第一次选中的电影
     private String mFirstMovieName;
-
-    /**
-     * 最后的选中的排期
-     */
-    private String mFirstSelectPlaydateStr;
+    //影院id
+    private long mCinemaid;
+    private String mCinemaName;
+    private String mCinemaAddress;
+    //影院纬度
+    private double mCinemaLat;
+    //影院经度
+    private double mCinemaLng;
+    //影院经纬度使用的坐标系
+    private String mCinemaCs;
+    private String mCityName;
+    /******外传递参数结束******/
 
     private OpiListAdapter mOpiListAdapter;
 
     private LinearLayout mPlaydateContainer;
-
-    /**
-     * 影院id
-     */
-    private long mCinemaid;
-
-    private String mCinemaName;
-
-    private String mCinemaAddress;
-
-    private double mCinemaLat;
-
-    private double mCinemaLng;
-
-    /**
-     * 影院经纬度使用的坐标系
-     */
-    private String mCinemaCs;
-
-    private String mCityName;
 
     private Movie mSelectedMovie;
 
@@ -128,13 +120,10 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
 
     private ImageLoader mLoader;
 
-    private View mOpilistGroupView = null;
-
-
-    /**
+ /**
      * 标题栏文本
      */
-    private TextView mTitleTv, mSubTitleTv;
+    private HeaderLayout mHeaderLayout;
 
     private View mHeaderView;
 
@@ -178,15 +167,12 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
         mOpiListAdapter = new OpiListAdapter(mLoader);
         // 添加头部view
         mHeaderView = View.inflate(this, R.layout.putao_open_play_list_item_head, null);
-        mOpilistGroupView = mHeaderView.findViewById(R.id.putao_opilist_group_view);
         mMovieNameTv = (TextView) mHeaderView.findViewById(R.id.movie_name);
         mMovieMarkTv = (TextView) mHeaderView.findViewById(R.id.movie_general_mark);
         mMovieOtherInfoTv = (TextView) mHeaderView.findViewById(R.id.movie_other_info);
 
         mHeaderView.findViewById(R.id.movie_dtl).setOnClickListener(this);
         mPlaydateContainer = (LinearLayout) mHeaderView.findViewById(R.id.playdate_container);
-        mOpilistEmptyView = (CommEmptyView) mHeaderView.findViewById(R.id.opilist_empty_view);
-        mOpilistEmptyView.setClickCallback(this);
         opiListView.addHeaderView(mHeaderView, null, false);
 //        // 添加底部view
 //        View ibottom = View.inflate(this, R.layout.putao_movie_bottom_layout, null);
@@ -218,7 +204,7 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
         reqParams.put("cinemaid", mCinemaid + "");
         reqParams.put("citycode", mCityName);
         reqPath = ParserTaskUtils.buildPath(reqParams);
-//创建请求任务
+        //创建请求任务
         mMovieListTask = new CommParserTask<MovieListResp>(reqPath, MovieListResp.class);
         mMovieListTask.setTaskListener(new FullTaskListener<MovieListResp>(this) {
             @Override
@@ -266,7 +252,6 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
                 mMoviesAdapter.setSelectItem(position);
                 mLastSelectPlaydateStr = "";
                 Movie movie = (Movie) parent.getAdapter().getItem(position);
-                mLoader.loadData(movie.getLogo(), mMoviesGallery, OpenPlayListActivity.this);
                 refreshSelectMovieUi(movie);
             }
 
@@ -279,7 +264,7 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
 
     private void refreshSelectMovieUi(Movie movie) {
         mSelectedMovie = movie;
-        int movieLen = movie.getLengthOfInt();
+        int movieLen =  NumberUtil.parseIntSafe(movie.getLength());
         mOpiListAdapter.setMovieLength(movieLen);
         mMovieNameTv.setText(movie.getMoviename());
         String markStr = movie.getGeneralmark();
@@ -291,23 +276,8 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
                     Spannable.SPAN_INCLUSIVE_EXCLUSIVE);
             mMovieMarkTv.setText(markSpanText);
         }
+        //排期
         loadPlaydateList(mCinemaid, mCinemaName, movie.getMovieid(), movie.getMoviename());
-
-        StringBuffer movieOtherinfobuffer = new StringBuffer();
-        String typeStr = movie.getTypeWithDividerStr(" ");
-        if (!TextUtils.isEmpty(typeStr)) {
-            movieOtherinfobuffer.append(typeStr);
-        }
-        if (movieLen != 0) {
-            movieOtherinfobuffer.append(getString(R.string.putao_movie_playlist_movie_otherinfo, movieLen));
-        }
-        String movieOtherinfo = movieOtherinfobuffer.toString();
-        if (!TextUtils.isEmpty(movieOtherinfo)) {
-            mMovieOtherInfoTv.setText(movieOtherinfobuffer.toString());
-            mMovieOtherInfoTv.setVisibility(View.VISIBLE);
-        } else {
-            mMovieOtherInfoTv.setVisibility(View.GONE);
-        }
     }
 
     /**
@@ -330,66 +300,43 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
             return;
         }
 
-        String reqPath = UrlConfig.MoviePath.PLAYDATE_LIST;
-        Map<String, String> reqParams = CinemaApi.getPlaydateListParam(cinemaid, cinemaname, movieid, moviename);
-        mPlaydateListTask = new CinemaCommParserTask<PlaydateListResp>(reqPath, reqParams, PlaydateListResp.class, this,
-                mOpilistEmptyView) {
-            /** 是否应该关闭加载窗口 */
-            private boolean shouldDismiss = true;
+        //配置参数和请求路径
+        String reqPath = null;
+        reqPath = UrlConfig.MoviePath.PLAYDATE_LIST;
+        Map<String, String> reqParams = new HashMap<>();
+        reqParams.put("movieid", movieid+"");
+        reqParams.put("moviename", moviename);
+        reqParams.put("cinemaid", cinemaid+"");
+        reqParams.put("cinemaname", cinemaname);
+        reqPath = ParserTaskUtils.buildPath(reqParams);
 
+        //创建请求任务
+        mPlaydateListTask = new CommParserTask<PlaydateListResp>(reqPath, PlaydateListResp.class);
+        mPlaydateListTask.setTaskListener(new FullTaskListener<PlaydateListResp>(this) {
             @Override
-            public boolean onTaskSuccess(PlaydateListResp response) {
-                if (isNoDataCode(response)) {
+            public void onTaskSuccess(PlaydateListResp response) {
+
+                List<Playdate> playdates = response.getPlaydateList();
+                if (playdates != null && !playdates.isEmpty()) {
+                    // 按照时间排序升序
+                    Collections.sort(playdates);
+                    /** 保存播放日期数据 */
+                    savePlaydateList(playdates);
+                    /** 更新播放日期button UI */
+                    refreshPlaydateUi(playdates);
+                } else {
                     // 无排期数据
-                    shouldDismiss = true;
-                    doWithEmptyOpidata();
-                    showCommticketUI();
-                } else if (super.onTaskSuccess(response)) {// 先交给父类处理通用错误
-                } else if (isSuccessCode(response)) {
-                    shouldDismiss = false;
-                    // 过滤无效日期或者日期（可能）为空的情况
-                    // List<Playdate> playdates =
-                    // filterPlaydateList(response.getPlaydateList());//取消过滤
-                    List<Playdate> playdates = response.getPlaydateList();
-                    if (playdates != null && !playdates.isEmpty()) {
-                        // 按照时间排序升序
-                        Collections.sort(playdates);
-                        /** 保存播放日期数据 */
-                        savePlaydateList(playdates);
-                        /** 更新播放日期button UI */
-                        refreshPlaydateUi(playdates);
-                    } else {
-                        // 无排期数据
-                        // 移除之前的排期button
-                        mPlaydateContainer.removeAllViews();
-                        shouldDismiss = true;
-                        doWithEmptyOpidata();
-                        showCommticketUI();
-                    }
-
-                }
-                return true;
-            }
-
-            @Override
-            public void onTaskStart() {
-                showLoadingDialog();
-            }
-
-            @Override
-            public void onTaskFinish() {
-                if (shouldDismiss) {
-                    dismissLoadingDialog();
+                    // 移除之前的排期button
+                    mPlaydateContainer.removeAllViews();
                 }
             }
-
             /** 保存播放日期数据 */
             private void savePlaydateList(List<Playdate> playdateList) {
                 if (playdateList != null) {// 如果不为null就保存在内存中
                     mPlaydateListCache.put(movieid, playdateList);
                 }
             }
-        };
+        });
         mPlaydateListTask.asyncParse();
     }
 
@@ -428,19 +375,15 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
         final Calendar today = CinemaUtils.getFormatedToday();
         for (int i = 0, len = playdateList.size(); i < len; i++) {
             final Playdate playdate = playdateList.get(i);
-            Button button = new Button(this);
-            UiHelper.setViewBackground(button, getResources().getDrawable(R.drawable.putao_comm_radio_bg2_selector));
-            button.setSingleLine();
-            button.setTextSize(TypedValue.COMPLEX_UNIT_PX,
-                    getResources().getDimensionPixelSize(R.dimen.putao_text_primary_size));
-            button.setTextColor(getResources().getColorStateList(R.color.putao_comm_radio_txt_selector));
+            Button button = (Button)View.inflate(this,R.layout.cinema_detail_playdate_btn,null);
             button.setTag(playdate.getPlaydate());
             button.setText(CinemaUtils.getPlaydateStr(today, playdate.getPlaydateInDate()));
             button.setOnClickListener(playdateButtonClickListener);
-            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(Utils.dip2px(this, 103),
-                    Utils.dip2px(this, 48));
+
+            LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(GraphicUtil.dip2px(this, 103),
+                    GraphicUtil.dip2px(this, 48));
             if (i < (len - 1)) {
-                layoutParams.rightMargin = Utils.dip2px(this, 9);
+                layoutParams.rightMargin = GraphicUtil.dip2px(this, 9);
             }
             mPlaydateContainer.addView(button, layoutParams);
         }
@@ -489,8 +432,6 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
      * @param playdate
      */
     private void loadOpiList(final long movieid, final String moviename, final String playdate) {
-        // 取消上一个任务
-//        CommParserTaskUtils.cancelCommParserTask(mOpiListTask);
         // 点击播放日期后先清空老的场次列表
         clearOpiListview();
         HashMap<String, List<Opi>> selectMovieOpiList = mOpiListCache.get(movieid);
@@ -501,25 +442,32 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
                 return;
             }
         }
-        // 如果memory中没有就从网络中加载
-        String reqPath = UrlConfig.MoviePath.OPI_LIST;
-        Map<String, String> reqParams = CinemaApi.getOpiListParam(playdate, mCinemaid, mCinemaName, movieid, moviename);
-        mOpiListTask = new CinemaCommParserTask<OpiListResp>(reqPath, reqParams, OpiListResp.class, this, mOpilistEmptyView) {
 
+        //配置参数和请求路径
+        String reqPath = null;
+        reqPath = UrlConfig.MoviePath.OPI_LIST;
+        Map<String, String> reqParams = new HashMap<>();
+        reqParams.put("cinemaid", mCinemaid+"");
+        reqParams.put("cinemaname", mCinemaName);
+        reqParams.put("playdate", playdate);
+        reqParams.put("movieid", movieid+"");
+        reqParams.put("moviename", moviename);
+        reqPath = ParserTaskUtils.buildPath(reqParams);
+
+        //创建请求任务
+        mOpiListTask = new CommParserTask<OpiListResp>(reqPath, OpiListResp.class);
+        mOpiListTask.setTaskListener(new FullTaskListener<OpiListResp>(this) {
             @Override
-            public boolean onTaskSuccess(OpiListResp response) {
-                if (isNoDataCode(response)) {
-                    doWithEmptyOpidata();
-                    showCommticketUI();
-                } else if (super.onTaskSuccess(response)) {// 先交给父类处理通用错误
-                } else if (isSuccessCode(response)) {
+            public void onTaskSuccess(OpiListResp response) {
+                if (response.getOpiList() != null && !response.getOpiList().isEmpty()) {
                     saveOpiList(playdate, response);
                     refreshOpiListUi(response.getOpiList());
+                } else {
+                    // 无排期数据
+                    // 移除之前的排期button
+                    mPlaydateContainer.removeAllViews();
                 }
-                LogUtil.i(TAG, "SpeedLog loaddata end=" + System.currentTimeMillis());
-                return true;
             }
-
             private void saveOpiList(final String playdate, OpiListResp response) {
                 HashMap<String, List<Opi>> selectMovieOpiList = mOpiListCache.get(movieid);
                 if (selectMovieOpiList != null) {
@@ -530,18 +478,9 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
                     mOpiListCache.put(movieid, selectMovieOpiList);
                 }
             }
-
-            @Override
-            public void onTaskStart() {
-                showLoadingDialog();
-            }
-
-            @Override
-            public void onTaskFinish() {
-                dismissLoadingDialog();
-            }
-        };
+        });
         mOpiListTask.asyncParse();
+
     }
 
     private void clearOpiListview() {
@@ -550,18 +489,17 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
     }
 
     private void refreshOpiListUi(List<Opi> opiList) {
-        mOpilistGroupView.setVisibility(View.VISIBLE);
         // 数据全数加载完毕，关闭加载框
         dismissLoadingDialog();
         if (opiList != null && !opiList.isEmpty()) {
             mOpiListAdapter.getOpiList().addAll(opiList);
-
-        } else {
-            doWithEmptyOpidata();
         }
         mOpiListAdapter.notifyDataSetChanged();
     }
 
+    /**
+     * 打开地图
+     */
     private void openMap() {
         if (mCinemaLat == 0.0 || mCinemaLng == 0.0) {
             T.showShort(this, "");

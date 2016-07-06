@@ -5,7 +5,6 @@
 
     <ListView
         android:id="@+id/opi_list"
-        style="@style/Theme.Ptui.ListView.Itembg.NoDivider"
         android:layout_width="match_parent"
         android:layout_height="match_parent" />
 

@@ -49,7 +49,8 @@
 
             <TextView
                 android:id="@+id/putao_opi_compare_price"
-                style="@style/Theme.Ptui.Text.Rect2" />
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
         </LinearLayout>
     </RelativeLayout>
 

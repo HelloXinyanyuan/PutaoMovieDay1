@@ -19,7 +19,7 @@ import com.whunf.putaomovieday1.R;
  */
 public class HeaderLayout extends LinearLayout {
 
-    private Button mBtnLeft;//左边的button
+    private View mBtnLeft;//左边的button
     private TextView mTvTitle;//中间的标题
     private Button mBtnRight;//右边的button
 
@@ -34,7 +34,7 @@ public class HeaderLayout extends LinearLayout {
         //将布局加入当前HeaderLayout布局
         View.inflate(getContext(), R.layout.header_layout, this);
         //找到其中的子布局
-        mBtnLeft = (Button) findViewById(R.id.btn_header_left);
+        mBtnLeft = findViewById(R.id.btn_header_left);
         mTvTitle = (TextView) findViewById(R.id.tv_header_title);
         mBtnRight = (Button) findViewById(R.id.btn_header_right);
         //取出自定义布局

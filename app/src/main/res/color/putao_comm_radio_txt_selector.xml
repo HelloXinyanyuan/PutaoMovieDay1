@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 通用RadioButton字体颜色，正常RadioButton为黑色 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_checked="true" android:color="@color/putao_theme"/>
+    <item android:state_selected="true" android:color="@color/putao_theme"/>
+    <item android:color="#0d0d0d"/>
+
+</selector>

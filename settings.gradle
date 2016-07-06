@@ -1,1 +1,1 @@
-include ':app', ':testlib', ':volley', 'smlibrary'
+include ':app', ':testlib', ':volley', 'smlibrary','ptLivesDepend','putaoLife','putaoLife_changebag'

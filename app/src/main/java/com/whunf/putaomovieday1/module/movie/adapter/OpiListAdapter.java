@@ -15,7 +15,6 @@ import android.widget.TextView;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.whunf.putaomovieday1.R;
-import com.whunf.putaomovieday1.common.util.CalendarUtil;
 import com.whunf.putaomovieday1.common.util.LogUtil;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Cp;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Opi;
@@ -95,7 +94,7 @@ public class OpiListAdapter extends BaseAdapter {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(item.getPlaytime());
         calendar.add(Calendar.MINUTE, mMovieLength);
-        String argEnd = CalendarUtil.getDateStrFromDate(calendar.getTime(), DATE_FORMAT_STR);
+        String argEnd = SIMPLE_DATE_FORMAT.format(calendar.getTime());
         String endtime = context.getString(R.string.putao_movie_playlist_item_end, argEnd,
                 (item.getLanguage() + item.getEdition()), item.getRoomname());
         holder.endTime.setText(endtime);

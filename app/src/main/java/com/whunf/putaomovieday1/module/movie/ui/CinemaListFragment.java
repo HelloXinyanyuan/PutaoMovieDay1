@@ -1,5 +1,6 @@
 package com.whunf.putaomovieday1.module.movie.ui;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.os.Bundle;
@@ -33,6 +34,7 @@ import com.whunf.putaomovieday1.common.util.location.LocationPostion;
 import com.whunf.putaomovieday1.module.movie.adapter.CinemaListAdapter;
 import com.whunf.putaomovieday1.module.movie.resp.Cinema;
 import com.whunf.putaomovieday1.module.movie.resp.CinemaListResp;
+import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -46,7 +48,8 @@ import java.util.List;
  * 影院列表
  * Created by Administrator on 2016/6/22.
  */
-public class CinemaListFragment extends BaseFragment implements View.OnClickListener, LocationMgr.MovieLocationListener {
+public class CinemaListFragment extends BaseFragment implements View.OnClickListener, LocationMgr.MovieLocationListener,
+        AdapterView.OnItemClickListener {
 
 
     private ListView mCinemaListLv;
@@ -126,6 +129,7 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
 
         View inflate = View.inflate(getActivity(), R.layout.fragment_cinema_list, null);
         mCinemaListLv = (ListView) inflate.findViewById(R.id.cinema_list_lv);
+        mCinemaListLv.setOnItemClickListener(this);
         tvUserLocation = (TextView) inflate.findViewById(R.id.tv_location);
         mTvArea = (TextView) inflate.findViewById(R.id.tv_cinema_area);
         mTvArea.setOnClickListener(this);
@@ -435,5 +439,26 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onLocationFailed() {
         tvUserLocation.setText("定位失败");
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        Cinema cinema = (Cinema) adapterView.getAdapter().getItem(i);
+        if (cinema == null)
+        {
+            return;
+        }
+        Intent intent = new Intent(getActivity(), CinemaDetailActivity.class);
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_ID, cinema.getId());
+//        intent.putExtra(CinemaConstants.EXTRA_MOVIEID, getMovieId() != 0 ? getMovieId() : cinema.g());
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_NAME, cinema.getCinemaname());
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_ADDRESS, cinema.getAddress());
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_LAT, cinema.getLatitude());
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_LNG, cinema.getLongitude());
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_CS, cinema.getCs());
+        String movieName = getActivity().getIntent().getStringExtra(CinemaConstants.EXTRA_MOVIE_NAME);
+        intent.putExtra(CinemaConstants.EXTRA_MOVIE_NAME, movieName);
+
+        startActivity(intent);
     }
 }
