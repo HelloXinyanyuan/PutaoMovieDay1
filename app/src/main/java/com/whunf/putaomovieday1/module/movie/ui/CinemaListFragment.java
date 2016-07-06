@@ -28,7 +28,9 @@ import com.whunf.putaomovieday1.common.core.PMApplication;
 import com.whunf.putaomovieday1.common.storage.PreferenceUtil;
 import com.whunf.putaomovieday1.common.ui.MainActivity;
 import com.whunf.putaomovieday1.common.util.CityMgr;
+import com.whunf.putaomovieday1.common.util.NumberUtil;
 import com.whunf.putaomovieday1.common.util.T;
+import com.whunf.putaomovieday1.common.util.UserInfoUtil;
 import com.whunf.putaomovieday1.common.util.location.LocationMgr;
 import com.whunf.putaomovieday1.common.util.location.LocationPostion;
 import com.whunf.putaomovieday1.module.movie.adapter.CinemaListAdapter;
@@ -190,22 +192,6 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         return address;
     }
 
-
-    /**
-     * 加载用户当前位置
-     *
-     * @return
-     */
-    private LocationPostion loadUserPos() {
-        LocationPostion locationPostion = null;
-        try {
-            String jsonStr = PreferenceUtil.loadString(PreferenceUtil.KEY_USER_POS, "");
-            locationPostion = JSONObject.parseObject(jsonStr, LocationPostion.class);
-        } catch (Exception e) {
-        }
-        return locationPostion;
-    }
-
     private StringRequest request;
 
     @Override
@@ -253,7 +239,6 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         PMApplication.getInstance().getRequestQueue().add(request);
 
 
-
     }
 
     private boolean isFromHome() {
@@ -269,7 +254,7 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
         sortByDistancePriority(datas);
 
         mAreaSet = new HashSet<String>();
-        LocationPostion usePos = loadUserPos();
+        LocationPostion usePos = UserInfoUtil.getInstance().getLastPos();
         if (usePos != null) {
             //加工影院列表数据——计算当前用户与指定影院的距离
             //构建当前用户位置
@@ -428,8 +413,7 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
             PreferenceUtil.save(PreferenceUtil.KEY_USER_POS, address);
             tvUserLocation.setText(address);
             //将用户定位到的位置信息保存起来
-            String locationJsonStr = JSONObject.toJSONString(locationPostion);
-            PreferenceUtil.save(PreferenceUtil.KEY_USER_POS, locationJsonStr);
+            UserInfoUtil.getInstance().savePos(locationPostion);
         }
 
         LocationMgr.getInstance().removeListener(this);
@@ -444,17 +428,16 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         Cinema cinema = (Cinema) adapterView.getAdapter().getItem(i);
-        if (cinema == null)
-        {
+        if (cinema == null) {
             return;
         }
         Intent intent = new Intent(getActivity(), CinemaDetailActivity.class);
         intent.putExtra(CinemaConstants.EXTRA_CINEMA_ID, cinema.getId());
-//        intent.putExtra(CinemaConstants.EXTRA_MOVIEID, getMovieId() != 0 ? getMovieId() : cinema.g());
+        intent.putExtra(CinemaConstants.EXTRA_MOVIEID, getMovieId() != 0 ? getMovieId() : cinema.getLowmovieid());
         intent.putExtra(CinemaConstants.EXTRA_CINEMA_NAME, cinema.getCinemaname());
         intent.putExtra(CinemaConstants.EXTRA_CINEMA_ADDRESS, cinema.getAddress());
-        intent.putExtra(CinemaConstants.EXTRA_CINEMA_LAT, cinema.getLatitude());
-        intent.putExtra(CinemaConstants.EXTRA_CINEMA_LNG, cinema.getLongitude());
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_LAT, NumberUtil.parseDoubleSafe(cinema.getLatitude()));
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_LNG, NumberUtil.parseDoubleSafe(cinema.getLongitude()));
         intent.putExtra(CinemaConstants.EXTRA_CINEMA_CS, cinema.getCs());
         String movieName = getActivity().getIntent().getStringExtra(CinemaConstants.EXTRA_MOVIE_NAME);
         intent.putExtra(CinemaConstants.EXTRA_MOVIE_NAME, movieName);

@@ -58,11 +58,12 @@ public class ParserTaskUtils
     /**
      * 将参数拼装路径
      * @param map
+     * @param reqPath
      * @return
      */
-    public static String buildPath(Map<String,String> map)
+    public static String buildPath(Map<String, String> map, String reqPath)
     {
-        StringBuffer pathSb = new StringBuffer();
+        StringBuffer pathSb = new StringBuffer(reqPath);
         String enparam = encodeParameters(map, "UTF-8");
         if (enparam.length() > 0)//
         {

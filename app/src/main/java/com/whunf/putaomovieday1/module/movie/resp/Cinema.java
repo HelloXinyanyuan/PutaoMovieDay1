@@ -86,6 +86,18 @@ public class Cinema {
      * 影院底价-最低价
      */
     private int stepPrice;
+    /**
+     * 当前影院最低价格的影片id
+     */
+    private long lowmovieid;
+
+    public long getLowmovieid() {
+        return lowmovieid;
+    }
+
+    public void setLowmovieid(long lowmovieid) {
+        this.lowmovieid = lowmovieid;
+    }
 
     public int getStepPrice() {
         return stepPrice;

@@ -7,7 +7,7 @@ import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.View;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -21,7 +21,9 @@ public class HeaderLayout extends LinearLayout {
 
     private View mBtnLeft;//左边的button
     private TextView mTvTitle;//中间的标题
-    private Button mBtnRight;//右边的button
+    private TextView mTvSubTitle;//中间的子标题
+    private View mBtnRight;//右边的button
+    private ImageView mImvRight;//右边的ImageView
 
     private Drawable mBgDrawable;
 
@@ -36,7 +38,9 @@ public class HeaderLayout extends LinearLayout {
         //找到其中的子布局
         mBtnLeft = findViewById(R.id.btn_header_left);
         mTvTitle = (TextView) findViewById(R.id.tv_header_title);
-        mBtnRight = (Button) findViewById(R.id.btn_header_right);
+        mBtnRight = findViewById(R.id.btn_header_right);
+        mImvRight = (ImageView) findViewById(R.id.imv_header_right);
+        mTvSubTitle = (TextView) findViewById(R.id.tv_header_subtitle);
         //取出自定义布局
         TypedArray typedArray = context.obtainStyledAttributes(attrs, R.styleable.HeaderLayoutAttr);
         String title = typedArray.getString(R.styleable.HeaderLayoutAttr_title);
@@ -78,9 +82,41 @@ public class HeaderLayout extends LinearLayout {
         mTvTitle.setText(txtResId);
     }
 
-    //设置右边的button点击
+    /**
+     * 设置头布局的子标题
+     *
+     * @param txt
+     */
+    public void setSubTitleTxt(CharSequence txt) {
+        mTvSubTitle.setText(txt);
+    }
+
+    /**
+     * 设置头布局的子标题
+     *
+     * @param txtResId
+     */
+    public void setSubTitleTxt(int txtResId) {
+        mTvSubTitle.setText(txtResId);
+    }
+
+    /**
+     * 设置右边的button点击
+     *
+     * @param listener
+     */
     public void setRightBtnClick(OnClickListener listener) {
         mBtnRight.setOnClickListener(listener);
+        mBtnRight.setVisibility(VISIBLE);
+    }
+
+    /**
+     * 设置右边button的图片
+     *
+     * @param resId
+     */
+    public void setRightBtnImg(int resId) {
+        mImvRight.setImageResource(resId);
     }
 
 

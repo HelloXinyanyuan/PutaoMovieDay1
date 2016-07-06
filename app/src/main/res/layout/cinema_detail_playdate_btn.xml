@@ -3,8 +3,9 @@
     android:layout_width="103dp"
     android:layout_height="48dp"
     android:background="@drawable/putao_comm_radio_bg2_selector"
-    android:orientation="vertical" android:singleLine="true"
+    android:orientation="vertical"
+    android:singleLine="true"
     android:textColor="@color/putao_comm_radio_txt_selector"
-    android:textSize="@dimen/putao_text_primary_size" >
+    android:textSize="@dimen/putao_text_primary_size">
 
 </Button>

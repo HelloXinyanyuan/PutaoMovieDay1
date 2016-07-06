@@ -20,6 +20,7 @@ import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.adapter.MovieListAdapter;
 import com.whunf.putaomovieday1.module.movie.resp.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieListResp;
+import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -117,7 +118,7 @@ public class MovieListFragment extends BaseFragment implements AdapterView.OnIte
     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
        Movie movie= data.get(position);
         Intent intent=new Intent(getActivity(),MovieDetailActivity.class);
-        intent.putExtra("movie",movie);
+        intent.putExtra(CinemaConstants.EXTRA_MOVIE_DETAIL,movie);
         startActivity(intent);
 
     }

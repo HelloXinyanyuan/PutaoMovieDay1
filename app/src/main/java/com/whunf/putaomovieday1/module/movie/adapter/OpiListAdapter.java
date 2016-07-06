@@ -13,7 +13,6 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.android.volley.toolbox.ImageLoader;
-import com.android.volley.toolbox.NetworkImageView;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.util.LogUtil;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Cp;
@@ -127,8 +126,7 @@ public class OpiListAdapter extends BaseAdapter {
             for (int i = 0; i < cplistSize; i++) {
                 Cp cp = item.getCpList().get(i);
                 ViewGroup layout = (ViewGroup) View.inflate(context, R.layout.putao_open_play_list_item_cpitem, null);
-
-                ((NetworkImageView) layout.findViewById(R.id.putao_cplogo)).setImageUrl(cp.getCplogo(), loader);
+//                ((NetworkImageView) layout.findViewById(R.id.putao_cplogo)).setImageUrl(cp.getCplogo(), loader);
                 ((TextView) layout.findViewById(R.id.putao_cpname)).setText(cp.getCpname());
 
                 TextView finalPriceTv = (TextView) layout.findViewById(R.id.putao_final_price);

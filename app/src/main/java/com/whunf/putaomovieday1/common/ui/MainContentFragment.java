@@ -13,11 +13,10 @@ import android.view.ViewGroup;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 
-import com.alibaba.fastjson.JSONObject;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
-import com.whunf.putaomovieday1.common.storage.PreferenceUtil;
 import com.whunf.putaomovieday1.common.util.CityMgr;
+import com.whunf.putaomovieday1.common.util.UserInfoUtil;
 import com.whunf.putaomovieday1.common.util.location.LocationMgr;
 import com.whunf.putaomovieday1.common.util.location.LocationPostion;
 import com.whunf.putaomovieday1.module.movie.adapter.SimpleFragmentVpAdapter;
@@ -146,8 +145,7 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
                 return;
             }
             //将用户定位到的位置信息保存起来
-            String locationJsonStr = JSONObject.toJSONString(locationPostion);
-            PreferenceUtil.save(PreferenceUtil.KEY_USER_POS, locationJsonStr);
+            UserInfoUtil.getInstance().savePos(locationPostion);
 
             final String city = locationPostion.getCity();
             if (!TextUtils.isEmpty(city) && !currentCity.equals(city)) {

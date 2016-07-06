@@ -29,6 +29,7 @@ import com.whunf.putaomovieday1.common.widget.MyScrollView;
 import com.whunf.putaomovieday1.module.movie.adapter.StillAdapter;
 import com.whunf.putaomovieday1.module.movie.resp.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieDetailResp;
+import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
 import com.whunf.putaomovieday1.module.movie.util.MovieBitmapUtils;
 
 import java.text.SimpleDateFormat;
@@ -63,12 +64,22 @@ public class MovieDetailActivity extends BaseActivity implements View.OnClickLis
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_detail);
-        mPassMovie = (Movie) getIntent().getSerializableExtra("movie");
         imageLoader = new ImageLoader(PMApplication.getInstance().getRequestQueue(), new BitmapCache());
+        parseIntent(getIntent());//第一次进来时
+    }
+
+    @Override
+    protected void onNewIntent(Intent intent) {//处理singleTask情况
+        super.onNewIntent(intent);
+        parseIntent(intent);//之后又被启动了
+    }
+
+
+    private void parseIntent(Intent intent){
+        mPassMovie = (Movie) intent.getSerializableExtra(CinemaConstants.EXTRA_MOVIE_DETAIL);
         initView();
         initData();
     }
-
 
     private void initData() {
         String url = "http://api.putao.so/sbiz/movie/detail?movieid=" + mPassMovie.getMovieid();

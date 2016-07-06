@@ -8,6 +8,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.HttpHeaderParser;
 import com.whunf.putaomovieday1.common.core.PMApplication;
+import com.whunf.putaomovieday1.common.util.LogUtil;
 
 import java.util.Map;
 
@@ -17,6 +18,8 @@ import java.util.Map;
  * 通用的异步任务请求类
  */
 public class CommParserTask<T> implements Response.ErrorListener {
+
+    private static final String TAG = "CommParserTask";
 
     /**
      * 请求方式
@@ -110,6 +113,7 @@ public class CommParserTask<T> implements Response.ErrorListener {
             mTaskListener.onTaskStart();
         }
 
+        LogUtil.i(TAG,"url:"+url);
         int volleyMethod = getVolleyMethod();
         //创建一个定制的Request对象
         mRequset = new Request<T>(volleyMethod, url, this) {
