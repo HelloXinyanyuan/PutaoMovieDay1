@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.whunf.putaomovieday1.R;
-import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.resp.entity.OpiSeatInfo;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Seat;
 import com.whunf.putaomovieday1.module.movie.resp.entity.SeatRow;
@@ -129,18 +128,6 @@ public class SelectSeatView extends View {
         }
 
         if (event.getPointerCount() == 1) {//单指触摸
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                int colIndex = (int) (event.getX() / Seat.sSeatWidth);//求得列数
-                int rowIndex = (int) (event.getY() / Seat.sSeatHeight);//求得行数
-                Seat seat = mAllSeats.get(rowIndex).get(colIndex);
-                seat.performClick();
-                invalidate(seat.getArea());
-                //当位置变化的时候，通知监听器
-                if (mSeatSelectedChangeListener != null) {
-                    mSeatSelectedChangeListener.onSeatSelectedChangeListener(seat);
-                }
-
-            }
 
             //使手势探测器生效
             mGestureDetector.onTouchEvent(event);
@@ -151,7 +138,7 @@ public class SelectSeatView extends View {
                 if (mPriousDistance == -1) {
                     mPriousDistance = distance;
                 } else {
-                    float rate = distance / mPriousDistance;
+                    float rate = distance / mPriousDistance;//得到当前双指之间距离与上一次双指之间距离的比率
                     Seat.sSeatWidth = (int) (Seat.sSeatWidth * rate + 0.5);
                     Seat.sSeatHeight = Seat.sSeatWidth;
                     for (int i = 0; i < mAllSeats.size(); i++) {
@@ -188,9 +175,24 @@ public class SelectSeatView extends View {
      */
     class MyGenstureListener extends GestureDetector.SimpleOnGestureListener {
 
-        public boolean onSingleTapUp(MotionEvent e) {
+        public boolean onSingleTapUp(MotionEvent e) {//用户单击某个区域
 
-            return false;
+            int colIndex = (int) (e.getX() / Seat.sSeatWidth);//求得列数
+            int rowIndex = (int) (e.getY() / Seat.sSeatHeight);//求得行数
+            if (rowIndex > 0 && rowIndex < mAllSeats.size()) {//排除在边界外点击操作
+                if (colIndex > 0 && colIndex < mAllSeats.get(rowIndex).size()) {//排除在边界外点击操作
+                    Seat seat = mAllSeats.get(rowIndex).get(colIndex);
+                    seat.performClick();
+                    invalidate(seat.getArea());
+                    //当位置变化的时候，通知监听器
+                    if (mSeatSelectedChangeListener != null) {
+                        mSeatSelectedChangeListener.onSeatSelectedChangeListener(seat);
+                    }
+                }
+
+            }
+
+            return true;
         }
 
         public boolean onScroll(MotionEvent e1, MotionEvent e2,
