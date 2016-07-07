@@ -1,7 +1,5 @@
 package com.whunf.putaomovieday1.module.movie.resp.entity;
 
-import java.util.List;
-
 /**
  * 座位的排
  */
@@ -21,8 +19,6 @@ public class SeatRow {
      * 影院列编号
      */
     private String columns;
-
-    private List<Seat> seatList;
 
     /**
      * 获得座位行编号
@@ -66,24 +62,12 @@ public class SeatRow {
         this.columns = columns;
     }
 
-    public List<Seat> getSeatList() {
-        return seatList;
-    }
-
-    public void setSeatList(List<Seat> seatList) {
-        this.seatList = seatList;
-    }
-
-    public Seat getSeat(int paramInt) {
-        if ((paramInt > this.seatList.size()) || (paramInt < 0))
-            return new Seat();
-        return this.seatList.get(paramInt);
-    }
-
     @Override
     public String toString() {
-        return "SeatRow [rownum=" + rownum + ", rowid=" + rowid + ", columns=" + columns + ", seatList="
-                + seatList + "]";
+        return "SeatRow{" +
+                "rownum='" + rownum + '\'' +
+                ", rowid='" + rowid + '\'' +
+                ", columns='" + columns + '\'' +
+                '}';
     }
-
 }

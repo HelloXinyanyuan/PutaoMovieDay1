@@ -7,7 +7,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import com.whunf.putaomovieday1.R;
-import com.whunf.putaomovieday1.module.movie.resp.Cinema;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Cinema;
 
 import java.text.DecimalFormat;
 

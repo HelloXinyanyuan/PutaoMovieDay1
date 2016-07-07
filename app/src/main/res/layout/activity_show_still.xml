@@ -7,6 +7,7 @@
     <include layout="@layout/include_layout_header"></include>
 
     <android.support.v4.view.ViewPager
+
         android:id="@+id/vp_stills"
         android:layout_width="match_parent"
         android:layout_height="0dp"

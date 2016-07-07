@@ -1,4 +1,4 @@
-package com.whunf.putaomovieday1.module.movie.resp;
+package com.whunf.putaomovieday1.module.movie.resp.entity;
 
 /**
  * Created by Administrator on 2016/6/22.

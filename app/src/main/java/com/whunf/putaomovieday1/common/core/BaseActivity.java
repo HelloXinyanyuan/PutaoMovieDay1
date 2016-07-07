@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
 
+import com.whunf.putaomovieday1.common.widget.Rotate3DProgressDialog;
+
 
 /**
  * Created by Administrator on 2016/6/21.
@@ -23,7 +25,7 @@ public class BaseActivity extends AppCompatActivity {
      */
     public void showLoadingDialog() {
         if (mProgressDialog == null) {
-            mProgressDialog = new ProgressDialog(this);
+            mProgressDialog = new Rotate3DProgressDialog(this);
         }
         mProgressDialog.show();
     }

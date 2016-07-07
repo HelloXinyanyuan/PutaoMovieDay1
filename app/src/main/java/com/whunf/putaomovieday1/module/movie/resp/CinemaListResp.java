@@ -1,5 +1,7 @@
 package com.whunf.putaomovieday1.module.movie.resp;
 
+import com.whunf.putaomovieday1.module.movie.resp.entity.Cinema;
+
 import java.util.List;
 
 /**

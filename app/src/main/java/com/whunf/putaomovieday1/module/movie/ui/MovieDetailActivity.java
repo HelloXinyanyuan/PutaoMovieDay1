@@ -27,7 +27,7 @@ import com.whunf.putaomovieday1.common.util.BitmapCache;
 import com.whunf.putaomovieday1.common.widget.HeaderLayout;
 import com.whunf.putaomovieday1.common.widget.MyScrollView;
 import com.whunf.putaomovieday1.module.movie.adapter.StillAdapter;
-import com.whunf.putaomovieday1.module.movie.resp.Movie;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieDetailResp;
 import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
 import com.whunf.putaomovieday1.module.movie.util.MovieBitmapUtils;

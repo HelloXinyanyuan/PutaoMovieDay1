@@ -34,7 +34,7 @@ import com.whunf.putaomovieday1.common.util.UserInfoUtil;
 import com.whunf.putaomovieday1.common.util.location.LocationMgr;
 import com.whunf.putaomovieday1.common.util.location.LocationPostion;
 import com.whunf.putaomovieday1.module.movie.adapter.CinemaListAdapter;
-import com.whunf.putaomovieday1.module.movie.resp.Cinema;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Cinema;
 import com.whunf.putaomovieday1.module.movie.resp.CinemaListResp;
 import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
 

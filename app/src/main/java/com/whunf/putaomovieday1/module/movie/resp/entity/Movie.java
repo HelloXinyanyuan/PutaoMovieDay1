@@ -1,4 +1,4 @@
-package com.whunf.putaomovieday1.module.movie.resp;
+package com.whunf.putaomovieday1.module.movie.resp.entity;
 
 import java.io.Serializable;
 

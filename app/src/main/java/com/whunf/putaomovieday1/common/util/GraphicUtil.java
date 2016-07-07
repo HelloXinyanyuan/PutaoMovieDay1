@@ -36,4 +36,24 @@ public class GraphicUtil {
         return (int) (spValue * fontScale + 0.5f);
     }
 
+    /**
+     * 获得屏幕的宽
+     * @param context
+     * @return
+     */
+    public static int getScreenWidth(Context context) {
+        final int widthPixels = context.getResources().getDisplayMetrics().widthPixels;
+        return widthPixels;
+    }
+
+    /**
+     * 获得android设备屏幕高
+     * @param context
+     * @return
+     */
+    public static int getScreenHeight(Context context) {
+        final int heightPixels = context.getResources().getDisplayMetrics().heightPixels;
+        return heightPixels;
+    }
+
 }

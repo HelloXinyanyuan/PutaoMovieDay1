@@ -34,7 +34,7 @@ import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.common.widget.HeaderLayout;
 import com.whunf.putaomovieday1.module.movie.adapter.ImageAdapter;
 import com.whunf.putaomovieday1.module.movie.adapter.OpiListAdapter;
-import com.whunf.putaomovieday1.module.movie.resp.Movie;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieListResp;
 import com.whunf.putaomovieday1.module.movie.resp.OpiListResp;
 import com.whunf.putaomovieday1.module.movie.resp.PlaydateListResp;

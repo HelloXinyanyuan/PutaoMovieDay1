@@ -10,7 +10,7 @@ import android.widget.RelativeLayout;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.NetworkImageView;
 import com.whunf.putaomovieday1.R;
-import com.whunf.putaomovieday1.module.movie.resp.Movie;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 
 import java.util.List;
 

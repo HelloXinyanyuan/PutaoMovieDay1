@@ -42,7 +42,7 @@
     </style>
 
     <style name="DividerStyle">
-        <item name="android:background">#6c6c6c</item>
+        <item name="android:background">#ffe2e2e2</item>
     </style>
 
     <style name="DividerStyle.Horizontal">
