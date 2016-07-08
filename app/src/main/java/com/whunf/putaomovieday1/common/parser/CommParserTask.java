@@ -24,6 +24,32 @@ public class CommParserTask<T> implements Response.ErrorListener {
 
     private static final String TAG = "CommParserTask";
 
+    //请求路径
+    private String mReqPath;
+    //请求返回的模板
+    private Class<T> mClazz;
+    //请求参数
+    private Map<String, String> requestParams = new HashMap<>();
+    ;
+    //请求方法方式（默认get方式）
+    private RequstMethod mReqMethod = CommParserTask.RequstMethod.GET;
+    //请求状态监听
+    private TaskStatusListener mTaskListener;
+    //请求头
+    private Map<String, String> reqHeaders = new HashMap<>();
+    //内容格式(默认是Form表单方式提交参数)
+    private CommParserTask.ContentType mContentType = CommParserTask.ContentType.FORM;
+    //内容
+    private String mContent;
+
+    //Volley请求类
+    private Request<T> mRequset;
+
+    /**
+     * builder的方式构造task对象
+     *
+     * @param reqPrepare
+     */
     private CommParserTask(ReqPrepare<T> reqPrepare) {
         mReqPath = reqPrepare.reqPath;
         mClazz = reqPrepare.clazz;
@@ -35,27 +61,6 @@ public class CommParserTask<T> implements Response.ErrorListener {
         mContentType = reqPrepare.contentType;
         mContent = reqPrepare.content;
     }
-
-
-    //请求路径
-    private String mReqPath;
-    //请求返回的模板
-    private Class<T> mClazz;
-    //请求参数
-    private Map<String, String> requestParams;
-    //请求方法方式（默认get方式）
-    private RequstMethod mReqMethod = CommParserTask.RequstMethod.GET;
-    //请求状态监听
-    private TaskStatusListener mTaskListener;
-    //请求头
-    private Map<String, String> reqHeaders;
-    //内容格式(默认是Form表单方式提交参数)
-    private CommParserTask.ContentType mContentType = CommParserTask.ContentType.FORM;
-    //内容
-    private String mContent;
-
-    //Volley请求类
-    private Request<T> mRequset;
 
     /**
      * @param url    请求地址
@@ -238,9 +243,6 @@ public class CommParserTask<T> implements Response.ErrorListener {
          * @return
          */
         public Builder<T> putParams(String key, String value) {
-            if (reqPrepare.reqParams == null) {
-                reqPrepare.reqParams = new HashMap<>();
-            }
             reqPrepare.reqParams.put(key, value);
             return this;
         }
@@ -265,9 +267,6 @@ public class CommParserTask<T> implements Response.ErrorListener {
          * @return
          */
         public Builder<T> putHeader(String key, String value) {
-            if (reqPrepare.reqHeaders == null) {
-                reqPrepare.reqHeaders = new HashMap<>();
-            }
             reqPrepare.reqHeaders.put(key, value);
             return this;
         }

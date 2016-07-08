@@ -1,5 +1,6 @@
 package com.whunf.putaomovieday1.common.parser;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -12,9 +13,9 @@ public class ReqPrepare<T> {
     //请求路径
     public String reqPath;
     //请求参数
-    public Map<String, String> reqParams;
+    public Map<String, String> reqParams = new HashMap<>();
     //请求头
-    public Map<String, String> reqHeaders;
+    public Map<String, String> reqHeaders = new HashMap<>();
     //请求方式（默认get方式）
     public CommParserTask.RequstMethod requstMethod = CommParserTask.RequstMethod.GET;
     //内容格式(默认是Form表单方式提交参数)
