@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.whunf.putaomovieday1.common.ui.CitySelectActivity">
+
+
+    <EditText
+        android:id="@+id/et_search_city"
+        android:layout_width="match_parent"
+        android:layout_height="48dp" />
+
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+
+        <com.whunf.putaomovieday1.common.widget.pinnedheaderlistview.PinnedHeaderListView
+            android:id="@+id/phlv_citylist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_below="@+id/et_search_city"></com.whunf.putaomovieday1.common.widget.pinnedheaderlistview.PinnedHeaderListView>
+
+        <com.whunf.putaomovieday1.common.widget.IndexBar
+            android:id="@+id/ib_abcde"
+            android:layout_width="60dp"
+            android:layout_height="match_parent"
+            android:layout_gravity="right" />
+    </FrameLayout>
+</LinearLayout>

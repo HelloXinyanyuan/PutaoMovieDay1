@@ -444,4 +444,8 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
 
         startActivity(intent);
     }
+
+    public void setHasLoadData(boolean hasLoadData) {
+        this.hasLoadData = hasLoadData;
+    }
 }

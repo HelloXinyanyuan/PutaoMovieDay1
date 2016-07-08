@@ -1,6 +1,8 @@
 package com.whunf.putaomovieday1.common.ui;
 
+import android.app.Activity;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
@@ -16,6 +18,7 @@ import android.widget.TextView;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
 import com.whunf.putaomovieday1.common.util.CityMgr;
+import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.common.util.UserInfoUtil;
 import com.whunf.putaomovieday1.common.util.location.LocationMgr;
 import com.whunf.putaomovieday1.common.util.location.LocationPostion;
@@ -39,6 +42,7 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
     private TextView mTvHomeTitle;
     private TextView mTvHomeCity;
     private CinemaListFragment mCinemaListFragment;
+    private MovieListFragment mMovieListFragment;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,7 +56,7 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
         //设置城市信息
         mTvHomeCity = (TextView) view.findViewById(R.id.tv_home_city);
         mTvHomeCity.setText(CityMgr.getInstance().loadCity());
-
+        mTvHomeCity.setOnClickListener(this);
         //处理导航的tab相关视图逻辑
         mNavTabGroup = (RadioGroup) view.findViewById(R.id.nav_tab_group);
         mNavTabGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
@@ -74,7 +78,8 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
         List<BaseFragment> fragments = new ArrayList<>();
 
         mCinemaListFragment = new CinemaListFragment();
-        fragments.add(new MovieListFragment());
+        mMovieListFragment = new MovieListFragment();
+        fragments.add(mMovieListFragment);
         fragments.add(mCinemaListFragment);
         fragments.add(new DiscoverFragment());
         //创建适配器，将fragments传入适配器中
@@ -155,6 +160,7 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
                 new AlertDialog.Builder(getActivity()).setTitle("定位提示").setView(textview).setPositiveButton("切换", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
+                        switchCityAction(city);
                         CityMgr.getInstance().saveCity(city);
                     }
                 }).setNegativeButton("不切换", null).create().show();
@@ -182,6 +188,29 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
                     ((MainActivity) getActivity()).getSlidingMenu().toggle(true);//开关slidingmenu
                 }
                 break;
+            case R.id.tv_home_city:
+                startActivityForResult(new Intent(getActivity(), CitySelectActivity.class), 1);
+                break;
         }
+    }
+
+    @Override
+    public void onActivityResult(int requestCode, int resultCode, Intent data) {
+        if (requestCode == 1 && resultCode == Activity.RESULT_OK) {
+            String city = CityMgr.getInstance().loadCity();
+            switchCityAction(city);
+            T.showShort(getActivity(), "city:" + city);
+        }
+        super.onActivityResult(requestCode, resultCode, data);
+    }
+
+    /**
+     * 响应切换城市后的动作
+     * @param city
+     */
+    private void switchCityAction(String city){
+        mTvHomeCity.setText(city);
+        mMovieListFragment.initData();//重新加载影片列表
+        mCinemaListFragment.setHasLoadData(false);//加载影院列表
     }
 }

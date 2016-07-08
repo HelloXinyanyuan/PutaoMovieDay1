@@ -106,6 +106,8 @@ public class MovieListFragment extends BaseFragment implements AdapterView.OnIte
         task.asyncParse();
     }
 
+
+
     @Override
     public void onDestroy() {
         if (request != null) {

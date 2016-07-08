@@ -466,6 +466,21 @@ public abstract class Request<T> implements Comparable<Request<T>> {
     }
 
     /**
+     *add by lxh 2016-7-8
+     * 获得已经URLEncoder后的string
+     * @return
+     */
+    public String getEncodeParameters() {
+        String paramsStr=null;
+        try {
+            paramsStr=new String(encodeParameters(getParams(),"UTF-8"),"UTF-8");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return paramsStr;
+    }
+
+    /**
      * Converts <code>params</code> into an application/x-www-form-urlencoded encoded string.
      */
     private byte[] encodeParameters(Map<String, String> params, String paramsEncoding) {

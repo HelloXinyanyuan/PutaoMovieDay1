@@ -1,5 +1,6 @@
 package com.whunf.putaomovieday1.common.ui;
 
+import android.app.AlertDialog;
 import android.os.Bundle;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
@@ -20,6 +21,10 @@ public class MainActivity extends SlidingFragmentActivity {
             mContent = (BaseFragment) getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
         if (mContent == null)
             mContent = new MainContentFragment();
+
+
+        new AlertDialog.Builder(this).create();
+
 
         // set the Above View
         setContentView(R.layout.content_frame);

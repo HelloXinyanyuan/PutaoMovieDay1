@@ -1,5 +1,7 @@
 package com.whunf.putaomovieday1.common.parser;
 
+import android.text.TextUtils;
+
 import com.alibaba.fastjson.JSONObject;
 import com.android.volley.AuthFailureError;
 import com.android.volley.NetworkResponse;
@@ -23,53 +25,62 @@ public class CommParserTask<T> implements Response.ErrorListener {
     private static final String TAG = "CommParserTask";
 
     private CommParserTask(ReqPrepare<T> reqPrepare) {
-        url = reqPrepare.reqPath;
-        entity = reqPrepare.clazz;
-        method = reqPrepare.requstMethod;
+        mReqPath = reqPrepare.reqPath;
+        mClazz = reqPrepare.clazz;
+        mReqMethod = reqPrepare.requstMethod;
         requestParams = reqPrepare.reqParams;
+        mTaskListener = reqPrepare.listener;
+        reqHeaders = reqPrepare.reqHeaders;
+        mReqMethod = reqPrepare.requstMethod;
+        mContentType = reqPrepare.contentType;
+        mContent = reqPrepare.content;
     }
 
 
     //请求路径
-    private String url;
-    //请求的实体
-    private Class<T> entity;
+    private String mReqPath;
+    //请求返回的模板
+    private Class<T> mClazz;
     //请求参数
     private Map<String, String> requestParams;
-    //请求方法方式
-    private RequstMethod method;
+    //请求方法方式（默认get方式）
+    private RequstMethod mReqMethod = CommParserTask.RequstMethod.GET;
     //请求状态监听
     private TaskStatusListener mTaskListener;
+    //请求头
+    private Map<String, String> reqHeaders;
+    //内容格式(默认是Form表单方式提交参数)
+    private CommParserTask.ContentType mContentType = CommParserTask.ContentType.FORM;
+    //内容
+    private String mContent;
+
     //Volley请求类
     private Request<T> mRequset;
 
-
     /**
-     * @deprecated 用Builder方式创建
-     * 部分参数构造方法
-     *
      * @param url    请求地址
      * @param entity 请求的返回的实体字节码对象
+     * @deprecated 用Builder方式创建
+     * 部分参数构造方法
      */
     public CommParserTask(String url, Class<T> entity) {
         this(url, entity, null, RequstMethod.GET);
     }
 
     /**
-     * @deprecated 用Builder方式创建
-     * 具体的参数构造方法
-     *
      * @param url           请求路径
      * @param entity        请求的实体字节码对象
      * @param requestParams 请求参数
      * @param method        设置请求方式
+     * @deprecated 用Builder方式创建
+     * 具体的参数构造方法
      */
     public CommParserTask(String url, Class<T> entity, Map<String, String> requestParams, RequstMethod method) {
-        this.url = url;
-        this.entity = entity;
+        this.mReqPath = url;
+        this.mClazz = entity;
         this.requestParams = requestParams;
-        this.method = method;
-        LogUtil.i(TAG,"requestParams:"+requestParams);
+        this.mReqMethod = method;
+        LogUtil.i(TAG, "requestParams:" + requestParams);
 
     }
 
@@ -93,7 +104,7 @@ public class CommParserTask<T> implements Response.ErrorListener {
      */
     private int getVolleyMethod() {
         int volleyMethod = 0;
-        switch (method) {
+        switch (mReqMethod) {
             case GET:
                 volleyMethod = Request.Method.GET;
             case POST:
@@ -110,17 +121,17 @@ public class CommParserTask<T> implements Response.ErrorListener {
             mTaskListener.onTaskStart();
         }
 
-        LogUtil.i(TAG, "url:" + url);
+        LogUtil.i(TAG, "mReqPath:" + mReqPath);
         int volleyMethod = getVolleyMethod();
         //创建一个定制的Request对象
-        mRequset = new Request<T>(volleyMethod, url, this) {
+        mRequset = new Request<T>(volleyMethod, mReqPath, this) {
             @Override
             protected Response<T> parseNetworkResponse(NetworkResponse response) {//子线程中
                 String dataOfStr = new String(response.data);//HTTP服务器 string类型的返回数据
                 LogUtil.i(TAG, "http Content:" + dataOfStr);
                 T t = null;
                 try {
-                    t = JSONObject.parseObject(dataOfStr, entity);//fastjson解析对象
+                    t = JSONObject.parseObject(dataOfStr, mClazz);//fastjson解析对象
                 } catch (Exception e) {
                     return Response.error(new VolleyError("JSON解析异常"));
                 }
@@ -147,6 +158,32 @@ public class CommParserTask<T> implements Response.ErrorListener {
                 return requestParams;
             }
 
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                return reqHeaders;
+            }
+
+            @Override
+            public String getBodyContentType() {
+                return mContentType.value();
+            }
+
+            @Override
+            public String getUrl() {
+                String url = super.getUrl();
+                if (mReqMethod == RequstMethod.GET) {
+                    String param = getEncodeParameters();
+                    if (!TextUtils.isEmpty(param)) {//如果有设置参数那么不为空
+                        if (url.indexOf("?") == -1) {//如果后面没有?就追加?
+                            url = url + "?";
+                        } else {
+                            url = url + "&";//如果有问号，就追加&号
+                        }
+                        url += param;//将参数设置到URL上
+                    }
+                }
+                return url;
+            }
         };
         //将request对象添加到请求队列中
         PMApplication.getInstance().getRequestQueue().add(mRequset);
@@ -270,6 +307,7 @@ public class CommParserTask<T> implements Response.ErrorListener {
 
         /**
          * 设置任务监听器
+         *
          * @param listener
          * @return
          */
@@ -292,7 +330,25 @@ public class CommParserTask<T> implements Response.ErrorListener {
      * 内容的类型
      */
     public enum ContentType {
-        FORM, JSON, XML
+        FORM {
+            @Override
+            String value() {
+                //Form表单格式数据
+                return "application/x-www-form-urlencoded; charset=UTF-8";
+            }
+        }, JSON {
+            @Override
+            String value() {//JSON格式数据
+                return "application/json; charset=UTF-8";
+            }
+        }, XML {
+            @Override
+            String value() {//xml格式数据
+                return "application/xml; charset=UTF-8";
+            }
+        };
+
+        abstract String value();
     }
 
     /**

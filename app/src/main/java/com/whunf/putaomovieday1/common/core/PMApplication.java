@@ -1,6 +1,7 @@
 package com.whunf.putaomovieday1.common.core;
 
 import android.app.Application;
+import android.content.Intent;
 
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
@@ -32,6 +33,7 @@ public class PMApplication extends Application {
         requestQueue = Volley.newRequestQueue(this);
         // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
         SDKInitializer.initialize(this);
+        startService(new Intent(this,AppInitIntentService.class));
     }
 
     /**
