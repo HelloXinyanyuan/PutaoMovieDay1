@@ -79,7 +79,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".common.ui.BaiduMapNavActivity"></activity>
+        <activity android:name=".common.ui.BaiduMapNavActivity" />
+        <activity android:name=".module.movie.ui.CreateOrderActivity"></activity>
     </application>
 
 </manifest>

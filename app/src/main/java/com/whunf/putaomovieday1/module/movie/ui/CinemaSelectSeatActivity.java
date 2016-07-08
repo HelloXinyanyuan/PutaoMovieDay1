@@ -30,6 +30,7 @@ import java.util.Map;
  */
 public class CinemaSelectSeatActivity extends BaseActivity implements View.OnClickListener, SelectSeatView.SeatSelectedChangeListener {
 
+    private static final int REQUESTCODE_CREATE_ORDER = 1;
     //传入参数
     private long mCpid;//内容提供商id
     private long mMpid;//场次id
@@ -48,6 +49,7 @@ public class CinemaSelectSeatActivity extends BaseActivity implements View.OnCli
     private CommParserTask<OpiSeatInfoResp> mSeatTask;
     private LinearLayout mLLSeatsInfo;
     private HeaderLayout mHeader;
+    private OpiSeatInfo data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +61,7 @@ public class CinemaSelectSeatActivity extends BaseActivity implements View.OnCli
     }
 
 
-    private void parseIntent() {
+    protected void parseIntent() {
         Intent intent = getIntent();
         mCpid = intent.getLongExtra(CinemaConstants.EXTRA_CPID, 0);
         mMpid = intent.getLongExtra(CinemaConstants.EXTRA_MPID, 0);
@@ -95,7 +97,7 @@ public class CinemaSelectSeatActivity extends BaseActivity implements View.OnCli
         mSeatTask.setTaskListener(new FullTaskListener<OpiSeatInfoResp>(this) {
             @Override
             public void onTaskSuccess(OpiSeatInfoResp response) {
-                OpiSeatInfo data = response.getData();
+                data = response.getData();
                 mSelectSeatView.setSeatData(data);
                 mHeader.setTitleTxt(data.getMoviename());
             }
@@ -107,10 +109,24 @@ public class CinemaSelectSeatActivity extends BaseActivity implements View.OnCli
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.btn_create_order:
-                T.showShort(this,mSelectSeatView.getSelectedSeatLable());
+                T.showShort(this, mSelectSeatView.getSelectedSeatLable());
+                jumpToCreateOrder();
                 break;
 
         }
+    }
+
+    /**
+     * 跳转到生成订单界面
+     */
+    private void jumpToCreateOrder() {
+        Intent intent = new Intent(this, CreateOrderActivity.class);
+        intent.putExtra(CinemaConstants.EXTRA_CPID, mCpid);
+        intent.putExtra(CinemaConstants.EXTRA_MPID, mMpid);
+        intent.putExtra(CinemaConstants.EXTRA_CPPARAM, data.getCpparam());
+        intent.putExtra(CinemaConstants.MOVIE_ORDER_SEAT, mSelectSeatView.getSelectedSeatLable());
+        intent.putExtra(CinemaConstants.EXTRA_CINEMA_ADDRESS, mCinemaAddress);
+        startActivityForResult(intent, REQUESTCODE_CREATE_ORDER);
     }
 
     @Override

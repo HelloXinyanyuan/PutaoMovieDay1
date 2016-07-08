@@ -18,8 +18,8 @@ import com.whunf.putaomovieday1.common.parser.FullTaskListener;
 import com.whunf.putaomovieday1.common.util.CityMgr;
 import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.adapter.MovieListAdapter;
-import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieListResp;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
 
 import java.io.UnsupportedEncodingException;

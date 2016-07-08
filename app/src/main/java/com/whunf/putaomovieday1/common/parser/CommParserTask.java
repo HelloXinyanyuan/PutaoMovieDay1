@@ -10,6 +10,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.whunf.putaomovieday1.common.core.PMApplication;
 import com.whunf.putaomovieday1.common.util.LogUtil;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -21,20 +22,13 @@ public class CommParserTask<T> implements Response.ErrorListener {
 
     private static final String TAG = "CommParserTask";
 
-    /**
-     * 请求方式
-     */
-    public enum RequstMethod {
-        //        DEPRECATED_GET_OR_POST,
-        GET,
-        POST,
-//        PUT,
-//        DELETE,
-//        HEAD,
-//        OPTIONS,
-//        TRACE,
-//        PATCH
+    private CommParserTask(ReqPrepare<T> reqPrepare) {
+        url = reqPrepare.reqPath;
+        entity = reqPrepare.clazz;
+        method = reqPrepare.requstMethod;
+        requestParams = reqPrepare.reqParams;
     }
+
 
     //请求路径
     private String url;
@@ -43,7 +37,7 @@ public class CommParserTask<T> implements Response.ErrorListener {
     //请求参数
     private Map<String, String> requestParams;
     //请求方法方式
-    public RequstMethod method;
+    private RequstMethod method;
     //请求状态监听
     private TaskStatusListener mTaskListener;
     //Volley请求类
@@ -51,6 +45,7 @@ public class CommParserTask<T> implements Response.ErrorListener {
 
 
     /**
+     * @deprecated 用Builder方式创建
      * 部分参数构造方法
      *
      * @param url    请求地址
@@ -61,6 +56,7 @@ public class CommParserTask<T> implements Response.ErrorListener {
     }
 
     /**
+     * @deprecated 用Builder方式创建
      * 具体的参数构造方法
      *
      * @param url           请求路径
@@ -73,6 +69,7 @@ public class CommParserTask<T> implements Response.ErrorListener {
         this.entity = entity;
         this.requestParams = requestParams;
         this.method = method;
+        LogUtil.i(TAG,"requestParams:"+requestParams);
 
     }
 
@@ -95,14 +92,14 @@ public class CommParserTask<T> implements Response.ErrorListener {
      * @return
      */
     private int getVolleyMethod() {
-        int mothod = 0;
+        int volleyMethod = 0;
         switch (method) {
             case GET:
-                mothod = Request.Method.GET;
+                volleyMethod = Request.Method.GET;
             case POST:
-                mothod = Request.Method.POST;
+                volleyMethod = Request.Method.POST;
         }
-        return mothod;
+        return volleyMethod;
     }
 
     /**
@@ -113,13 +110,14 @@ public class CommParserTask<T> implements Response.ErrorListener {
             mTaskListener.onTaskStart();
         }
 
-        LogUtil.i(TAG,"url:"+url);
+        LogUtil.i(TAG, "url:" + url);
         int volleyMethod = getVolleyMethod();
         //创建一个定制的Request对象
         mRequset = new Request<T>(volleyMethod, url, this) {
             @Override
             protected Response<T> parseNetworkResponse(NetworkResponse response) {//子线程中
                 String dataOfStr = new String(response.data);//HTTP服务器 string类型的返回数据
+                LogUtil.i(TAG, "http Content:" + dataOfStr);
                 T t = null;
                 try {
                     t = JSONObject.parseObject(dataOfStr, entity);//fastjson解析对象
@@ -172,5 +170,137 @@ public class CommParserTask<T> implements Response.ErrorListener {
         if (mRequset != null) {
             mRequset.cancel();
         }
+    }
+
+
+    /**
+     * 任务创建者类
+     *
+     * @param <T>
+     */
+    public static class Builder<T> {
+        //请求准备对象
+        private ReqPrepare<T> reqPrepare;
+
+        /**
+         * 构造一个task的builder对象，两个必须填写的参数
+         *
+         * @param reqPath
+         * @param clazz
+         */
+        public Builder(String reqPath, Class<T> clazz) {
+            reqPrepare = new ReqPrepare<T>(clazz, reqPath);
+        }
+
+
+        /**
+         * 放置参数
+         *
+         * @param key
+         * @param value String类型
+         * @return
+         */
+        public Builder<T> putParams(String key, String value) {
+            if (reqPrepare.reqParams == null) {
+                reqPrepare.reqParams = new HashMap<>();
+            }
+            reqPrepare.reqParams.put(key, value);
+            return this;
+        }
+
+        /**
+         * 放置参数
+         *
+         * @param key
+         * @param value long类型
+         * @return
+         */
+        public Builder<T> putParams(String key, long value) {
+            putParams(key, String.valueOf(value));
+            return this;
+        }
+
+        /**
+         * 放置请求头信息
+         *
+         * @param key
+         * @param value
+         * @return
+         */
+        public Builder<T> putHeader(String key, String value) {
+            if (reqPrepare.reqHeaders == null) {
+                reqPrepare.reqHeaders = new HashMap<>();
+            }
+            reqPrepare.reqHeaders.put(key, value);
+            return this;
+        }
+
+        /**
+         * 配置请求方式（默认GET请求）
+         *
+         * @param rm
+         * @return
+         */
+        public Builder<T> setMethod(RequstMethod rm) {
+            reqPrepare.requstMethod = rm;
+            return this;
+        }
+
+        /**
+         * 设置请求内容的类型（默认FORM表单）
+         *
+         * @param ct
+         * @return
+         */
+        public Builder<T> setContentType(ContentType ct) {
+            reqPrepare.contentType = ct;
+            return this;
+        }
+
+        /**
+         * 设置请求内容（写在body中的）
+         *
+         * @param content
+         * @return
+         */
+        public Builder<T> setContent(String content) {
+            reqPrepare.content = content;
+            return this;
+        }
+
+        /**
+         * 设置任务监听器
+         * @param listener
+         * @return
+         */
+        public Builder<T> setTaskStatusListener(TaskStatusListener<T> listener) {
+            reqPrepare.listener = listener;
+            return this;
+        }
+
+        /**
+         * 创建请求任务
+         */
+        public CommParserTask<T> createTask() {
+            return new CommParserTask<T>(reqPrepare);
+        }
+
+    }
+
+    /**
+     * Created by xiaohui on 16/7/7.
+     * 内容的类型
+     */
+    public enum ContentType {
+        FORM, JSON, XML
+    }
+
+    /**
+     * 请求方式
+     */
+    public enum RequstMethod {
+        GET,
+
+        POST,
     }
 }

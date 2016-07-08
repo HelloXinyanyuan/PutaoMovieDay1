@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:scrollbars="none" >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical" >
+
+        <include
+            android:id="@+id/putao_movie_head_layout"
+            layout="@layout/putao_movie_orderpay_head_layout" />
+
+        <View
+            style="@style/Theme.Ptui.Divider.Horizontal"
+            android:layout_marginTop="@dimen/putao_order_common_margin_top" />
+
+        <LinearLayout
+            android:id="@+id/putao_movie_orderpay_layout"
+            android:layout_width="fill_parent"
+            android:layout_height="54dp"
+            android:background="@color/putao_white"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+            android:paddingRight="@dimen/putao_activity_horizontal_margin" >
+
+            <TextView
+                android:id="@+id/movie_orderpay_head_phone_hint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:ellipsize="end"
+                android:singleLine="true"
+                android:text="@string/putao_movie_orderhead_mobile_hint"
+                android:textColor="@color/putao_text_color_third"
+                android:textSize="@dimen/putao_text_second_size" />
+
+            <EditText
+                android:id="@+id/movie_orderpay_head_phone"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="20dp"
+                android:background="@null"
+                android:duplicateParentState="true"
+                android:inputType="phone"
+                android:textColor="@color/putao_text_color_primary"
+                android:textColorHint="@color/putao_text_color_second_alpha"
+                android:textSize="@dimen/putao_listview_firstline_textsize" />
+        </LinearLayout>
+
+        <View style="@style/Theme.Ptui.Divider.Horizontal" />
+
+        <View
+            style="@style/Theme.Ptui.Divider.Horizontal"
+            android:layout_marginTop="@dimen/putao_order_common_margin_top" />
+
+        <!--<so.contacts.hub.basefunction.paycenter.PaymentViewGroup
+            android:id="@+id/payment"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />-->
+
+        <View style="@style/Theme.Ptui.Divider.Horizontal" />
+
+        <Button
+            android:id="@+id/confirm"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/putao_activity_horizontal_margin"
+            android:layout_marginRight="@dimen/putao_activity_horizontal_margin"
+            android:layout_marginTop="@dimen/putao_activity_vertical_margin"
+            android:text="@string/putao_confirm_payment" />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingBottom="@dimen/putao_activity_vertical_margin"
+            android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+            android:paddingRight="@dimen/putao_activity_horizontal_margin"
+            android:paddingTop="@dimen/putao_activity_vertical_margin"
+            android:text="@string/putao_movie_order_remind"
+            android:textColor="@color/putao_text_color_importance"
+            android:textSize="@dimen/putao_text_tertiary_size" />
+    </LinearLayout>
+
+</ScrollView>

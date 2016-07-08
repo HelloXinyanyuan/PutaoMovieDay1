@@ -27,8 +27,8 @@ import com.whunf.putaomovieday1.common.util.BitmapCache;
 import com.whunf.putaomovieday1.common.widget.HeaderLayout;
 import com.whunf.putaomovieday1.common.widget.MyScrollView;
 import com.whunf.putaomovieday1.module.movie.adapter.StillAdapter;
-import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieDetailResp;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
 import com.whunf.putaomovieday1.module.movie.util.MovieBitmapUtils;
 
@@ -75,7 +75,7 @@ public class MovieDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    private void parseIntent(Intent intent){
+    protected void parseIntent(Intent intent){
         mPassMovie = (Movie) intent.getSerializableExtra(CinemaConstants.EXTRA_MOVIE_DETAIL);
         initView();
         initData();

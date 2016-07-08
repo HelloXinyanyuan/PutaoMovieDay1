@@ -253,27 +253,27 @@ public class ClusterManager<T extends ClusterItem> implements
      * Called when a Cluster is clicked.
      */
     public interface OnClusterClickListener<T extends ClusterItem> {
-        public boolean onClusterClick(Cluster<T> cluster);
+        boolean onClusterClick(Cluster<T> cluster);
     }
 
     /**
      * Called when a Cluster's Info Window is clicked.
      */
     public interface OnClusterInfoWindowClickListener<T extends ClusterItem> {
-        public void onClusterInfoWindowClick(Cluster<T> cluster);
+        void onClusterInfoWindowClick(Cluster<T> cluster);
     }
 
     /**
      * Called when an individual ClusterItem is clicked.
      */
     public interface OnClusterItemClickListener<T extends ClusterItem> {
-        public boolean onClusterItemClick(T item);
+        boolean onClusterItemClick(T item);
     }
 
     /**
      * Called when an individual ClusterItem's Info Window is clicked.
      */
     public interface OnClusterItemInfoWindowClickListener<T extends ClusterItem> {
-        public void onClusterItemInfoWindowClick(T item);
+        void onClusterItemInfoWindowClick(T item);
     }
 }

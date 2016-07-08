@@ -13,7 +13,7 @@ import java.util.Collection;
  * A collection of ClusterItems that are nearby each other.
  */
 public interface Cluster<T extends com.baidu.mapapi.clusterutil.clustering.ClusterItem> {
-    public LatLng getPosition();
+    LatLng getPosition();
 
     Collection<T> getItems();
 

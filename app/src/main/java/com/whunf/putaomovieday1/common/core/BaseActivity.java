@@ -1,6 +1,7 @@
 package com.whunf.putaomovieday1.common.core;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.support.v7.app.AppCompatActivity;
@@ -39,5 +40,15 @@ public class BaseActivity extends AppCompatActivity {
         }
     }
 
+    /**
+     *解析意图
+     */
+    protected void parseIntent(Intent intent) {
+
+    }
+
+    protected void parseIntent() {
+
+    }
 
 }

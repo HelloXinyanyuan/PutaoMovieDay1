@@ -11,7 +11,6 @@ import android.view.MotionEvent;
 import android.view.View;
 
 import com.whunf.putaomovieday1.R;
-import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.module.movie.resp.entity.OpiSeatInfo;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Seat;
 import com.whunf.putaomovieday1.module.movie.resp.entity.SeatRow;

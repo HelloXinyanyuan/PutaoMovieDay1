@@ -59,11 +59,7 @@ public class MarkerManager implements BaiduMap.OnMarkerClickListener, BaiduMap.O
     @Override
     public boolean onMarkerClick(Marker marker) {
         Collection collection = mAllMarkers.get(marker);
-        if (collection != null && collection.mMarkerClickListener != null) {
-            // you can set the click action
-            return true;
-        }
-        return false;
+        return collection != null && collection.mMarkerClickListener != null;
     }
 
     @Override

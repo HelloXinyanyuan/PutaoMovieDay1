@@ -34,11 +34,11 @@ import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.common.widget.HeaderLayout;
 import com.whunf.putaomovieday1.module.movie.adapter.ImageAdapter;
 import com.whunf.putaomovieday1.module.movie.adapter.OpiListAdapter;
-import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.MovieListResp;
 import com.whunf.putaomovieday1.module.movie.resp.OpiListResp;
 import com.whunf.putaomovieday1.module.movie.resp.PlaydateListResp;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Cp;
+import com.whunf.putaomovieday1.module.movie.resp.entity.Movie;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Opi;
 import com.whunf.putaomovieday1.module.movie.resp.entity.Playdate;
 import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
@@ -231,6 +231,7 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
             }
         });
         mMovieListTask.asyncParse();
+
     }
 
     private int getGallerySelection(List<Movie> movies, long movieId, String movieName) {
@@ -482,8 +483,8 @@ public class CinemaDetailActivity extends BaseActivity implements View.OnClickLi
 //            } catch (Exception e) {
 //                e.printStackTrace();
 //            }
-            Intent intent =new Intent(this, BaiduMapNavActivity.class);
-            intent.putExtra(CinemaConstants.EXTRA_CINEMA_LAT,mCinemaLat);
+            Intent intent = new Intent(this, BaiduMapNavActivity.class);
+            intent.putExtra(CinemaConstants.EXTRA_CINEMA_LAT, mCinemaLat);
             intent.putExtra(CinemaConstants.EXTRA_CINEMA_LNG, mCinemaLng);
             startActivity(intent);
 

@@ -35,7 +35,7 @@ public class FullTaskListener<T> implements TaskStatusListener<T> {
     }
 
     @Override
-    public void onTaskFailure(Exception e) {
-
+    public void onTaskFailure(Exception e) {//出现错误，在此提示出来
+        com.whunf.putaomovieday1.common.util.T.showShort(mActivity,e.toString());
     }
 }

@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/putao_white"
+    android:orientation="vertical" >
+
+    <LinearLayout
+        android:id="@+id/limit_time_layout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/putao_order_reminder01"
+        android:orientation="vertical"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/limit_time"
+            android:layout_width="wrap_content"
+            android:layout_height="48dp"
+            android:layout_gravity="center"
+            android:drawableLeft="@drawable/putao_order_clock"
+            android:drawablePadding="5dp"
+            android:gravity="center_vertical"
+            android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+            android:textColor="@color/putao_text_color_second"
+            android:textSize="@dimen/putao_text_tertiary_size" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:id="@+id/movie_orderpay_head_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/putao_order_common_margin_top"
+        android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+        android:paddingRight="@dimen/putao_activity_horizontal_margin" >
+
+        <ImageView
+            android:id="@+id/movie_orderpay_head_img"
+            android:layout_width="@dimen/putao_orderitem_movie_logowidth"
+            android:layout_height="@dimen/putao_orderitem_movie_logoheight"
+            android:layout_alignParentLeft="true"
+            android:layout_centerVertical="true"
+            android:scaleType="fitXY" />
+
+        <TextView
+            android:id="@+id/movie_orderpay_head_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/movie_orderpay_head_img"
+            android:layout_marginLeft="10dp"
+            android:layout_toRightOf="@id/movie_orderpay_head_img"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/putao_text_color_primary"
+            android:textSize="@dimen/putao_text_primary_size" />
+
+        <TextView
+            android:id="@+id/movie_orderpay_head_cinema"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/movie_orderpay_head_name"
+            android:layout_below="@id/movie_orderpay_head_name"
+            android:layout_marginTop="6dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/putao_text_color_third"
+            android:textSize="@dimen/putao_text_second_size" />
+
+        <TextView
+            android:id="@+id/movie_orderpay_head_playtime"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/movie_orderpay_head_name"
+            android:layout_below="@id/movie_orderpay_head_cinema"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/putao_text_color_third"
+            android:textSize="@dimen/putao_text_second_size" />
+
+        <TextView
+            android:id="@+id/movie_orderpay_head_seat"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/movie_orderpay_head_name"
+            android:layout_below="@id/movie_orderpay_head_playtime"
+            android:layout_marginTop="2dp"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:textColor="@color/putao_text_color_third"
+            android:textSize="@dimen/putao_text_second_size" />
+    </RelativeLayout>
+
+    <View
+        style="@style/Theme.Ptui.Divider.Horizontal"
+        android:layout_marginLeft="@dimen/putao_activity_horizontal_margin"
+        android:layout_marginTop="@dimen/putao_order_common_margin_top" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingLeft="@dimen/putao_activity_horizontal_margin"
+        android:paddingRight="@dimen/putao_activity_horizontal_margin" >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/putao_movie_sub_total"
+            android:textColor="@color/putao_text_color_third"
+            android:textSize="@dimen/putao_text_second_size" />
+
+        <TextView
+            android:id="@+id/movie_orderpay_head_money"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:gravity="right|center_vertical"
+            android:paddingRight="3dp"
+            android:singleLine="true"
+            android:textColor="@color/putao_text_color_primary"
+            android:textSize="@dimen/putao_text_second_size" />
+    </LinearLayout>
+
+    <View style="@style/Theme.Ptui.Divider.Horizontal" />
+
+</LinearLayout>

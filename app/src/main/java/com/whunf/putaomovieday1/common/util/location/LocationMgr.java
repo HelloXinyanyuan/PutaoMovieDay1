@@ -154,9 +154,9 @@ public class LocationMgr {
      * 定位结果的监听接口
      */
     public interface MovieLocationListener {
-        public abstract void onLocationSuccess(LocationPostion locationPostion);
+        void onLocationSuccess(LocationPostion locationPostion);
 
-        public abstract void onLocationFailed();
+        void onLocationFailed();
 
     }
 }
