@@ -1,5 +1,6 @@
 package com.whunf.putaomovieday1.module.user.ui;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -41,10 +42,13 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
 
     @Override
     public void onClick(View v) {
+        Intent intent=new Intent();
         switch (v.getId()) {
             case R.id.layout_login:
                 //去登录
                 T.showShort(getActivity(), "登录");
+                intent.setClass(getActivity(),LoginBySmsVertifycodeActivity.class);
+                startActivity(intent);
                 break;
             case R.id.tv_order_weixiaofei:
                 //未消费

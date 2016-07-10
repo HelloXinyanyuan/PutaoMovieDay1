@@ -72,7 +72,7 @@
         <activity android:name=".module.movie.ui.PlayVideoActivity" />
         <activity android:name=".module.movie.ui.CinemaListActivity" />
         <activity android:name=".module.movie.ui.CinemaDetailActivity" />
-        <activity android:name=".module.movie.ui.CinemaSelectSeatActivity"/>
+        <activity android:name=".module.movie.ui.CinemaSelectSeatActivity" />
         <activity android:name=".common.ui.BaiduMapNavActivity" />
         <activity android:name=".module.movie.ui.CreateOrderActivity" />
 
@@ -80,7 +80,9 @@
             android:name=".common.core.AppInitIntentService"
             android:exported="false" />
 
-        <activity android:name=".common.ui.CitySelectActivity"></activity>
+        <activity android:name=".common.ui.CitySelectActivity" />
+        <activity android:name=".module.user.ui.LoginByPasswordActivity" />
+        <activity android:name=".module.user.ui.LoginBySmsVertifycodeActivity"></activity>
     </application>
 
 </manifest>

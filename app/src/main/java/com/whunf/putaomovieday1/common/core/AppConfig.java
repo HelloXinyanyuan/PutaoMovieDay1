@@ -10,4 +10,6 @@ public class AppConfig {
     //配置数据库的版本号
     public  static  final  int DB_VERSION=1;
 
+    public  static  final  String TOKEN="9ae0de6868d74dd6b00ed02e443c3ed8";
+
 }

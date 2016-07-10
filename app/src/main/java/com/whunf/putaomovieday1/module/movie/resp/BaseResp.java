@@ -23,4 +23,12 @@ public class BaseResp {
     public void setMsg(String msg) {
         this.msg = msg;
     }
+
+    @Override
+    public String toString() {
+        return "BaseResp{" +
+                "ret_code='" + ret_code + '\'' +
+                ", msg='" + msg + '\'' +
+                '}';
+    }
 }

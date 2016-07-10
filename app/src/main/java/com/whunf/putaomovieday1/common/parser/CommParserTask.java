@@ -12,6 +12,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.whunf.putaomovieday1.common.core.PMApplication;
 import com.whunf.putaomovieday1.common.util.LogUtil;
 
+import java.io.UnsupportedEncodingException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -171,6 +172,22 @@ public class CommParserTask<T> implements Response.ErrorListener {
             @Override
             public String getBodyContentType() {
                 return mContentType.value();
+            }
+
+            @Override
+            public byte[] getBody() throws AuthFailureError {
+                if (mContentType.ordinal()==ContentType.JSON.ordinal()){//如果请求体是json内容，直接返回
+                   byte[] jsonBody=null;
+                    try {
+                        jsonBody = mContent.getBytes("UTF-8");
+                    } catch (UnsupportedEncodingException e) {
+                        e.printStackTrace();
+                    }
+                    return jsonBody ;
+
+                }
+
+                return super.getBody();
             }
 
             @Override

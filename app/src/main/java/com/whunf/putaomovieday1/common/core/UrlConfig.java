@@ -59,4 +59,12 @@ public class UrlConfig {
     }
 
 
+    public interface UserPath{
+        /**登录*/
+        String LOGIN="http://api.putao.so/sandroid1/PT_SERVER/interface.s";
+        /**订单列表*/
+        String ORDER_LIST="http://api.putao.so/spay/pay/order/list";
+
+    }
+
 }

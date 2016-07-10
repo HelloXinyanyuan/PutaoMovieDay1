@@ -1,0 +1,141 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical">
+
+
+    <TextView
+        android:id="@+id/putao_login_title"
+        android:layout_width="wrap_content"
+        android:layout_height="86dp"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:text="@string/putao_login_captchar_title"
+        android:textColor="@color/putao_text_color_primary"
+        android:textSize="23sp" />
+
+    <RelativeLayout
+        android:id="@+id/putao_username_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/putao_login_title"
+        android:layout_marginTop="17dp">
+
+        <TextView
+            android:id="@+id/putao_username_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:text="@string/putao_login_user_name"
+            android:textColor="@color/putao_text_color_primary" />
+
+        <EditText
+            android:id="@+id/putao_username_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/putao_username_tv"
+            android:background="@null"
+            android:digits="1234567890"
+            android:hint="@string/putao_login_phone_hint"
+            android:inputType="number"
+            android:maxLength="13"
+            android:paddingLeft="10dp"
+            android:singleLine="true" />
+
+        <Button
+            android:id="@+id/putao_get_captchar_bt"
+            android:layout_width="85dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:text="@string/putao_login_get_captchar" />
+
+        <ImageView
+            android:id="@+id/putao_clear_username_iv"
+            android:layout_width="40dp"
+            android:layout_height="match_parent"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="10dp"
+            android:layout_toLeftOf="@id/putao_get_captchar_bt"
+            android:scaleType="center"
+            android:src="@drawable/putao_icon_list_cancel"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/putao_username_divider"
+        style="@style/Theme.Ptui.Divider.Horizontal"
+        android:layout_below="@id/putao_username_layout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+    <RelativeLayout
+        android:id="@+id/putao_password_layout"
+        android:layout_width="fill_parent"
+        android:layout_height="48dp"
+        android:layout_below="@id/putao_username_divider">
+
+        <TextView
+            android:id="@+id/putao_password_tv"
+            android:layout_width="wrap_content"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:paddingLeft="16dp"
+            android:text="@string/putao_login_captchar_verify_code"
+            android:textColor="@color/putao_text_color_primary" />
+
+        <EditText
+            android:id="@+id/putao_password_et"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_toRightOf="@id/putao_password_tv"
+            android:background="@null"
+            android:hint="@string/putao_login_captchar_hint"
+            android:inputType="number"
+            android:maxLength="4"
+            android:paddingLeft="10dp" />
+
+        <ImageView
+            android:id="@+id/putao_clear_password_iv"
+            android:layout_width="50dp"
+            android:layout_height="match_parent"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="16dp"
+            android:scaleType="center"
+            android:src="@drawable/putao_icon_list_cancel"
+            android:visibility="gone" />
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/putao_password_divider"
+        style="@style/Theme.Ptui.Divider.Horizontal"
+        android:layout_below="@id/putao_password_layout"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp" />
+
+    <Button
+        android:id="@+id/putao_confirm_bt"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/putao_password_divider"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="32dp"
+        android:text="@string/putao_login" />
+
+    <TextView
+        android:id="@+id/putao_login_password_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="6dp"
+        android:padding="16dp"
+        android:text="@string/putao_login_by_password"
+        android:textColor="@color/putao_login_forget_password_color"
+        android:textSize="@dimen/putao_text_second_size" />
+
+</RelativeLayout>
