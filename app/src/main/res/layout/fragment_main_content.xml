@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context="com.whunf.putaomovieday1.module.movie.ui.MovieMainActivity">
+    tools:context="com.whunf.putaomovieday1.common.ui.MainActivity">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -19,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentLeft="true"
             android:layout_centerVertical="true"
-            android:src="@drawable/arrow_left_selector" />
+            android:src="@drawable/menu_expanded_easyicon" />
 
 
         <TextView
@@ -48,6 +48,8 @@
         android:layout_height="0dp"
         android:layout_weight="1"></android.support.v4.view.ViewPager>
 
+    <include layout="@layout/include_divider_h" />
+
     <RadioGroup
         android:id="@+id/nav_tab_group"
         android:layout_width="match_parent"
@@ -74,7 +76,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="8dp"
-            android:drawableTop="@drawable/tab_movie_selector"
+            android:drawableTop="@drawable/tab_cinema_selector"
             android:gravity="center_horizontal"
             android:text="影院" />
 
@@ -85,7 +87,7 @@
             android:layout_weight="1"
             android:button="@null"
             android:drawablePadding="8dp"
-            android:drawableTop="@drawable/tab_movie_selector"
+            android:drawableTop="@drawable/tab_discover_selector"
             android:gravity="center_horizontal"
             android:text="发现" />
 

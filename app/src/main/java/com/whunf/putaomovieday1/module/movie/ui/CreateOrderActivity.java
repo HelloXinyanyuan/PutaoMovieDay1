@@ -66,7 +66,7 @@ public class CreateOrderActivity extends BaseActivity {
     private void createOrder() {
         String mobile = mEtPhone.getText().toString();
         mCreateOrderTask = new CommParserTask.Builder<AddTicketOrderResp>(UrlConfig.MoviePath.ADD_TICKET_ORDER, AddTicketOrderResp.class)
-                .setMethod(CommParserTask.RequstMethod.POST)
+                .putHeader("Cookie", "app_id=10;channel=putao_live_01;version=4.3.0;new_app_version=4.3.0;baseline_version=4.3.0;dev_no=e783aaad228c19080e682a89179f81e2;band=Mi-4c;city=%E6%B7%B1%E5%9C%B3;location=22.570525,113.951177;district=%E5%8D%97%E5%B1%B1%E5%8C%BA;pt_androidid=f917eaec9d96e232;pt_imei=99000672330592;pt_mac=fc:64:ba:92:28:43;pt_token=23bc5ad532694652b504eee425c4904f")
                 .putParams("cpid", cpid)
                 .putParams("mpid", mpid)
                 .putParams("cpparam", cpparam)

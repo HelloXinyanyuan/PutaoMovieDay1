@@ -11,6 +11,7 @@
         android:layout_height="match_parent"
         android:layout_marginLeft="12dp"
         android:layout_marginRight="12dp"
+        android:layout_marginTop="12dp"
         android:horizontalSpacing="12dp"
         android:numColumns="3"
         android:verticalSpacing="16dp"></GridView>
