@@ -21,9 +21,13 @@ public class PreferenceUtil {
      */
     public static final String KEY_HOME_CITY = "KEY_HOME_CITY";
     /**
-     * 存储用户定位的位置信息
+     * 存储用户定位的位置信息JSON
      */
     public static final String KEY_USER_POS = "KEY_USER_POS";
+    /**
+     * 用户登录信息的JSON
+     */
+    public static final String KEY_USER_LOGIN_INFO = "KEY_USER_LOGIN_INFO";
 
     public static void save(String key, String value) {
         Context context = PMApplication.getInstance();

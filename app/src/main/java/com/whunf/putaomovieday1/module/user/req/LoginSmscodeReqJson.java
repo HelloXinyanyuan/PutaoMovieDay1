@@ -7,7 +7,7 @@ package com.whunf.putaomovieday1.module.user.req;
  */
 public class LoginSmscodeReqJson extends BaseReqJson
 {
-    public int check_code;
+    public String check_code;
     /**
      * [帐户来源] - 0 表使用设备创建, 1 表使用手机创建, 2 表使用酷派创建
      */
@@ -24,7 +24,7 @@ public class LoginSmscodeReqJson extends BaseReqJson
 
 //    public String black_box;
 
-    public LoginSmscodeReqJson(int check_code, String accName)
+    public LoginSmscodeReqJson(String check_code, String accName)
     {
         super("200002");
         this.check_code = check_code;

@@ -7,7 +7,6 @@ import com.whunf.putaomovieday1.module.movie.resp.BaseResp;
  */
 public class LoginByPasswordResp extends BaseResp {
 
-
 //    {
 //        "ret_code": "0000",//代表登录成功
 //            "error_remark": "",
@@ -30,6 +29,24 @@ public class LoginByPasswordResp extends BaseResp {
 //    }]
 
     private String pt_token;
+    private String accName;
+
+    public String getPt_token() {
+        return pt_token;
+    }
+
+    public void setPt_token(String pt_token) {
+        this.pt_token = pt_token;
+    }
+
+    public String getAccName() {
+        return accName;
+    }
+
+    public void setAccName(String accName) {
+        this.accName = accName;
+    }
+
 
 
 }
