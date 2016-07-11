@@ -40,6 +40,7 @@
 
             <EditText
                 android:id="@+id/movie_orderpay_head_phone"
+                android:text="18379254957"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="20dp"

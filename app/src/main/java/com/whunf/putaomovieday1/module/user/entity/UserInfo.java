@@ -6,7 +6,8 @@ package com.whunf.putaomovieday1.module.user.entity;
 public class UserInfo {
     private String pt_token;
     private String accName;
-
+    public UserInfo() {
+    }
     public UserInfo(String pt_token, String accName) {
         this.pt_token = pt_token;
         this.accName = accName;

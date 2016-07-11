@@ -55,7 +55,7 @@ public abstract class BaseReqJson
     }
 
 
-    private static final String PT_KEY ="233&*Adc^%$$per" ;
+    public static final String PT_KEY ="233&*Adc^%$$per" ;
 
 
     @JSONField(serialize = false)

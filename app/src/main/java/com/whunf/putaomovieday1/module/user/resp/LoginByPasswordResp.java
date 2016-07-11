@@ -29,7 +29,17 @@ public class LoginByPasswordResp extends BaseResp {
 //    }]
 
     private String pt_token;
-    private String accName;
+
+    private RelateUsers[] relateUsers;
+
+
+    public RelateUsers[] getRelateUsers() {
+        return relateUsers;
+    }
+
+    public void setRelateUsers(RelateUsers[] relateUsers) {
+        this.relateUsers = relateUsers;
+    }
 
     public String getPt_token() {
         return pt_token;
@@ -39,14 +49,17 @@ public class LoginByPasswordResp extends BaseResp {
         this.pt_token = pt_token;
     }
 
-    public String getAccName() {
-        return accName;
-    }
+    public  static class RelateUsers{
+        private String accName;
 
-    public void setAccName(String accName) {
-        this.accName = accName;
-    }
+        public String getAccName() {
+            return accName;
+        }
 
+        public void setAccName(String accName) {
+            this.accName = accName;
+        }
+    }
 
 
 }

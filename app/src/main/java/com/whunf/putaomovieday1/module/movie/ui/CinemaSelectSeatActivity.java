@@ -126,6 +126,7 @@ public class CinemaSelectSeatActivity extends BaseActivity implements View.OnCli
         intent.putExtra(CinemaConstants.EXTRA_CPPARAM, data.getCpparam());
         intent.putExtra(CinemaConstants.MOVIE_ORDER_SEAT, mSelectSeatView.getSelectedSeatLable());
         intent.putExtra(CinemaConstants.EXTRA_CINEMA_ADDRESS, mCinemaAddress);
+        intent.putExtra("unitPrice", data.getPrice());
         startActivityForResult(intent, REQUESTCODE_CREATE_ORDER);
     }
 
