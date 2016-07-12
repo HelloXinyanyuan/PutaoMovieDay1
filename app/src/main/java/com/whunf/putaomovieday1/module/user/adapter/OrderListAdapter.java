@@ -1,76 +1,60 @@
 package com.whunf.putaomovieday1.module.user.adapter;
 
+import android.content.Context;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
-import com.whunf.putaomovieday1.common.core.BaseActivity;
+import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.storage.db.entity.PTOrderBean;
-import com.whunf.putaomovieday1.common.util.LogUtil;
 
-import java.util.ArrayList;
+import java.text.SimpleDateFormat;
 
-
-public class OrderListAdapter extends BaseListViewAdapter
+/**
+ * 订单列表适配器
+ */
+public class OrderListAdapter extends ArrayAdapter<PTOrderBean>
 {
 
-    private ArrayList<PTOrderBean> orders;
 
-    private DataLoader mDataLoader;
-
-    private BaseActivity mContext;
-
-    public OrderListAdapter(BaseActivity context, ArrayList<PTOrderBean> newestOrders)
-    {
-        this.orders = newestOrders;
-        this.mContext = context;
-        mDataLoader = new ImageLoaderFactory(mContext).getOrderListLoader();
+    public OrderListAdapter(Context context) {
+        super(context, 0);
     }
 
     @Override
-    public int getCount()
-    {
-        return orders.size();
-    }
-
-    @Override
-    public Object getItem(int position)
-    {
-        return null;
-    }
-
-    @Override
-    public long getItemId(int position)
-    {
-        return 0;
-    }
-
-    @Override
-    public View getView(int position, View convertView, ViewGroup parent)
-    {
-        LogUtil.i(getClass().getSimpleName(), "SpeedLog getView=" + System.currentTimeMillis());
-        PTOrderBean bean = orders.get(position);
-        AbstractOrderBussiness bussiness = PTOrderCenter.getInstance().getService(bean);
-        if (bussiness != null)
-        {
-            bussiness.setDataLoader(mDataLoader);
-            View view = bussiness.getOrderView(mContext, orders.get(position), convertView);
-            // if (position == 0)
-            // {
-            // view.findViewById(R.id.divider).setVisibility(View.VISIBLE);
-            // }
-            return view;
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if (convertView == null) {
+            convertView = View.inflate(parent.getContext(), R.layout.order_list_item, null);
+            holder = new ViewHolder(convertView);
+        } else {
+            holder = (ViewHolder) convertView.getTag();
         }
-        return new View(ContactsApp.getInstance());
+        PTOrderBean item=getItem(position);
+        holder.oName.setText(item.getTitle());
+        holder.oTimeTxt.setText(   SDF.format(item.getC_time()));
+        holder.oPrice.setText(String.valueOf(item.getPrice()/100));
+        holder.oStatus.setText(item.getStatus());
+
+        return convertView;
     }
 
-    @Override
-    public DataLoader getmImageLoader()
-    {
-        return mDataLoader;
-    }
+    static final SimpleDateFormat SDF=new SimpleDateFormat("MM-dd");
+    private final class ViewHolder {
 
-    public void clearCache()
-    {
-        mDataLoader.clearCache();
+        TextView oName;
+        TextView oTimeTxt;
+        TextView oPrice;
+        TextView oStatus;
+
+        public ViewHolder(View v) {
+            oName = (TextView) v.findViewById(R.id.order_name);
+            oTimeTxt = (TextView) v.findViewById(R.id.order_date);
+            oPrice = (TextView) v.findViewById(R.id.order_price);
+            oStatus = (TextView) v.findViewById(R.id.order_status);
+            v.setTag(this);
+        }
+
     }
 }

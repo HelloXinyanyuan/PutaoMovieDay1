@@ -82,7 +82,7 @@
 
         <activity android:name=".common.ui.CitySelectActivity" />
         <activity android:name=".module.user.ui.LoginByPasswordActivity" />
-        <activity android:name=".module.user.ui.LoginBySmsVertifycodeActivity"></activity>
+        <activity android:name=".module.user.ui.LoginBySmsVertifycodeActivity" />
 
         <!-- alipay sdk begin -->
         <activity
@@ -99,6 +99,7 @@
             android:screenOrientation="behind"
             android:theme="@android:style/Theme.Light" />
         <!-- alipay sdk end -->
+        <activity android:name=".module.user.ui.OrderListActivity"></activity>
     </application>
 
 </manifest>

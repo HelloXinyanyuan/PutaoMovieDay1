@@ -14,11 +14,12 @@ import android.widget.EditText;
 import com.alipay.sdk.app.PayTask;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseActivity;
+import com.whunf.putaomovieday1.common.msg.OrderEvent;
 import com.whunf.putaomovieday1.common.parser.CommParserTask;
 import com.whunf.putaomovieday1.common.parser.FullTaskListener;
 import com.whunf.putaomovieday1.common.util.LogUtil;
 import com.whunf.putaomovieday1.common.util.T;
-import com.whunf.putaomovieday1.common.util.UserInfoUtil;
+import com.whunf.putaomovieday1.common.util.location.CommUtil;
 import com.whunf.putaomovieday1.module.movie.req.DetailMovieOrder;
 import com.whunf.putaomovieday1.module.movie.req.NormalOrderRequestData;
 import com.whunf.putaomovieday1.module.movie.req.OrderEntity;
@@ -26,9 +27,9 @@ import com.whunf.putaomovieday1.module.movie.resp.order.AddTicketOrderResp;
 import com.whunf.putaomovieday1.module.movie.resp.order.AlipayResp;
 import com.whunf.putaomovieday1.module.movie.resp.order.SimpleDataResp;
 import com.whunf.putaomovieday1.module.movie.util.CinemaConstants;
-import com.whunf.putaomovieday1.module.user.entity.UserInfo;
-import com.whunf.putaomovieday1.module.user.ui.LoginByPasswordActivity;
 import com.whunf.putaomovieday1.module.user.util.PayResult;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.net.URLEncoder;
 import java.text.SimpleDateFormat;
@@ -97,8 +98,17 @@ public class CreateOrderActivity extends BaseActivity {
 
         String mobile = mEtPhone.getText().toString();
 
-        long current = System.currentTimeMillis();
-        int unitPrice = getIntent().getIntExtra("unitPrice", 0);
+//        long current = System.currentTimeMillis();
+//        int unitPrice = getIntent().getIntExtra("unitPrice", 0);
+
+//        Map<String ,String> header=new HashMap<>();
+//        header.put("Cookie", cookie);
+//        StringRequest stringRequest=new StringRequest("",null,null){
+//            @Override
+//            public Map<String, String> getHeaders() throws AuthFailureError {
+//                return header;
+//            }
+//        };
 
         mCreateOrderTask = new CommParserTask.Builder<AddTicketOrderResp>(creatOrder, AddTicketOrderResp.class)
                 .setMethod(CommParserTask.RequstMethod.POST)
@@ -125,15 +135,7 @@ public class CreateOrderActivity extends BaseActivity {
 
     String getCookie() {
         //验证登录
-        UserInfo userInfo = UserInfoUtil.getInstance().loadUserInfo();
-        if (userInfo == null) {
-            startActivity(new Intent(this, LoginByPasswordActivity.class));
-            return null;
-        }
-        //获得token用于下单
-        String pttoken = userInfo.getPt_token();
-        String cookie = "app_id=10;channel=wandoujia;version=2.6.0;dev_no=20f10f4175287e8c5b80f6a150a64e70;band=Google Galaxy Nexus - 4.1.1 - API 16 - 720x1280;city=%E6%B7%B1%E5%9C%B3;loc=30.2784662,120.1194347;pt_token=" + pttoken;
-        return cookie;
+        return CommUtil.getCookie();
     }
 
     private CommParserTask<SimpleDataResp> mPostOrderTask;
@@ -202,8 +204,9 @@ public class CreateOrderActivity extends BaseActivity {
                 .setTaskStatusListener(new FullTaskListener<SimpleDataResp>(this) {
                     @Override
                     public void onTaskSuccess(SimpleDataResp response) {
-                        if (response.getRet_code().equals("0000") && !TextUtils.isEmpty(response.getData())) {// 创建成功
+                        if (response.getRet_code().equals("0000") && !TextUtils.isEmpty(response.getData())) {// 回传订单成功
                             mDetailMovieOrder.setOrder_no(response.getData());
+
                             Map<String, String> stringStringMap = OrderEntity.convertToMap(mDetailMovieOrder, DetailMovieOrder.class);
                             OrderEntity oe = new OrderEntity();
                             oe.setPriceInCents(mDetailMovieOrder.getAmount());
@@ -216,6 +219,15 @@ public class CreateOrderActivity extends BaseActivity {
                             //去服务端获取支付宝支付参数
                             createAlipayOrderParams(requstBody);
 
+                            Log.d(TAG, "订单产生成功！onTaskSuccess() called with: " + "response = [" + response + "]");
+                            //发送广播，要求前台更新打点数量
+//                            sendBroadcast(new Intent("com.whunf.putaomovieday1.update_order_count"));
+
+                            //新建消息内容
+                            OrderEvent orderEvent=new OrderEvent();
+                            orderEvent.count=3;
+                            //发消息
+                            EventBus.getDefault().post(orderEvent);
                         }
                     }
                 })
@@ -260,7 +272,7 @@ public class CreateOrderActivity extends BaseActivity {
                 String param = createAlipayUrl(bean);
 
                 LogUtil.d(TAG, "alipay param=" + param);
-                String alipayResult = alipay.pay(param);
+                String alipayResult = alipay.pay(param);//阻塞
                 LogUtil.d(TAG, "alipay result=" + alipayResult);
 
                 //处理结果发送到主线程

@@ -1,6 +1,7 @@
 package com.whunf.putaomovieday1.common.ui;
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,15 +18,20 @@ import android.widget.TextView;
 
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
+import com.whunf.putaomovieday1.common.msg.OrderEvent;
 import com.whunf.putaomovieday1.common.util.CityMgr;
 import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.common.util.UserInfoUtil;
 import com.whunf.putaomovieday1.common.util.location.LocationMgr;
 import com.whunf.putaomovieday1.common.util.location.LocationPostion;
+import com.whunf.putaomovieday1.common.widget.BadgeView;
 import com.whunf.putaomovieday1.module.movie.adapter.SimpleFragmentVpAdapter;
 import com.whunf.putaomovieday1.module.movie.ui.CinemaListFragment;
 import com.whunf.putaomovieday1.module.movie.ui.DiscoverFragment;
 import com.whunf.putaomovieday1.module.movie.ui.MovieListFragment;
+
+import org.greenrobot.eventbus.EventBus;
+import org.greenrobot.eventbus.Subscribe;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -43,7 +49,9 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
     private TextView mTvHomeCity;
     private CinemaListFragment mCinemaListFragment;
     private MovieListFragment mMovieListFragment;
-
+    private View mOpenNavBtn;
+    //声明广播接收者
+    private BroadcastReceiver mNewOrderBroadcastReceiver;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -51,7 +59,8 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
         //初始化tab文字数组
         mTabsTxt = getActivity().getResources().getStringArray(R.array.home_tabs_txt);
         //处理头部相关视图
-        view.findViewById(R.id.btn_open_menu).setOnClickListener(this);
+       mOpenNavBtn=view.findViewById(R.id.btn_open_menu);
+        mOpenNavBtn.setOnClickListener(this);
         mTvHomeTitle = (TextView) view.findViewById(R.id.tv_home_title);
         //设置城市信息
         mTvHomeCity = (TextView) view.findViewById(R.id.tv_home_city);
@@ -109,11 +118,34 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
 
         LocationMgr.getInstance().addListener(mLocationListener);
         LocationMgr.getInstance().startLocation();
+
+        //注册eventbus事件
+        EventBus.getDefault().register(this);
+
+//        mNewOrderBroadcastReceiver =new BroadcastReceiver() {
+//            @Override
+//            public void onReceive(Context context, Intent intent) {
+//                addPointerToNav(1);
+//            }
+//        };
+//        IntentFilter intentFilter=new IntentFilter();
+//        intentFilter.addAction("com.whunf.putaomovieday1.update_order_count");
+//        getActivity().registerReceiver(mNewOrderBroadcastReceiver,intentFilter);
         return view;
+    }
+
+
+    //事件回调方法
+    @Subscribe//最新3.0版本必须加上此注解
+    public  void onEventMainThread(OrderEvent oe){//主线程中调用
+        addPointerToNav(oe.count);
     }
 
     @Override
     public void onDestroyView() {
+        //消息解除注册
+        EventBus.getDefault().unregister(this);
+//        getActivity().unregisterReceiver(mNewOrderBroadcastReceiver);
         LocationMgr.getInstance().removeListener(mLocationListener);
         super.onDestroyView();
     }
@@ -213,4 +245,22 @@ public class MainContentFragment extends BaseFragment implements View.OnClickLis
         mMovieListFragment.initData();//重新加载影片列表
         mCinemaListFragment.setHasLoadData(false);//加载影院列表
     }
+
+
+
+
+    private BadgeView bv;
+
+    private void addPointerToNav(int count){
+        if (bv==null){
+            bv=new BadgeView(getActivity());
+            bv.setTargetView(mOpenNavBtn);
+        }
+
+       if (!TextUtils.isEmpty( bv.getText())){
+           count=count+Integer.parseInt(bv.getText().toString());
+       }
+        bv.setText(""+count);
+    }
+
 }

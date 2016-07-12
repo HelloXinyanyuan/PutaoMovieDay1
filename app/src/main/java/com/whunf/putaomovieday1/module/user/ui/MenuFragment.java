@@ -51,6 +51,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
                 startActivity(intent);
                 break;
             case R.id.tv_order_weixiaofei:
+                intent.setClass(getActivity(),OrderListActivity.class);
+                startActivity(intent);
                 //未消费
                 T.showShort(getActivity(), "未消费");
                 break;
