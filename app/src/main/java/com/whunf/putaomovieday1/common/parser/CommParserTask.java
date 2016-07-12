@@ -176,15 +176,14 @@ public class CommParserTask<T> implements Response.ErrorListener {
 
             @Override
             public byte[] getBody() throws AuthFailureError {
-                if (mContentType.ordinal()==ContentType.JSON.ordinal()){//如果请求体是json内容，直接返回
-                   byte[] jsonBody=null;
+                byte[] jsonBody = null;
+                if (!TextUtils.isEmpty(mContent)) {//如果有直接定制请求体需求，直接返回定制的请求体内容
                     try {
                         jsonBody = mContent.getBytes("UTF-8");
+                        return jsonBody;
                     } catch (UnsupportedEncodingException e) {
                         e.printStackTrace();
                     }
-                    return jsonBody ;
-
                 }
 
                 return super.getBody();
@@ -261,6 +260,17 @@ public class CommParserTask<T> implements Response.ErrorListener {
          */
         public Builder<T> putParams(String key, String value) {
             reqPrepare.reqParams.put(key, value);
+            return this;
+        }
+
+        /**
+         * 设置参数（覆盖之前的所有的参数）
+         *
+         * @param params
+         * @return
+         */
+        public Builder<T> setParams(Map<String, String> params) {
+            reqPrepare.reqParams = params;
             return this;
         }
 

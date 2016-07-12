@@ -59,4 +59,5 @@ dependencies {
     compile files('libs/baidumapapi_search_v4_0_0.jar')
     compile files('libs/baidumapapi_util_v4_0_0.jar')
     compile files('libs/locSDK_6.13.jar')
+    compile files('libs/alipaySdk.jar')
 }

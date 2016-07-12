@@ -193,4 +193,11 @@ public class CinemaUtils
         long between_days = (time2 - time1) / (1000 * 3600 * 24);
         return Integer.parseInt(String.valueOf(between_days));
     }
+
+    public static String formatTimeLong(long lo,String pattern){
+        SimpleDateFormat sdf=new SimpleDateFormat(pattern);
+
+        return sdf.format(lo);
+
+    }
 }

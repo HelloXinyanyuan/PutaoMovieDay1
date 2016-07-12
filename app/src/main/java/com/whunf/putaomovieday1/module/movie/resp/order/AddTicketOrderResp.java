@@ -1,5 +1,6 @@
-package com.whunf.putaomovieday1.module.movie.resp;
+package com.whunf.putaomovieday1.module.movie.resp.order;
 
+import com.whunf.putaomovieday1.module.movie.resp.BaseResp;
 import com.whunf.putaomovieday1.module.movie.resp.entity.AddTicketOrder;
 
 /**

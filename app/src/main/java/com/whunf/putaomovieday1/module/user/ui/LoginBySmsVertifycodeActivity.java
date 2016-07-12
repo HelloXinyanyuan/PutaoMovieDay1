@@ -137,6 +137,7 @@ public class LoginBySmsVertifycodeActivity extends BaseActivity implements View.
             case R.id.putao_login_password_tv://密码登录
                 Intent intent=new Intent(this,LoginByPasswordActivity.class);
                 startActivity(intent);
+                finish();
                 break;
         }
     }

@@ -28,9 +28,25 @@ public class PayDemoActivity extends FragmentActivity {
 	// 商户收款账号
 	public static final String SELLER = "zhifubao@whunf.com.cn";
 	// 商户私钥，pkcs8格式
-	public static final String RSA_PRIVATE = "";
+	public static final String RSA_PRIVATE = "MIICdQIBADANBgkqhkiG9w0BAQEFAASCAl8wggJbAgEAAoGBAJ1FvGOhYQVP4O25\n" +
+			"qXQUbpisjO50xeC7ncJg295UQzXvxs6W0wiT3Vb1b6cEEju3Xh3+9PrwAnGEkANz\n" +
+			"5xisyqDxR2OKl1M6L0UPgvWdG3g9F2BMCzOtJt4DGHncXdrcjGFERCLBaH86hjSz\n" +
+			"/RntCdI7n5jLEsIRm9YfTDYdbPlxAgMBAAECgYBexfhZvZUew10TRK+10N44yLqA\n" +
+			"tAPOgqD10rKMTxDVfvG56q+vWpOmZG7tIYnvTHe98bclRN7kE3NJcV3Qw8eytPp8\n" +
+			"tbTX9C8lo+nXaFxwBhsZZ3Jw0crivtEXntI+sRL9on7Lc/8V72yJV9fSQ9A+Gjwz\n" +
+			"E/E6Zeq/J6OB2m0xMQJBAMrFO82McDHLnX6LjADCaBm8Mia1IivlGLiQXKnf/5aq\n" +
+			"Ke53cgHTgVIOzgFPlPQ9y3YB+W7cOrYHZ+zXCxNZAA0CQQDGjuazoHiuBVPIsMLq\n" +
+			"Bk8scYBjUdPLEJFMtfP79USAmDsL2SmVbM2I7ePdtJCYxFbS0wvj3qQyKGlH97qH\n" +
+			"Z2H1AkBv9XtRwUtpkz3A05hYCv+jxhAC41yc1ABUWBFyEqZzMD261+TxMTFkd5wz\n" +
+			"iRd7zGr9G5X4Kk2YmHo/gXUyF6A5AkA1W/nLk/haa7wUVsxKr99fBjGGf1r3W0Bw\n" +
+			"6QTkVQlPtZlImdd+/HpPrf5qejfRlhHvHiA34IEnqYyBdqV99d5xAkA6dJ1CVhoM\n" +
+			"umwzE/u5C/JYq/SPusosQJGU4IFqNdpwvY5VW3cdBGv04T3QHAF8UyjGXAivJuz4\n" +
+			"DKxFlgr60yZP";
 	// 支付宝公钥
-	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCnxj/9qwVfgoUh/y2W89L6BkRAFljhNhgPdyPuBV64bfQNN1PjbCzkIM6qRdKBoLPXmKKMiFYnkd6rAoprih3/PrQEB/VsW8OoM8fxn67UDYuyBTqA23MML9q1+ilIZwBC2AQ2UBVOrFXfFl75p6/B5KsiNG9zpgmLCUYuLkxpLQIDAQAB";
+	public static final String RSA_PUBLIC = "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCdRbxjoWEFT+Dtual0FG6YrIzu\n" +
+			"dMXgu53CYNveVEM178bOltMIk91W9W+nBBI7t14d/vT68AJxhJADc+cYrMqg8Udj\n" +
+			"ipdTOi9FD4L1nRt4PRdgTAszrSbeAxh53F3a3IxhREQiwWh/OoY0s/0Z7QnSO5+Y\n" +
+			"yxLCEZvWH0w2HWz5cQIDAQAB";
 	private static final int SDK_PAY_FLAG = 1;
 
 	@SuppressLint("HandlerLeak")

@@ -1,2 +1,3 @@
-include ':app', ':testlib', ':volley', 'smlibrary'
+include ':app', ':testlib', ':volley', 'smlibrary','ptLivesDepend','putaoLife','putaoLife_changebag'
 include ':alipay_demo'
+include ':amm_sdk_sample'

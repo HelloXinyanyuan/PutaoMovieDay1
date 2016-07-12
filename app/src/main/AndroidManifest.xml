@@ -83,6 +83,22 @@
         <activity android:name=".common.ui.CitySelectActivity" />
         <activity android:name=".module.user.ui.LoginByPasswordActivity" />
         <activity android:name=".module.user.ui.LoginBySmsVertifycodeActivity"></activity>
+
+        <!-- alipay sdk begin -->
+        <activity
+            android:name="com.alipay.sdk.app.H5PayActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Light"
+            android:windowSoftInputMode="adjustResize|stateHidden" />
+        <activity
+            android:name="com.alipay.sdk.auth.AuthActivity"
+            android:configChanges="orientation|keyboardHidden|navigation"
+            android:exported="false"
+            android:screenOrientation="behind"
+            android:theme="@android:style/Theme.Light" />
+        <!-- alipay sdk end -->
     </application>
 
 </manifest>

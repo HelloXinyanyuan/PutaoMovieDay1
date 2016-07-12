@@ -53,7 +53,7 @@ public class SystemUtil
 
     private static final String PT_DEVICE_ID_FILENAME = "pt_sys2.txt";
     
-    private static final String DEFAULT_CHANNEL = "putao_live_01";
+    private static final String DEFAULT_CHANNEL = "wandoujia";
 
     private static String sPtDeviceId;
 

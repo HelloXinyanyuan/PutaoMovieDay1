@@ -12,4 +12,9 @@ public class AppConfig {
 
     public  static  final  String TOKEN="9ae0de6868d74dd6b00ed02e443c3ed8";
 
+    /** 请求加密签名key */
+    public static final String REQUEST_SECRITY = "kksd%sj*77";
+
+
+
 }
