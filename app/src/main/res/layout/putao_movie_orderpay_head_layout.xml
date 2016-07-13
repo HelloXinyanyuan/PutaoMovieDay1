@@ -6,7 +6,6 @@
     android:orientation="vertical" >
 
     <LinearLayout
-        android:id="@+id/limit_time_layout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@drawable/putao_order_reminder01"
@@ -14,7 +13,6 @@
         android:visibility="gone" >
 
         <TextView
-            android:id="@+id/limit_time"
             android:layout_width="wrap_content"
             android:layout_height="48dp"
             android:layout_gravity="center"
@@ -27,7 +25,6 @@
     </LinearLayout>
 
     <RelativeLayout
-        android:id="@+id/movie_orderpay_head_content"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/putao_order_common_margin_top"
@@ -79,7 +76,6 @@
             android:textSize="@dimen/putao_text_second_size" />
 
         <TextView
-            android:id="@+id/movie_orderpay_head_seat"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignLeft="@id/movie_orderpay_head_name"
@@ -112,7 +108,6 @@
             android:textSize="@dimen/putao_text_second_size" />
 
         <TextView
-            android:id="@+id/movie_orderpay_head_money"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"

@@ -46,12 +46,12 @@ android {
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     testCompile 'junit:junit:4.12'
-    compile files('libs/fastjson-1.1.52.android.jar')
-    compile project(':volley')
-    compile project(':smlibrary')
     compile 'com.android.support:appcompat-v7:23.2.1'
     compile 'com.android.support:support-v4:23.2.1'
     compile 'com.android.support:design:23.2.1'
+    compile files('libs/fastjson-1.1.52.android.jar')
+    compile project(':volley')
+    compile project(':smlibrary')
     compile files('libs/baidumapapi_base_v4_0_0.jar')
     compile files('libs/baidumapapi_cloud_v4_0_0.jar')
     compile files('libs/baidumapapi_map_v4_0_0.jar')
@@ -60,4 +60,6 @@ dependencies {
     compile files('libs/baidumapapi_util_v4_0_0.jar')
     compile files('libs/locSDK_6.13.jar')
     compile files('libs/alipaySdk.jar')
+    compile files('libs/umeng-analytics-v6.0.1.jar')
+    compile files('libs/jpush-android-2.1.7.jar')
 }

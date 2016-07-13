@@ -180,14 +180,9 @@ public class CinemaListFragment extends BaseFragment implements View.OnClickList
 
     private String loadUserAddre() {
         String address = null;
-
-        try {
-            String jsonStr = PreferenceUtil.loadString(PreferenceUtil.KEY_USER_POS, "");
-            LocationPostion locationPostion = JSONObject.parseObject(jsonStr, LocationPostion.class);
-            if (locationPostion != null) {
-                address = locationPostion.getAddress();
-            }
-        } catch (Exception e) {
+        LocationPostion locationPostion = UserInfoUtil.getInstance().getLastPos();
+        if (locationPostion != null) {
+            address = locationPostion.getAddress();
         }
         return address;
     }

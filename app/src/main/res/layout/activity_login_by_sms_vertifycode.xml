@@ -53,7 +53,6 @@
             android:text="@string/putao_login_get_captchar" />
 
         <ImageView
-            android:id="@+id/putao_clear_username_iv"
             android:layout_width="40dp"
             android:layout_height="match_parent"
             android:layout_centerVertical="true"
@@ -98,7 +97,6 @@
             android:paddingLeft="10dp" />
 
         <ImageView
-            android:id="@+id/putao_clear_password_iv"
             android:layout_width="50dp"
             android:layout_height="match_parent"
             android:layout_alignParentRight="true"

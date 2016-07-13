@@ -7,6 +7,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
 import com.baidu.mapapi.SDKInitializer;
 
+import cn.jpush.android.api.JPushInterface;
+
 /**
  * Created by Administrator on 2016/6/21.
  */
@@ -25,6 +27,7 @@ public class PMApplication extends Application {
         return sIntance;
     }
 
+    MyCrashHandler crashHandler;
 
     @Override
     public void onCreate() {
@@ -34,6 +37,11 @@ public class PMApplication extends Application {
         // 在使用 SDK 各组间之前初始化 context 信息，传入 ApplicationContext
         SDKInitializer.initialize(this);
         startService(new Intent(this,AppInitIntentService.class));
+        //初始化自定义crash handler
+        crashHandler= new MyCrashHandler();
+        //初始化极光sdk
+        JPushInterface.setDebugMode(true); 	// 设置开启日志,发布时请关闭日志
+        JPushInterface.init(this);     		// 初始化 JPush
     }
 
     /**

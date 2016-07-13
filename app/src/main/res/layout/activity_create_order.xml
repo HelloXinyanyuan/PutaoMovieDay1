@@ -10,16 +10,13 @@
         android:layout_height="wrap_content"
         android:orientation="vertical" >
 
-        <include
-            android:id="@+id/putao_movie_head_layout"
-            layout="@layout/putao_movie_orderpay_head_layout" />
+        <include layout="@layout/putao_movie_orderpay_head_layout" />
 
         <View
             style="@style/Theme.Ptui.Divider.Horizontal"
             android:layout_marginTop="@dimen/putao_order_common_margin_top" />
 
         <LinearLayout
-            android:id="@+id/putao_movie_orderpay_layout"
             android:layout_width="fill_parent"
             android:layout_height="54dp"
             android:background="@color/putao_white"
@@ -29,7 +26,6 @@
             android:paddingRight="@dimen/putao_activity_horizontal_margin" >
 
             <TextView
-                android:id="@+id/movie_orderpay_head_phone_hint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:ellipsize="end"

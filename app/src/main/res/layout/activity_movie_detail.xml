@@ -134,7 +134,6 @@
                 <View style="@style/DividerStyle.Horizontal" />
 
                 <RelativeLayout
-                    android:id="@+id/movie_comment"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp">
@@ -150,7 +149,6 @@
                         android:textSize="@dimen/text_size_normal" />
 
                     <ImageView
-                        android:id="@+id/yh1"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_toLeftOf="@id/movie_highlight"

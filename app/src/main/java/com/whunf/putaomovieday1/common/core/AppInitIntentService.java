@@ -28,6 +28,8 @@ public class AppInitIntentService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         //初始化城市数据
         new CityTableHand(this).init();
+
+
     }
 
 }

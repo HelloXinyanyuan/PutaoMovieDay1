@@ -20,6 +20,7 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.ImageLoader;
 import com.android.volley.toolbox.StringRequest;
+import com.umeng.analytics.MobclickAgent;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseActivity;
 import com.whunf.putaomovieday1.common.core.PMApplication;
@@ -75,10 +76,34 @@ public class MovieDetailActivity extends BaseActivity implements View.OnClickLis
     }
 
 
-    protected void parseIntent(Intent intent){
+    protected void parseIntent(Intent intent) {
         mPassMovie = (Movie) intent.getSerializableExtra(CinemaConstants.EXTRA_MOVIE_DETAIL);
-        initView();
-        initData();
+        if (mPassMovie == null) {
+            //
+            long mid =intent.getLongExtra(CinemaConstants.EXTRA_MOVIEID,0);
+            String url = "http://api.putao.so/sbiz/movie/detail?movieid=" + mid;
+            StringRequest sr = new StringRequest(url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    MovieDetailResp mresp = JSONObject.parseObject(response, MovieDetailResp.class);
+                    if (mresp != null && mresp.getRet_code().equals("0000")) {
+                        Movie data = mresp.getData();
+                        mPassMovie=data;
+                        initView();//
+                        refreshAnotherUi(data);
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+
+                }
+            });
+            PMApplication.getInstance().getRequestQueue().add(sr);
+        } else {
+            initView();
+            initData();
+        }
     }
 
     private void initData() {
@@ -199,12 +224,12 @@ public class MovieDetailActivity extends BaseActivity implements View.OnClickLis
                 intent.putExtra("movieName", mPassMovie.getMoviename());
                 startActivity(intent);
                 break;
-
             case R.id.movie_select_seat://选影院购票
-                intent=new Intent(this, CinemaListActivity.class);
-                intent.putExtra("movieName",mPassMovie.getMoviename());
-                intent.putExtra("movieId",mPassMovie.getMovieid());
+                intent = new Intent(this, CinemaListActivity.class);
+                intent.putExtra("movieName", mPassMovie.getMoviename());
+                intent.putExtra("movieId", mPassMovie.getMovieid());
                 startActivity(intent);
+                MobclickAgent.onEvent(this, "test_hello");
                 break;
         }
     }
