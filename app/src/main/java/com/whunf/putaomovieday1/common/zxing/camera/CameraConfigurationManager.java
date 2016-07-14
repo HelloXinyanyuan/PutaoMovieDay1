@@ -68,6 +68,18 @@ final class CameraConfigurationManager {
    * and the planar Y can be used for barcode scanning without a copy in some cases.
    */
   void setDesiredCameraParameters(Camera camera) {
+//    int N=Camera.getNumberOfCameras();
+//    for (int i = 0; i <N ; i++) {
+//    Camera.CameraInfo cameraInfo=new Camera.CameraInfo();
+//    Camera.getCameraInfo(i,cameraInfo);
+//      camera.getParameters()
+//    camera.setDisplayOrientation(cameraInfo.orientation) ;
+//    }
+    //解决相机倒置问题
+    Camera.CameraInfo cameraInfo=new Camera.CameraInfo();
+    Camera.getCameraInfo(0,cameraInfo);
+    camera.setDisplayOrientation(cameraInfo.orientation) ;
+
     Camera.Parameters parameters = camera.getParameters();
     Log.d(TAG, "Setting preview size: " + cameraResolution);
     parameters.setPreviewSize(cameraResolution.x, cameraResolution.y);
