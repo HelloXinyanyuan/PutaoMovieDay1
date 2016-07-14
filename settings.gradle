@@ -1,3 +1,3 @@
-include ':app', ':testlib', ':volley', 'smlibrary', 'ptLivesDepend', 'putaoLife', 'putaoLife_changebag', ':JPushExample'
+include ':app', ':testlib', ':volley', 'smlibrary', 'ptLivesDepend', 'putaoLife', 'putaoLife_changebag', ':JPushExample', ':sns_share_sdk_login'
 include ':alipay_demo'
 

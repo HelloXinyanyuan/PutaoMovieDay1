@@ -19,7 +19,6 @@
             <option value="$PROJECT_DIR$/sns_share_sdk_login" />
             <option value="$PROJECT_DIR$/testlib" />
             <option value="$PROJECT_DIR$/volley" />
-            <option value="$PROJECT_DIR$/zxing_android_demo" />
           </set>
         </option>
         <option name="myModules">
@@ -35,7 +34,6 @@
             <option value="$PROJECT_DIR$/sns_share_sdk_login" />
             <option value="$PROJECT_DIR$/testlib" />
             <option value="$PROJECT_DIR$/volley" />
-            <option value="$PROJECT_DIR$/zxing_android_demo" />
           </set>
         </option>
       </GradleProjectSettings>

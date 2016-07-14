@@ -16,6 +16,7 @@ import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseActivity;
 import com.whunf.putaomovieday1.common.core.PMApplication;
 import com.whunf.putaomovieday1.common.core.UrlConfig;
+import com.whunf.putaomovieday1.common.msg.LoginEvent;
 import com.whunf.putaomovieday1.common.parser.CommParserTask;
 import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.common.util.UserInfoUtil;
@@ -24,6 +25,8 @@ import com.whunf.putaomovieday1.module.user.req.GetSmscodeReqJson;
 import com.whunf.putaomovieday1.module.user.req.LoginSmscodeReqJson;
 import com.whunf.putaomovieday1.module.user.resp.GetSmscodeResp;
 import com.whunf.putaomovieday1.module.user.resp.LoginSmscodeResp;
+
+import org.greenrobot.eventbus.EventBus;
 
 
 /**
@@ -151,7 +154,8 @@ public class LoginBySmsVertifycodeActivity extends BaseActivity implements View.
 
         T.showShort(LoginBySmsVertifycodeActivity.this, "登录成功！");
         Log.d(TAG, "onResponse() called with: " + "response = [" + response + "]");
-
+        //如果登录成功，发送一个消息
+        EventBus.getDefault().post(new LoginEvent(true));
         finish();
     }
 

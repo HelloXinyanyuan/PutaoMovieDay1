@@ -6,6 +6,13 @@
         android:name="com.whunf.putaomovieday1.permission.JPUSH_MESSAGE"
         android:protectionLevel="signature" />
 
+    <uses-permission android:name="android.permission.CAMERA"></uses-permission>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"></uses-permission>
+    <uses-feature android:name="android.hardware.camera" />
+    <uses-feature android:name="android.hardware.camera.autofocus" />
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.FLASHLIGHT"/>
+
     <!-- Required  一些系统要求的权限，如访问网络等 -->
     <uses-permission android:name="com.whunf.putaomovieday1.permission.JPUSH_MESSAGE" />
     <uses-permission android:name="android.permission.RECEIVE_USER_PRESENT" />
@@ -328,6 +335,9 @@
             </intent-filter>
         </activity>
 
+        <!--二维码扫描-->
+
+        <activity android:name=".common.zxing.CaptureActivity"></activity>
     </application>
 
 </manifest>

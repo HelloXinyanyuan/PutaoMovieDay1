@@ -104,4 +104,5 @@ dependencies {
     compile files('libs/ShareSDK-Yixin-Core-2.7.4.jar')
     compile files('libs/ShareSDK-Yixin-Moments-2.7.4.jar')
     compile files('libs/ShareSDK-YouDao-2.7.4.jar')
+    compile files('libs/zxing.jar')
 }

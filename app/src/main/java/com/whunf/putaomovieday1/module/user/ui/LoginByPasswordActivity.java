@@ -7,6 +7,7 @@ import android.widget.EditText;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseActivity;
 import com.whunf.putaomovieday1.common.core.UrlConfig;
+import com.whunf.putaomovieday1.common.msg.LoginEvent;
 import com.whunf.putaomovieday1.common.parser.CommParserTask;
 import com.whunf.putaomovieday1.common.parser.FullTaskListener;
 import com.whunf.putaomovieday1.common.util.T;
@@ -14,6 +15,8 @@ import com.whunf.putaomovieday1.common.util.UserInfoUtil;
 import com.whunf.putaomovieday1.module.user.entity.UserInfo;
 import com.whunf.putaomovieday1.module.user.req.LoginByPasswordReqJson;
 import com.whunf.putaomovieday1.module.user.resp.LoginByPasswordResp;
+
+import org.greenrobot.eventbus.EventBus;
 
 import java.nio.charset.Charset;
 import java.security.MessageDigest;
@@ -113,6 +116,9 @@ public class LoginByPasswordActivity extends BaseActivity implements View.OnClic
                                        UserInfo userInfo=new UserInfo(ptToken,accName);
                                        UserInfoUtil.getInstance().saveUserInfo(userInfo);
                                        T.showShort(LoginByPasswordActivity.this,"登录成功！");
+
+                                       //如果登录成功，发送一个消息
+                                       EventBus.getDefault().post(new LoginEvent(true));
                                        finish();
                                    }else{
                                        T.showShort(LoginByPasswordActivity.this,"密码错误");
