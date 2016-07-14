@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
+import com.whunf.putaomovieday1.common.ui.SettingActivity;
 import com.whunf.putaomovieday1.common.util.T;
 
 /**
@@ -76,7 +77,8 @@ public class MenuFragment extends BaseFragment implements View.OnClickListener {
 
             case R.id.btn_setting:
                 //设置
-                T.showShort(getActivity(), "设置");
+                intent.setClass(getActivity(),SettingActivity.class);
+                startActivity(intent);
                 break;
         }
     }

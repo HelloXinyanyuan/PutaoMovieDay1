@@ -10,8 +10,10 @@
       <module fileurl="file://$PROJECT_DIR$/putaoLife/putaoLife.iml" filepath="$PROJECT_DIR$/putaoLife/putaoLife.iml" />
       <module fileurl="file://$PROJECT_DIR$/putaoLife_changebag/putaoLife_changebag.iml" filepath="$PROJECT_DIR$/putaoLife_changebag/putaoLife_changebag.iml" />
       <module fileurl="file://$PROJECT_DIR$/smlibrary/smlibrary.iml" filepath="$PROJECT_DIR$/smlibrary/smlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/sns_share_sdk_login/sns_share_sdk_login.iml" filepath="$PROJECT_DIR$/sns_share_sdk_login/sns_share_sdk_login.iml" />
       <module fileurl="file://$PROJECT_DIR$/testlib/testlib.iml" filepath="$PROJECT_DIR$/testlib/testlib.iml" />
       <module fileurl="file://$PROJECT_DIR$/volley/volley.iml" filepath="$PROJECT_DIR$/volley/volley.iml" />
+      <module fileurl="file://$PROJECT_DIR$/zxing_android_demo/zxing_android_demo.iml" filepath="$PROJECT_DIR$/zxing_android_demo/zxing_android_demo.iml" />
     </modules>
   </component>
 </project>
