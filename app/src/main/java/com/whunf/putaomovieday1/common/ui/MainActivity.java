@@ -1,12 +1,12 @@
 package com.whunf.putaomovieday1.common.ui;
 
-import android.app.AlertDialog;
 import android.os.Bundle;
 
 import com.jeremyfeinstein.slidingmenu.lib.SlidingMenu;
 import com.jeremyfeinstein.slidingmenu.lib.app.SlidingFragmentActivity;
 import com.whunf.putaomovieday1.R;
 import com.whunf.putaomovieday1.common.core.BaseFragment;
+import com.whunf.putaomovieday1.common.version.VersionMgr;
 import com.whunf.putaomovieday1.module.user.ui.MenuFragment;
 
 public class MainActivity extends SlidingFragmentActivity {
@@ -21,10 +21,6 @@ public class MainActivity extends SlidingFragmentActivity {
             mContent = (BaseFragment) getSupportFragmentManager().getFragment(savedInstanceState, "mContent");
         if (mContent == null)
             mContent = new MainContentFragment();
-
-
-        new AlertDialog.Builder(this).create();
-
 
         // set the Above View
         setContentView(R.layout.content_frame);
@@ -44,6 +40,8 @@ public class MainActivity extends SlidingFragmentActivity {
         getSlidingMenu().setTouchModeAbove(SlidingMenu.TOUCHMODE_MARGIN);
         //侧滑的偏移量
         getSlidingMenu().setBehindOffsetRes(R.dimen.slidingmenu_offset);
+        //执行版本检测
+        VersionMgr.getInstance().autoCheckVersion(this);
     }
 
     @Override
@@ -52,5 +50,9 @@ public class MainActivity extends SlidingFragmentActivity {
         getSupportFragmentManager().putFragment(outState, "mContent", mContent);
     }
 
-
+    @Override
+    protected void onDestroy() {
+        VersionMgr.getInstance().destroy();
+        super.onDestroy();
+    }
 }
