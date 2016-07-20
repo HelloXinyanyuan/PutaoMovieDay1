@@ -8,7 +8,7 @@ repositories {
 
 android {
     compileSdkVersion 23
-    buildToolsVersion "23.0.3"
+    buildToolsVersion '24'
 
     defaultConfig {
         applicationId "com.whunf.putaomovieday1"

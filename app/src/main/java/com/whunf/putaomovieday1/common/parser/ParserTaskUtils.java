@@ -15,7 +15,7 @@ public class ParserTaskUtils
      * 
      * @param task
      */
-    public static void cancelParserTask(CommParserTask task)
+    public static void cancelParserTask(ParserTask task)
     {
         if (task != null)
         {

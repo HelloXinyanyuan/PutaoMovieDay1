@@ -21,7 +21,7 @@ import java.util.Map;
  * <p/>
  * 通用的异步任务请求类
  */
-public class CommParserTask<T> implements Response.ErrorListener {
+public class CommParserTask<T> implements Response.ErrorListener ,ParserTask{
 
     private static final String TAG = "CommParserTask";
 

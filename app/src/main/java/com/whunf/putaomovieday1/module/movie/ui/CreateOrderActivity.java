@@ -17,6 +17,8 @@ import com.whunf.putaomovieday1.common.core.BaseActivity;
 import com.whunf.putaomovieday1.common.msg.OrderEvent;
 import com.whunf.putaomovieday1.common.parser.CommParserTask;
 import com.whunf.putaomovieday1.common.parser.FullTaskListener;
+import com.whunf.putaomovieday1.common.parser.ParserTask;
+import com.whunf.putaomovieday1.common.parser.ParserTaskUtils;
 import com.whunf.putaomovieday1.common.util.LogUtil;
 import com.whunf.putaomovieday1.common.util.T;
 import com.whunf.putaomovieday1.common.util.location.CommUtil;
@@ -45,7 +47,10 @@ public class CreateOrderActivity extends BaseActivity {
     String postOrder = "http://api.putao.so/spay/pay/order";
     String createAlipayParamUrl = "http://api.putao.so/spay/pay/order/alipay";
 
-    private CommParserTask<AddTicketOrderResp> mCreateOrderTask;
+    private ParserTask mCreateOrderTask;
+//传送订单的任务
+    private ParserTask mPostOrderTask;
+    private ParserTask mAlipayParamTask;
     private long cpid;
     private long mpid;
     private String cpparam;
@@ -138,8 +143,7 @@ public class CreateOrderActivity extends BaseActivity {
         return CommUtil.getCookie();
     }
 
-    private CommParserTask<SimpleDataResp> mPostOrderTask;
-    private CommParserTask<AlipayResp> mAlipayParamTask;
+
 
     /**
      * 将订单信息传送给后台保存
@@ -258,6 +262,15 @@ public class CreateOrderActivity extends BaseActivity {
         mAlipayParamTask.asyncParse();
     }
 
+
+    @Override
+    protected void onDestroy() {
+        //退出时取消请求任务
+        ParserTaskUtils.cancelParserTask(mCreateOrderTask);
+        ParserTaskUtils.cancelParserTask(mAlipayParamTask);
+        ParserTaskUtils.cancelParserTask(mPostOrderTask);
+        super.onDestroy();
+    }
 
     /**
      * 拉起支付宝支付
